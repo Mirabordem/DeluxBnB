@@ -1,8 +1,8 @@
-# `<name of application here>`
+# Backend-Project
 
 ## Database Schema Design
 
-`<insert database schema design here>`
+`airbnb_dbdiagram.png`
 
 ## API Documentation
 
