@@ -47,6 +47,90 @@ const allSpots = [
     name: 'Downtown Loft Oasis',
     description: 'Contemporary loft in the heart of Manhattan. Open floor plan, rooftop terrace, and skyline views. Perfect for urban explorers.',
     price: 500.00
+  },
+  {
+    ownerId: 2,
+    address: '1234 Oak Street',
+    city: 'Boulder',
+    state: 'Colorado',
+    country: 'United States',
+    lat: 40.015,
+    lng: -105.270,
+    name: 'Cozy Urban Loft',
+    description: 'Modern loft apartment in the heart of downtown. Close to restaurants, shops, and nightlife.',
+    price: 200.00
+  },
+  {
+    ownerId: 5,
+    address: '456 Pine Avenue',
+    city: 'Portland',
+    state: 'Oregon',
+    country: 'United States',
+    lat: 45.512,
+    lng: -122.684,
+    name: 'Vintage Cottage by the River',
+    description: 'Charming riverside cottage with a private garden. Perfect for a romantic getaway.',
+    price: 175.00
+  },
+  {
+    ownerId: 5,
+    address: '789 Maple Lane',
+    city: 'Seattle',
+    state: 'Washington',
+    country: 'United States',
+    lat: 47.609,
+    lng: -122.336,
+    name: 'Luxury Downtown Penthouse',
+    description: 'Elegant penthouse with stunning city views. Rooftop pool and fitness center.',
+    price: 300.00
+  },
+  {
+    ownerId: 5,
+    address: '101 Redwood Drive',
+    city: 'San Francisco',
+    state: 'California',
+    country: 'United States',
+    lat: 37.774,
+    lng: -122.419,
+    name: 'Designer Studio Apartment',
+    description: 'Sleek and modern studio with designer furnishings. Walking distance to attractions.',
+    price: 175.00
+  },
+  {
+    ownerId: 8,
+    address: '222 Pine Street',
+    city: 'New York',
+    state: 'New York',
+    country: 'United States',
+    lat: 40.712,
+    lng: -74.006,
+    name: 'Historic Brownstone Townhouse',
+    description: 'Spacious townhouse in a historic neighborhood. Close to museums and theaters.',
+    price: 250.00
+  },
+  {
+    ownerId: 4,
+    address: '333 Elm Avenue',
+    city: 'Los Angeles',
+    state: 'California',
+    country: 'United States',
+    lat: 34.052,
+    lng: -118.243,
+    name: 'Beachfront Villa',
+    description: 'Luxurious villa with private beach access. Ideal for a relaxing seaside getaway.',
+    price: 400.00
+  },
+  {
+    ownerId: 7,
+    address: '444 Cedar Street',
+    city: 'Austin',
+    state: 'Texas',
+    country: 'United States',
+    lat: 30.267,
+    lng: -97.743,
+    name: 'Texas Ranch Retreat',
+    description: 'Rustic ranch house with wide-open spaces. Perfect for outdoor enthusiasts.',
+    price: 180.00
   }
 ];
 
