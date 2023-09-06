@@ -83,6 +83,30 @@ requireAuth,
 });
 
 
+// get all spots owned by current user
+
+router.get('/current',
+requireAuth,  //  An authenticated user is required for a successful response
+async(req, res) => {
+const {user} = req
+
+const spots = await Spot.findAll({
+  where: {
+    ownerId: user.id   // Successful response includes only spots created by the current user
+  },
+  include: [SpotImage, Review]  // spot data includes previewImage, and avgRating
+});
+
+let allSpots = [];
+spots.forEach(spot => {
+  allSpots.push(spot.toJSON)
+});
+
+
+
+})
+
+
 
 
 
