@@ -307,17 +307,11 @@ router.get('/:spotId', async(req, res) => {
         res.status(403);
         return res.json({message: "Forbidden"})
       }
-
-
-
     }
-
-
-
-
-
-
   })
+
+
+  
 
 
 
