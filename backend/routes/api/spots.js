@@ -8,6 +8,43 @@ const { Spot, SpotImage, Review, User, ReviewImage, Booking } = require('../../d
 const router = express.Router();
 
 
+const validateSpot = [
+
+  check('address')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a valid address'),
+  check('city')
+    .exists( {checkFalsy: true })
+    .withMessage('Please provide a valid city name'),
+  check('state')
+    .exists( {checkFalsy: true })
+    .withMessage('Please provide a valid state'),
+  check('country')
+    .exists( {checkFalsy: true })
+    .withMessage('Please provide a valid country'),
+  check('lat')
+    .exists( {checkFalsy: true })
+    .isNumeric()
+    .withMessage('Please provide a valid latitude'),
+  check('lng')
+    .exists( {checkFalsy: true })
+    .isNumeric()
+    .withMessage('Please provide a valid longitude'),
+  check('name')
+    .exists( {checkFalsy: true })
+    .isLength({min:2, max: 50})
+    .withMessage('Name must be less than 50 characters'),
+  check('description')
+    .exists( {checkFalsy: true })
+    .withMessage('Please provide a valid description'),
+  check('price')
+    .exists( {checkFalsy: true })
+    .isNumeric()
+    .withMessage('Please provide a valid price per day'),
+    handleValidationErrors
+];
+
+
 // GET ALL SPOTS:
 
 router.get('/', async(req, res) => {
@@ -234,14 +271,47 @@ router.get('/:spotId', async(req, res) => {
 
 // EDIT A SPOT:
 
-  // router.put('/:spotId', requireAuth, async(req, res) => {
-  //   const {user} = req;
-  //   const {address, city, state, country, lat, lng, name, description, price} = req.body;
+  router.put('/:spotId', requireAuth, validateSpot, async(req, res) => {
+    const {user} = req;
+    const {address, city, state, country, lat, lng, name, description, price} = req.body;
+
+    let spot = await Spot.findByPk(req.params.spotId);
+
+    if (!user) {
+      return res.json({user: null})
+    };
+
+    if (!spot) {
+      res.status(404);
+      res.json({message: "Couldn't find a Spot with the specified id"})
+    };
+
+    if (user) {
+      if (user.id === spot.ownerId) {
+        spot.address = address,
+        spot.city = city,
+        spot.state = state,
+        spot.country = country,
+        spot.lat = lat,
+        spot.lng = lng,
+        spot.name = name,
+        spot.description = description,
+        spot.price = price,
+
+        await spot.save();
+
+        res.status(200);
+        res.json(spot)
+
+      } else if (user.id !== spot.ownerId) {
+        res.status(403);
+        return res.json({message: "Forbidden"})
+      }
+    }
+  })
 
 
-
-
-  // })
+  
 
 
 
