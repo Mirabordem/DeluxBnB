@@ -10,6 +10,9 @@ const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 
 
+  // check and validate - The POST /api/session login route will expect the body of the request
+  // to have a key of credential with either the username or email of a user and a key of password
+  // with the password of the user.
 
 
 const validateLogin = [
@@ -23,11 +26,11 @@ const validateLogin = [
     handleValidationErrors
   ];
 
-// Log in
-router.post(
-    '/',
-    validateLogin,
-    async (req, res, next) => {
+
+// LOG IN:
+
+router.post('/', validateLogin, async (req, res, next) => {
+
       const { credential, password } = req.body;
 
       const user = await User.unscoped().findOne({
@@ -57,17 +60,14 @@ router.post(
 
       await setTokenCookie(res, safeUser);
 
-      return res.json({
-        user: safeUser
-      });
+      return res.json({ user: safeUser });
     }
   );
 
 
-// Log out
-router.delete(
-    '/',
-    (_req, res) => {
+// LOG OUT:
+
+router.delete('/', (_req, res) => {
       res.clearCookie('token');
       return res.json({ message: 'success' });
     }
@@ -75,12 +75,14 @@ router.delete(
 
 
 //You will be making commits for adding an endpoint to get the current user session to your backend server.
-// Restore session user:
 
-router.get(
-    '/',
-    (req, res) => {
+
+// RESTORE SESSION USER:
+
+router.get('/', (req, res) => {
+
       const { user } = req;
+
       if (user) {
         const safeUser = {
           id: user.id,
@@ -95,24 +97,6 @@ router.get(
       } else return res.json({ user: null });
     }
   );
-
-
-  //  check and validate - The POST /api/session login route will expect the body of the request
-  // to have a key of credential with either the username or email of a user and a key of password
-  // with the password of the user.
-
-//   const validateLogin = [
-//     check('credential')
-//       .exists({ checkFalsy: true })
-//       .notEmpty()
-//       .withMessage('Please provide a valid email or username.'),
-//     check('password')
-//       .exists({ checkFalsy: true })
-//       .withMessage('Please provide a password.'),
-//     handleValidationErrors
-//   ];
-
-
 
 
 
