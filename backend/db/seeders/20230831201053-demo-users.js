@@ -37,7 +37,7 @@ module.exports = {
         lastName: "Smithy",
         email: "johnsmit8h2@gmail.com",
         username: "johns9mith2",
-        hashedPassword: "bcrypt.hashSync('password48')"
+        hashedPassword: bcrypt.hashSync("password48")
       },
       {
         firstName: "Emily",
@@ -67,7 +67,7 @@ module.exports = {
         username: "daniell",
         hashedPassword: bcrypt.hashSync("password8")
       }
-    ], { /*validate: true */  });
+    ], { validate: true });
   },
 
   async down (queryInterface, Sequelize) {
