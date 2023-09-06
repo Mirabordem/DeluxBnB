@@ -10,6 +10,9 @@ const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 
 
+  // check and validate - The POST /api/session login route will expect the body of the request
+  // to have a key of credential with either the username or email of a user and a key of password
+  // with the password of the user.
 
 
 const validateLogin = [
@@ -23,7 +26,9 @@ const validateLogin = [
     handleValidationErrors
   ];
 
-// Log in
+
+// LOG IN:
+
 router.post(
     '/',
     validateLogin,
@@ -64,7 +69,8 @@ router.post(
   );
 
 
-// Log out
+// LOG OUT:
+
 router.delete(
     '/',
     (_req, res) => {
@@ -95,22 +101,6 @@ router.get(
       } else return res.json({ user: null });
     }
   );
-
-
-  //  check and validate - The POST /api/session login route will expect the body of the request
-  // to have a key of credential with either the username or email of a user and a key of password
-  // with the password of the user.
-
-//   const validateLogin = [
-//     check('credential')
-//       .exists({ checkFalsy: true })
-//       .notEmpty()
-//       .withMessage('Please provide a valid email or username.'),
-//     check('password')
-//       .exists({ checkFalsy: true })
-//       .withMessage('Please provide a password.'),
-//     handleValidationErrors
-//   ];
 
 
 
