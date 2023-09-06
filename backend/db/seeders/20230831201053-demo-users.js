@@ -14,23 +14,58 @@ module.exports = {
       {
         firstName: 'Frank',
         lastName: 'Wright',
-        email: 'frankwright34@gmail.com',
-        username: 'fruuunk',
-        hashedPassword: bcrypt.hashSync('password')
+        email: 'fraewright34@gmail.com',
+        username: 'fruueunk',
+        hashedPassword: bcrypt.hashSync('password12')
       },
       {
         firstName: 'Tom',
         lastName: 'Long',
-        email: 'tomlonggg54@gmail.com',
-        username: 'Longgggtomy',
-        hashedPassword: bcrypt.hashSync('password2')
+        email: 'tomlongtgg54@gmail.com',
+        username: 'Longgggfomy',
+        hashedPassword: bcrypt.hashSync('password21')
       },
       {
         firstName: 'Anna',
         lastName: 'Doe',
-        email: 'aniadoei@gmail.com',
-        username: 'annAdoE65',
-        hashedPassword: bcrypt.hashSync('password3')
+        email: 'aniadioei@gmail.com',
+        username: 'annAsdoE65',
+        hashedPassword: bcrypt.hashSync('password34')
+      },
+      {
+        firstName: "John",
+        lastName: "Smithy",
+        email: "johnsmit8h2@gmail.com",
+        username: "johns9mith2",
+        hashedPassword: bcrypt.hashSync("password48")
+      },
+      {
+        firstName: "Emily",
+        lastName: "Johnson",
+        email: "emily.j@gmail.com",
+        username: "emilyj",
+        hashedPassword: bcrypt.hashSync("password5")
+      },
+      {
+        firstName: "Michael",
+        lastName: "Brown",
+        email: "michael.b@gmail.com",
+        username: "michaelb",
+        hashedPassword: bcrypt.hashSync("password6")
+      },
+      {
+        firstName: "Sarah",
+        lastName: "Williams",
+        email: "sarah.w@gmail.com",
+        username: "sarahw",
+        hashedPassword: bcrypt.hashSync("password7")
+      },
+      {
+        firstName: "Daniel",
+        lastName: "Lee",
+        email: "daniel.lee@gmail.com",
+        username: "daniell",
+        hashedPassword: bcrypt.hashSync("password8")
       }
     ], { validate: true });
   },
