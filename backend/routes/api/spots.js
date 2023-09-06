@@ -132,21 +132,116 @@ let allSpots = [];
 // GET DETAILS OF A SPOT FROM AN ID:
 
 router.get('/:spotId', async(req, res) => {
+
   let spot = await Spot.findByPk(req.params.spotId)
   if (!spot) {
     res.status(404);
-    res.json({message: 'Spot couldn\'t be found.'})
+    res.json({message: "Spot couldn't be found."})
   }
   spot = spot.toJSON();
 
 
+// finding all reviews for this spotId:
+  let reviews = await Review.findAll({
+    where: {
+      spotId: req.params.spotId
+    }
+  })
+
+  let jsonReviews = [] // translate every review to json object
+  reviews.forEach(review => {
+    jsonReviews.push(review.toJSON())
+  })
 
 
+// finding numReviews and avgStarRating:
+  let numReviews = jsonReviews.length;
 
+  let starSum = 0; //starting to collect
+  jsonReviews.forEach(review => {
+    starSum += review.stars
+  })
+  let avgStars = starSum / numReviews;
+
+  spot.numReviews = numReviews;
+  spot.avgStarRating = avgStars;
+
+
+// finding spot images:
+  let images = await SpotImage.findAll({
+    where: {
+      spotId: req.params.spotId
+    }
+  });
+  spot.SpotImages = images;
+
+
+// finding owner info:
+  let owner = await User.findByPk(spot.ownerId, {
+    attributes: ['id', 'firstName', 'lastName']
+  });
+  spot.Owner = owner;
+
+
+  res.status(200);
   res.json(spot);
 })
 
 
+
+// ADD IMAGE TO SPOT BY ID:
+
+  router.post('/:spotId/images', requireAuth, async(req, res) => {
+  const {user} = req;
+  const {url, preview} = req.body;
+
+// finding spot:
+  let spot = await Spot.findByPk(req.params.spotId);
+
+  if (!spot) {
+    res.status(404);
+    return res.json({message: "Spot couldn't be found"})
+  }
+
+// confirming that user owns the spot:
+  if (user.id !== spot.ownerId) {
+    res.status(403);
+    return res.json({message: "Only owner can add an image"})
+  }
+
+
+ // creating a new image in spot:
+  if (user.id === spot.ownerId) {
+    const image = await spot.createSpotImage({
+      url: url,
+      preview: preview
+    });
+
+    await image.save();
+
+    let response = {};
+
+    response.id = image.id;
+    response.url = image.url;
+    response.preview = image.preview;
+
+
+    res.status(200);
+    res.json(response);
+  }
+})
+
+
+// EDIT A SPOT:
+
+  // router.put('/:spotId', requireAuth, async(req, res) => {
+  //   const {user} = req;
+  //   const {address, city, state, country, lat, lng, name, description, price} = req.body;
+
+
+
+
+  // })
 
 
 
