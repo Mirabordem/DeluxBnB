@@ -3,13 +3,7 @@ const { requireAuth } = require('../../utils/auth');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
-const { Spot } = require('../../db/models');
-const { SpotImage } = require('../../db/models');
-const { Review } = require('../../db/models');
-const { User } = require('../../db/models');
-const { ReviewImage } = require('../../db/models');
-const { Booking } = require('../../db/models');
-
+const { Spot, SpotImage, Review, User, ReviewImage, Booking } = require('../../db/models');
 
 const router = express.Router();
 
@@ -27,7 +21,7 @@ router.get('/', async(req, res) => {
 });
 
 
- // get previewImage:
+ // set previewImage:
  allSpots.forEach(spot => {
   spot.SpotImages.forEach(image => {
     if(image.preview) {
@@ -42,7 +36,7 @@ router.get('/', async(req, res) => {
 
 // get avgRating, aggregate data:
 allSpots.forEach(spot => {
-    spot.avgRating = 0;
+    spot.avgRating = 0; // starting point to add
     spot.Reviews.forEach(review => {
         spot.avgRating += review.stars;
     })
@@ -50,18 +44,18 @@ allSpots.forEach(spot => {
       delete spot.Reviews;
   });
 
-
   res.status(200);
   return res.json({Spots: allSpots})
 });
 
 
+
 // CREATE A SPOT:
 
 router.post('/',
-requireAuth,  // authentication required
+requireAuth,  // middleware from auth file - authentication required
   async(req, res) => {
-    const { user } = req;
+    const { user } = req; // safe user from Auth
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
     if(user) {
@@ -86,16 +80,17 @@ requireAuth,  // authentication required
 });
 
 
+
 // GET ALL SPOTS OWNED BY CURRENT USER:
 
 router.get('/current',
-requireAuth,             //  middleware for authenticated user
+requireAuth,
 async(req, res) => {
-const {user} = req;      // added to req object after passing auth.
+const {user} = req;      // added to req object after passing
 
 const spots = await Spot.findAll({
   where: {
-    ownerId: user.id      //  only spots created by the current user
+    ownerId: user.id      //  only spots created by current user
   },
   include: [SpotImage, Review]  // spot data includes previewImage, and avgRating
 });
@@ -105,9 +100,8 @@ let allSpots = [];
   spots.forEach(spot => {
     allSpots.push(spot.toJSON())
 });
-// console.log(allSpots)
 
-  // previewImage:
+  // set previewImage:
   allSpots.forEach(spot => {
     spot.SpotImages.forEach(image => {
       if(image.preview) {
@@ -120,7 +114,7 @@ let allSpots = [];
     delete spot.SpotImages;
   })
 
-    // avgRating, aggregate data:
+    // get avgRating, aggregate data:
     allSpots.forEach(spot => {
       spot.avgRating = 0;
       spot.Reviews.forEach(review => {
@@ -132,6 +126,7 @@ let allSpots = [];
 
   return res.json({Spots: allSpots})
 });
+
 
 
 // GET DETAILS OF A SPOT FROM AN ID:
