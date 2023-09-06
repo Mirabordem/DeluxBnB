@@ -14,10 +14,11 @@ const { Booking } = require('../../db/models');
 const router = express.Router();
 
 
-// get all spots
+// GET ALL SPOTS:
+
 router.get('/', async(req, res) => {
     const spots = await Spot.findAll({
-        include: [{model: SpotImage}, { model: Review}]
+        include: [{model: SpotImage}, { model: Review}]  // spot data includes previewImage, and avgRating
     })
 
     let allSpots = [];
@@ -25,7 +26,21 @@ router.get('/', async(req, res) => {
   allSpots.push(spot.toJSON())
 });
 
-// get average rating
+
+ // get previewImage:
+ allSpots.forEach(spot => {
+  spot.SpotImages.forEach(image => {
+    if(image.preview) {
+      spot.previewImage = image.url
+    }
+  })
+  if(!spot.previewImage) {
+    spot.preview = 'No preview image.'
+  }
+  delete spot.SpotImages;
+})
+
+// get avgRating, aggregate data:
 allSpots.forEach(spot => {
     spot.avgRating = 0;
     spot.Reviews.forEach(review => {
@@ -35,28 +50,16 @@ allSpots.forEach(spot => {
       delete spot.Reviews;
   });
 
-   // get preview Image
-   allSpots.forEach(spot => {
-    spot.SpotImages.forEach(image => {
-      if(image.preview) {
-        spot.previewImage = image.url
-      }
-    })
-    if(!spot.previewImage) {
-      spot.preview = 'No preview image.'
-    }
-    delete spot.SpotImages;
-  })
 
   res.status(200);
   return res.json({Spots: allSpots})
 });
 
 
-// create a spot
+// CREATE A SPOT:
+
 router.post('/',
-requireAuth,
-// validateSpot,
+requireAuth,  // authentication required
   async(req, res) => {
     const { user } = req;
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
@@ -83,28 +86,74 @@ requireAuth,
 });
 
 
-// get all spots owned by current user
+// GET ALL SPOTS OWNED BY CURRENT USER:
 
 router.get('/current',
-requireAuth,  //  An authenticated user is required for a successful response
+requireAuth,             //  middleware for authenticated user
 async(req, res) => {
-const {user} = req
+const {user} = req;      // added to req object after passing auth.
 
 const spots = await Spot.findAll({
   where: {
-    ownerId: user.id   // Successful response includes only spots created by the current user
+    ownerId: user.id      //  only spots created by the current user
   },
   include: [SpotImage, Review]  // spot data includes previewImage, and avgRating
 });
 
+
 let allSpots = [];
-spots.forEach(spot => {
-  allSpots.push(spot.toJSON)
+  spots.forEach(spot => {
+    allSpots.push(spot.toJSON())
+});
+// console.log(allSpots)
+
+  // previewImage:
+  allSpots.forEach(spot => {
+    spot.SpotImages.forEach(image => {
+      if(image.preview) {
+        spot.previewImage = image.url
+      }
+    })
+    if(!spot.previewImage) {
+      spot.previewImage = 'No preview image.'
+    }
+    delete spot.SpotImages;
+  })
+
+    // avgRating, aggregate data:
+    allSpots.forEach(spot => {
+      spot.avgRating = 0;
+      spot.Reviews.forEach(review => {
+          spot.avgRating += review.stars;
+      })
+        spot.avgRating = spot.avgRating / spot.Reviews.length
+        delete spot.Reviews;
+    });
+
+  return res.json({Spots: allSpots})
 });
 
 
+// GET DETAILS OF A SPOT FROM AN ID:
 
+router.get('/:spotId', async(req, res) => {
+  let spot = await Spot.findByPk(req.params.spotId)
+  if (!spot) {
+    res.status(404);
+    res.json({message: 'Spot couldn\'t be found.'})
+  }
+  spot = spot.toJSON();
+
+
+
+
+
+  res.json(spot);
 })
+
+
+
+
 
 
 
