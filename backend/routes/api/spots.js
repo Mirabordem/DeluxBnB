@@ -435,6 +435,136 @@ router.get('/:spotId', async(req, res) => {
 
 
 
-  
+
+// CREATE BOOKING OF A SPOT:
+
+//   router.post('/:spotId/bookings', requireAuth, async(req, res) => {
+//     const {user} = req;
+//     const {startDate, endDate} = req.body;
+
+
+//     const spot = await Spot.findByPk(req.params.spotId);
+
+//     if (!spot) {
+//       res.status(404);
+//       return res.json({message: "Spot couldn't be found"});
+//     };
+
+//     if (spot.ownerId === user.id) {
+//       res.status(403);
+//         return res.json({message: "Forbidden"})
+//     };
+
+// // finding all bookings for this spot:
+//     const bookings = await Booking.findAll({
+//       where: {
+//         spotId: req.params.spotId
+//       }
+//     });
+
+
+//  // checking whether there is a conflict in dates:
+//     const userStart = new Date(startDate);
+//     const userEnd = new Date(endDate);
+
+//     let numStart = userStart.getTime();
+//     let numEnd = userEnd.getTime();
+
+//     if(numStart >= numEnd) {
+//       res.status(400);
+//       return res.json({
+//         message: "Bad Request",
+//         errors: {
+//           endDate: "endDate cannot be on or before startDate"
+//         }
+//       })
+//     };
+
+   router.post('/:spotId/bookings', requireAuth, async (req, res) => {
+    const {user} = req;
+    const {startDate, endDate} = req.body;
+
+    const spot = await Spot.findByPk(req.params.spotId);
+
+    if (!spot) {
+      res.status(404);
+      return res.json({ message: "Spot couldn't be found" });
+    }
+
+    if (spot.ownerId === user.id) {
+      res.status(403);
+      return res.json({ message: "Forbidden" });
+    }
+
+
+// find all bookings of this spot:
+    const bookings = await Booking.findAll({ where: { spotId: req.params.spotId } });
+
+
+// Working with dates - checking for time conflict in bookings:
+    let conflict = false;
+
+    const userStart = new Date(startDate);
+    const userEnd = new Date(endDate);
+
+    const numUserStart = userStart.getTime(); // creates a number to compare
+    const numUserEnd = userEnd.getTime();
+
+
+// checking dates of bookings of the spot:
+    for (let booking of bookings) {
+      const bookedStart = new Date(booking.startDate).getTime(); // number
+      const bookedEnd = new Date(booking.endDate).getTime();
+
+      
+      if (numUserStart <= bookedEnd && numUserEnd >= bookedStart) {
+        conflict = true;
+      }
+    }
+
+    if (conflict) {
+      res.status(403);
+      return res.json({
+        message: "Sorry, this spot is already booked for the specified dates",
+        errors: {
+          startDate: "Start date conflicts with an existing booking",
+          endDate: "End date conflicts with an existing booking"
+        }
+      });
+    }
+
+    const createBooking = await spot.createBooking({
+      spotId: parseInt(req.params.spotId),
+      userId: parseInt(user.id),
+      startDate,
+      endDate
+    });
+
+    res.status(200);
+    return res.json(createBooking);
+   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router;
