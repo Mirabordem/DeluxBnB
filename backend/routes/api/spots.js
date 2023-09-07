@@ -435,6 +435,6 @@ router.get('/:spotId', async(req, res) => {
 
 
 
-
+  
 
 module.exports = router;
