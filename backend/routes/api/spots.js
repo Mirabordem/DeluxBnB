@@ -516,7 +516,7 @@ router.get('/:spotId', async(req, res) => {
       const bookedStart = new Date(booking.startDate).getTime(); // number
       const bookedEnd = new Date(booking.endDate).getTime();
 
-      
+
       if (numUserStart <= bookedEnd && numUserEnd >= bookedStart) {
         conflict = true;
       }
@@ -543,6 +543,82 @@ router.get('/:spotId', async(req, res) => {
     res.status(200);
     return res.json(createBooking);
    });
+
+
+
+// GET ALL BOOKINGS FOR SPOT BY ID:
+
+
+  router.get('/:spotId/bookings', requireAuth, async (req, res) => {
+    const {user} = req;
+
+    const spot = await Spot.findByPk(req.params.spotId)
+
+    if(!spot) {
+      res.status(404);
+      res.json({message: "Spot couldn't be found"})
+    }
+
+
+// response for not the spot owner:
+    if (user.id !== spot.ownerId) {
+      const bookings = await Booking.findAll({
+        where: {
+          spotId: req.params.spotId},
+          attributes: ['spotId', 'startDate', 'endDate']
+      })
+      let bookingsJson = [];
+      bookings.forEach(booking => bookingsJson.push(booking.toJSON()));
+
+      bookingsJson.forEach(booking => {
+        let startDate = JSON.stringify(booking.startDate);
+        booking.startDate = startDate.slice(1,11);
+
+        let endDate = JSON.stringify(booking.endDate);
+        booking.endDate = endDate.slice(1,11);
+      })
+
+      res.status(200);
+      return res.json({Bookings: bookingsJson})
+    }
+
+// response for the spot owner:
+    if(user.id === spot.ownerId) {
+      const bookings = await Booking.findAll({
+        where: {
+          spotId: req.params.spotId
+        },
+        include: {
+        model: User,
+        attributes: ['id', 'firstName', 'lastName']
+      }
+    });
+
+      let ownerBookingsJson = [];
+      bookings.forEach(booking => {
+        ownerBookingsJson.push(booking.toJSON())
+      });
+
+      ownerBookingsJson.forEach(booking => {
+        let startDate = JSON.stringify(booking.startDate);
+        booking.startDate = startDate.slice(1,11);
+
+        let endDate = JSON.stringify(booking.endDate);
+        booking.endDate = endDate.slice(1,11);
+
+        let createdAt = JSON.stringify(booking.createdAt);
+        createdAt = createdAt.slice(1, 20);
+        booking.createdAt = createdAt.split("T").join(" ");
+
+        let updatedAt = JSON.stringify(booking.updatedAt);
+        updatedAt = updatedAt.slice(1, 20);
+        booking.updatedAt = updatedAt.split("T").join(" ");
+      })
+
+      res.status(200);
+      res.json({Bookings: ownerBookingsJson})
+    };
+  })
 
 
 
