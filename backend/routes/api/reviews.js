@@ -122,5 +122,76 @@ router.get('/current', requireAuth, async(req, res) => {
 
 
 
+// EDIT REVIEW:
+
+
+router.put('/:reviewId', requireAuth, handleValidationErrors, async(req, res) => {
+    const {user} = req;
+    const {review, stars} = req.body;
+
+    let newReview = await Review.findByPk(req.params.reviewId);
+
+    if (!newReview) {
+      res.status(404);
+      res.json({message: "Review couldn't be found"})
+    };
+
+    if (!user) {
+        return res.json({user: null})
+      };
+
+    if (user) {
+       if (user.id === newReview.userId) {
+          newReview.review = review,
+          newReview.stars = stars
+
+          await newReview.save();
+
+          res.status(200);
+          res.json(newReview)
+
+        } else if (user.id !== newReview.ownerId) {
+          res.status(403);
+          return res.json({message: "Forbidden"})
+        }
+      }
+})
+
+
+// DELETE REVIEW:
+
+
+  router.delete('/:reviewId', requireAuth, async(req, res) => {
+    const {user} = req;
+
+    const review = await Review.findByPk(req.params.reviewId);
+
+    if (!review) {
+      res.status(404);
+      return res.json({message: "Review couldn't be found"});
+    }
+    if (!user) {
+      return res.json({user: null});
+    }
+    if (user) {
+      if (user.id === review.userId) {
+        await review.destroy();
+        res.status(200);
+        return res.json({message: "Successfully deleted"})
+      } else if (user.id !== review.userId) {
+        res.status(403);
+        return res.json({message: "Only owner can delete this review."})
+      }
+    }
+  })
+
+
+
+
+
+
+
+
+
 
   module.exports = router;
