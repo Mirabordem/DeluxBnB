@@ -44,6 +44,19 @@ const validateSpot = [
     handleValidationErrors
 ];
 
+const validateReview = [
+  check('review')
+  .exists({ checkFalsy: true })
+  .withMessage('Review text is required'),
+  check('stars')
+  .exists({ checkFalsy: true })
+  .isNumeric()
+  .isFloat({ min: 1, max: 5 })
+  .withMessage('Stars must be an integer from 1 to 5'),
+  handleValidationErrors
+];
+
+
 
 // GET ALL SPOTS:
 
@@ -78,6 +91,8 @@ allSpots.forEach(spot => {
         spot.avgRating += review.stars;
     })
       spot.avgRating = spot.avgRating / spot.Reviews.length
+      spot.avgRating = spot.avgRating.toFixed(0)
+
       delete spot.Reviews;
   });
 
@@ -158,6 +173,7 @@ let allSpots = [];
           spot.avgRating += review.stars;
       })
         spot.avgRating = spot.avgRating / spot.Reviews.length
+        spot.avgRating = spot.avgRating.toFixed(0)
         delete spot.Reviews;
     });
 
@@ -199,6 +215,7 @@ router.get('/:spotId', async(req, res) => {
     starSum += review.stars
   })
   let avgStars = starSum / numReviews;
+  avgStars = avgStars.toFixed(0)
 
   spot.numReviews = numReviews;
   spot.avgStarRating = avgStars;
@@ -311,8 +328,73 @@ router.get('/:spotId', async(req, res) => {
   })
 
 
-  
+// DELETE A SPOT:
 
+  router.delete('/:spotId', requireAuth, async(req, res) => {
+    const {user} = req;
+
+    const spot = await Spot.findByPk(req.params.spotId);
+
+    if (!spot) {
+      res.status(404);
+      return res.json({message: "Spot couldn't be found"});
+    }
+    if (!user) {
+      return res.json({user: null});
+    }
+    if (user) {
+      if (user.id === spot.ownerId) {
+        await spot.destroy();
+        res.status(200);
+        return res.json({message: "Successfully deleted"})
+      } else if (user.id !== spot.ownerId) {
+        res.status(403);
+        return res.json({message: "Only owner can delete this spot."})
+      }
+    }
+  })
+
+
+  // CREATE REVIEW FOR SPOT BY ID
+
+    router.post('/:spotId/reviews', requireAuth, validateReview, async(req, res) => {
+      const {user} = req;
+      const {review, stars} = req.body;
+
+      const spot = await Spot.findByPk(req.params.spotId);
+
+      if (!spot) {
+        res.status(404);
+        return res.json({message: "Spot couldn't be found"});
+      };
+
+      const spotReviews = await Review.findAll({
+        where: {
+          spotId: req.params.spotId
+        }
+      });
+
+      let spotReviewsJson = [];
+      spotReviews.forEach(review => {
+        spotReviewsJson.push(review.toJSON())
+      })
+
+      // check whether there is review by the current user:
+      for (let review of spotReviewsJson) {
+        if (review.userId === user.id) {
+          res.status(403)
+          return res.json({message: "User already has a review for this spot"})
+        }
+      };
+          let newReview = await spot.createReview({
+            userId: user.id,
+            review,
+            stars
+          });
+
+      res.status(201);
+      return res.json(newReview)
+    })
 
 
 
