@@ -74,10 +74,11 @@ router.delete('/', (_req, res) => {
   );
 
 
-//You will be making commits for adding an endpoint to get the current user session to your backend server.
 
+//___________________________________________________________________
 
 // RESTORE SESSION USER:
+
 
 router.get('/', (req, res) => {
 
@@ -97,6 +98,9 @@ router.get('/', (req, res) => {
       } else return res.json({ user: null });
     }
   );
+
+  
+//___________________________________________________________________
 
 
 

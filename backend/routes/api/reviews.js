@@ -21,7 +21,9 @@ const validateReview = [
   ];
 
 
-// ADD IMAGE TO REVIEW BY ID
+//___________________________________________________________________
+
+// ADD IMAGE TO REVIEW BY ID:
 
 
 router.post('/:reviewId/images', requireAuth, async(req, res) => {
@@ -66,7 +68,10 @@ router.post('/:reviewId/images', requireAuth, async(req, res) => {
   })
 
 
+//___________________________________________________________________
+
 // GET ALL REVIEWS OF CURRENT USER:
+
 
 router.get('/current', requireAuth, async(req, res) => {
     const {user} = req;
@@ -121,11 +126,12 @@ router.get('/current', requireAuth, async(req, res) => {
   })
 
 
+//___________________________________________________________________
 
 // EDIT REVIEW:
 
 
-router.put('/:reviewId', requireAuth, handleValidationErrors, async(req, res) => {
+router.put('/:reviewId', requireAuth, validateReview, async(req, res) => {
     const {user} = req;
     const {review, stars} = req.body;
 
@@ -158,6 +164,8 @@ router.put('/:reviewId', requireAuth, handleValidationErrors, async(req, res) =>
 })
 
 
+//___________________________________________________________________
+
 // DELETE REVIEW:
 
 
@@ -184,6 +192,8 @@ router.put('/:reviewId', requireAuth, handleValidationErrors, async(req, res) =>
       }
     }
   })
+
+  //___________________________________________________________________
 
 
 

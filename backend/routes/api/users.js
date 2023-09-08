@@ -46,7 +46,10 @@ Check these keys and validate them:
   ];
 
 
+  //___________________________________________________________________
+
   // SIGN UP:
+
 
 router.post('/', validateSignup, async (req, res) => {
     const {email, password, username, firstName, lastName} = req.body;
@@ -68,6 +71,8 @@ router.post('/', validateSignup, async (req, res) => {
   }
 );
 
+
+//___________________________________________________________________
 
 
 module.exports = router;

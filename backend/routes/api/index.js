@@ -18,11 +18,10 @@ router.use(restoreUser);
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 router.use('/spots', spotsRouter);
-// router.use('/review-image', reviewImageRouter);
-// router.use('/bookings', bookingsRouter);
 router.use('/reviews', reviewsRouter);
-// router.use('/spot-images', spotImagesRouter);
-
+router.use('/bookings', bookingsRouter);
+router.use('/spot-images', spotImagesRouter);
+router.use('/review-images', reviewImageRouter);
 
 router.post('/test', function(req, res) {
   res.json({ requestBody: req.body });
