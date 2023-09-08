@@ -281,7 +281,8 @@ router.get('/:spotId', async(req, res) => {
   let images = await SpotImage.findAll({
     where: {
       spotId: req.params.spotId
-    }
+    },
+    attributes: ['id', 'url', 'preview']
   });
   spot.SpotImages = images;
 
@@ -471,18 +472,12 @@ router.get('/:spotId', async(req, res) => {
 
   router.get('/:spotId/reviews', async(req, res) => {
 
-    const spot = await Spot.findByPk(req.params.spotId);
-
-    if (!spot) {
-      res.status(404);
-      return res.json({message: "Spot couldn't be found"});
-    };
-
     const reviews = await Review.findAll({
       where: {
         spotId: req.params.spotId
       },
-      include: [{
+      include: [
+        {
         model: User,
         attributes: ['id', 'firstName', 'lastName'],
       },
@@ -491,16 +486,23 @@ router.get('/:spotId', async(req, res) => {
         attributes: ['id', 'url']
       }
     ]
-    })
+    });
+
+    const spot = await Spot.findByPk(req.params.spotId);
+
+    if (!spot) {
+      res.status(404);
+      return res.json({message: "Spot couldn't be found"});
+    };
 
     let reviewsJson = [];
-    reviews.forEach(review => {
+     reviews.forEach(review => {
       reviewsJson.push(review.toJSON())
       })
 
 
       res.status(200);
-      return res.json(reviewsJson)
+      return res.json({Reviews: reviewsJson})
   })
 
 
