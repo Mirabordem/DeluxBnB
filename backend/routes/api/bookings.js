@@ -149,6 +149,55 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
 
   // DELETE A BOOKING:
 
+  router.delete('/:bookingId', requireAuth, async(req,res) => {
+  const { user } = req;
+
+  const booking = await Booking.findByPk(req.params.bookingId);
+
+
+  if(!booking) {
+    res.status(404);
+    return res.json({ message: "Booking couldn't be found" })
+  };
+
+  const spot = await booking.getSpot();
+
+  if(user.id !== booking.userId && user.id !== spot.ownerId) {
+    res.status(403);
+    return res.json({message: "Forbidden: user is not the owner of this booking."})
+  };
+
+
+// validate booking didn't start yet:
+  let jsonStart = JSON.stringify(booking.startDate);
+  jsonStart = jsonStart.slice(1, 11);
+  let bookingStart = new Date(jsonStart);
+
+//   let jsonEnd = JSON.stringify(booking.endDate);
+//   jsonEnd = jsonEnd.slice(1, 11);
+//   let bookingEnd = new Date(jsonEnd);
+
+  bookingStart = bookingStart.getTime(); // number
+//   bookingEnd = bookingEnd.getTime();
+
+  let currentDate = new Date();
+  currentDate = JSON.stringify(currentDate);
+  currentDate = currentDate.slice(1, 11)
+
+  let currentDateFormat = new Date(currentDate)
+  currentDateFormat = currentDateFormat.getTime(); //number
+
+  if(currentDateFormat < bookingStart){
+    await booking.destroy();
+
+    res.status(200);
+    return res.json({ message: "Successfully deleted" })
+  } else {
+    res.status(403);
+    return res.json({ message: "Bookings that have been started can't be deleted" })
+  }
+})
+
 
 
 
