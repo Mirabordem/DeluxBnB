@@ -64,39 +64,60 @@ const validateReview = [
 
 router.get('/', async(req, res) => {
 
+  let {page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice} = req.query;
+
+// parsing query filters to ensure they are valid numbers:
+   page = parseInt(page);
+   size = parseInt(size);
+   minLat = parseFloat(minLat);
+   maxLat = parseFloat(maxLat);
+   minLng = parseFloat(minLng);
+   maxLng = parseFloat(maxLng);
+   minPrice = parseFloat(minPrice);
+   maxPrice = parseFloat(maxPrice);
+
+
 // pagination:
+   if(page <= 0) {
+     res.status(400);
+     return res.json({message: "Bad Request: Page must be greater than or equal to 1"})
+   };
 
-  let {page, size} = req.query;
-
-  if(page <= 0) {
-    res.status(400);
-    return res.json({message: "Bad Request: Page must be greater than or equal to 1"})
-  };
-
-  if(size <= 0) {
-    res.status(400);
-    return res.json({message: "Bad Request: Size must be greater than or equal to 1"})
-  };
-
-  page = parseInt(page);
-  size = parseInt(size);
-
-  if(!page || Number.isNaN(page) || page > 10) page = 1;
-  if(!size || Number.isNaN(size) || size > 20) size = 20;
-
-  let pagination = {};
-  pagination.limit = size;
-  pagination.offset = size * (page - 1);
+   if(size <= 0) {
+     res.status(400);
+     return res.json({message: "Bad Request: Size must be greater than or equal to 1"})
+   };
 
 
+
+   if(!page || Number.isNaN(page) || page > 10) page = 1;
+   if(!size || Number.isNaN(size) || size > 20) size = 20;
+
+   let pagination = {};
+   pagination.limit = size;
+   pagination.offset = size * (page - 1);
+
+
+// other query filters:
+ const filterQuery = {};
+   if (!isNaN(minLat)) filterQuery.minLat = minLat;
+   if (!isNaN(maxLat)) filterQuery.maxLat = maxLat;
+   if (!isNaN(minLng)) filterQuery.minLng = minLng;
+   if (!isNaN(maxLng)) filterQuery.maxLng = maxLng;
+   if (!isNaN(minPrice)) filterQuery.minPrice = minPrice;
+   if (!isNaN(maxPrice)) filterQuery.maxPrice = maxPrice;
+
+
+// finding all spots:
   const spots = await Spot.findAll({
     include: [{model: SpotImage}, { model: Review}],
+    where: filterQuery,
     ...pagination
   });
 
   let allSpots = [];
-  spots.forEach(spot => {
-  allSpots.push(spot.toJSON())
+   spots.forEach(spot => {
+   allSpots.push(spot.toJSON())
 });
 
 
