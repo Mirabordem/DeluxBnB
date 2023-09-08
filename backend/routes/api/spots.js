@@ -57,16 +57,45 @@ const validateReview = [
 ];
 
 
+//___________________________________________________________________
 
 // GET ALL SPOTS:
 
-router.get('/', async(req, res) => {
-    const spots = await Spot.findAll({
-        include: [{model: SpotImage}, { model: Review}]  // spot data includes previewImage, and avgRating
-    })
 
-    let allSpots = [];
-    spots.forEach(spot => {
+router.get('/', async(req, res) => {
+
+// pagination:
+
+  let {page, size} = req.query;
+
+  if(page <= 0) {
+    res.status(400);
+    return res.json({message: "Bad Request: Page must be greater than or equal to 1"})
+  };
+
+  if(size <= 0) {
+    res.status(400);
+    return res.json({message: "Bad Request: Size must be greater than or equal to 1"})
+  };
+
+  page = parseInt(page);
+  size = parseInt(size);
+
+  if(!page || Number.isNaN(page) || page > 10) page = 1;
+  if(!size || Number.isNaN(size) || size > 20) size = 20;
+
+  let pagination = {};
+  pagination.limit = size;
+  pagination.offset = size * (page - 1);
+
+
+  const spots = await Spot.findAll({
+    include: [{model: SpotImage}, { model: Review}],
+    ...pagination
+  });
+
+  let allSpots = [];
+  spots.forEach(spot => {
   allSpots.push(spot.toJSON())
 });
 
@@ -97,12 +126,14 @@ allSpots.forEach(spot => {
   });
 
   res.status(200);
-  return res.json({Spots: allSpots})
+  return res.json({Spots: allSpots, page, size})
 });
 
 
+//___________________________________________________________________
 
 // CREATE A SPOT:
+
 
 router.post('/',
 requireAuth,  // middleware from auth file - authentication required
@@ -132,8 +163,10 @@ requireAuth,  // middleware from auth file - authentication required
 });
 
 
+//___________________________________________________________________
 
 // GET ALL SPOTS OWNED BY CURRENT USER:
+
 
 router.get('/current',
 requireAuth,
@@ -181,8 +214,10 @@ let allSpots = [];
 });
 
 
+//___________________________________________________________________
 
 // GET DETAILS OF A SPOT FROM AN ID:
+
 
 router.get('/:spotId', async(req, res) => {
 
@@ -242,8 +277,10 @@ router.get('/:spotId', async(req, res) => {
 })
 
 
+//___________________________________________________________________
 
 // ADD IMAGE TO SPOT BY ID:
+
 
   router.post('/:spotId/images', requireAuth, async(req, res) => {
   const {user} = req;
@@ -286,7 +323,10 @@ router.get('/:spotId', async(req, res) => {
 })
 
 
+//___________________________________________________________________
+
 // EDIT A SPOT:
+
 
   router.put('/:spotId', requireAuth, validateSpot, async(req, res) => {
     const {user} = req;
@@ -328,7 +368,10 @@ router.get('/:spotId', async(req, res) => {
   })
 
 
+//___________________________________________________________________
+
 // DELETE A SPOT:
+
 
   router.delete('/:spotId', requireAuth, async(req, res) => {
     const {user} = req;
@@ -355,7 +398,10 @@ router.get('/:spotId', async(req, res) => {
   })
 
 
-  // CREATE REVIEW FOR SPOT BY ID
+//___________________________________________________________________
+
+  // CREATE REVIEW FOR SPOT BY ID:
+
 
     router.post('/:spotId/reviews', requireAuth, validateReview, async(req, res) => {
       const {user} = req;
@@ -397,7 +443,10 @@ router.get('/:spotId', async(req, res) => {
     })
 
 
+//___________________________________________________________________
+
 // GET ALL REVIEWS BY SPOT'S ID:
+
 
   router.get('/:spotId/reviews', async(req, res) => {
 
@@ -434,51 +483,10 @@ router.get('/:spotId', async(req, res) => {
   })
 
 
-
+//___________________________________________________________________
 
 // CREATE BOOKING OF A SPOT:
 
-//   router.post('/:spotId/bookings', requireAuth, async(req, res) => {
-//     const {user} = req;
-//     const {startDate, endDate} = req.body;
-
-
-//     const spot = await Spot.findByPk(req.params.spotId);
-
-//     if (!spot) {
-//       res.status(404);
-//       return res.json({message: "Spot couldn't be found"});
-//     };
-
-//     if (spot.ownerId === user.id) {
-//       res.status(403);
-//         return res.json({message: "Forbidden"})
-//     };
-
-// // finding all bookings for this spot:
-//     const bookings = await Booking.findAll({
-//       where: {
-//         spotId: req.params.spotId
-//       }
-//     });
-
-
-//  // checking whether there is a conflict in dates:
-//     const userStart = new Date(startDate);
-//     const userEnd = new Date(endDate);
-
-//     let numStart = userStart.getTime();
-//     let numEnd = userEnd.getTime();
-
-//     if(numStart >= numEnd) {
-//       res.status(400);
-//       return res.json({
-//         message: "Bad Request",
-//         errors: {
-//           endDate: "endDate cannot be on or before startDate"
-//         }
-//       })
-//     };
 
    router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     const {user} = req;
@@ -493,7 +501,7 @@ router.get('/:spotId', async(req, res) => {
 
     if (spot.ownerId === user.id) {
       res.status(403);
-      return res.json({ message: "Forbidden" });
+      return res.json({ message: "Forbidden: You own this spot." });
     }
 
 
@@ -545,6 +553,7 @@ router.get('/:spotId', async(req, res) => {
    });
 
 
+//___________________________________________________________________
 
 // GET ALL BOOKINGS FOR SPOT BY ID:
 
@@ -619,6 +628,9 @@ router.get('/:spotId', async(req, res) => {
       res.json({Bookings: ownerBookingsJson})
     };
   })
+
+
+  //___________________________________________________________________
 
 
 
