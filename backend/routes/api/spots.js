@@ -485,7 +485,7 @@ router.get('/:spotId', async(req, res) => {
 
 //___________________________________________________________________
 
-// CREATE BOOKING OF A SPOT:
+// CREATE BOOKING OF A SPOT BY ID:
 
 
    router.post('/:spotId/bookings', requireAuth, async (req, res) => {
@@ -501,21 +501,25 @@ router.get('/:spotId', async(req, res) => {
 
     if (spot.ownerId === user.id) {
       res.status(403);
-      return res.json({ message: "Forbidden: You own this spot." });
+      return res.json({ message: "Forbidden: user owns this spot." });
     }
 
 
 // find all bookings of this spot:
-    const bookings = await Booking.findAll({ where: { spotId: req.params.spotId } });
+    const bookings = await Booking.findAll({
+      where: {
+        spotId: req.params.spotId
+      }
+    });
 
 
-// Working with dates - checking for time conflict in bookings:
+// time conflict in bookings:
     let conflict = false;
 
     const userStart = new Date(startDate);
     const userEnd = new Date(endDate);
 
-    const numUserStart = userStart.getTime(); // creates a number to compare
+    const numUserStart = userStart.getTime(); // number to compare
     const numUserEnd = userEnd.getTime();
 
 
@@ -631,24 +635,6 @@ router.get('/:spotId', async(req, res) => {
 
 
   //___________________________________________________________________
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
