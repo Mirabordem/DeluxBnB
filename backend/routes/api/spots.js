@@ -539,8 +539,9 @@ router.get('/:spotId', async(req, res) => {
 // time conflict in bookings:
     let conflict = false;
 
-    const userStart = new Date(startDate);
-    const userEnd = new Date(endDate);
+    const userStart = new Date(req.body.startDate);
+    const userEnd = new Date(req.body.endDate);
+
 
     const numUserStart = userStart.getTime(); // number to compare
     const numUserEnd = userEnd.getTime();
@@ -568,11 +569,27 @@ router.get('/:spotId', async(req, res) => {
       });
     }
 
+    // console.log('Original startDate:', startDate);
+    // console.log('Original endDate:', endDate);
+
+// format dates as 'YYYY-MM-DD' strings
+    // const formattedStartDate = userStart.toISOString().slice(0, 10);
+    // const formattedEndDate = userEnd.toISOString().slice(0, 10);
+
+    const formattedStartDate = userStart.toDateString();
+    const formattedEndDate = userEnd.toDateString();
+
+
+    // console.log('Formatted startDate:', formattedStartDate);
+    // console.log('Formatted endDate:', formattedEndDate);
+
+
+
     const createBooking = await spot.createBooking({
       spotId: parseInt(req.params.spotId),
       userId: parseInt(user.id),
-      startDate,
-      endDate
+      startDate: formattedStartDate,
+      endDate: formattedEndDate
     });
 
     res.status(200);
