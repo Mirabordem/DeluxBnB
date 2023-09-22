@@ -23,7 +23,7 @@ const removeUser = () => {
 
 //THUNKS:
 
-// thunk action func for login feature:
+// LOGIN feature thunk action func:
 export const login = (user) => async (dispatch) => {
   const { credential, password } = user;
   console.log(credential, password)
@@ -46,7 +46,7 @@ and dispatch the action for setting the session user
 to the user in the response's body.
 */
 
-// restore the session after refreshing thunk action:
+// RESTORE the session after refreshing thunk action:
 export const restoreUser = () => async (dispatch) => {
     const response = await csrfFetch("/api/session");
     const data = await response.json();
@@ -55,7 +55,7 @@ export const restoreUser = () => async (dispatch) => {
   };
 
 
-// sign-up feature thunk action:
+// SIGN-UP feature thunk action:
 export const signup = (user) => async (dispatch) => {
   const { username, firstName, lastName, email, password } = user;
   const response = await csrfFetch("/api/users", {
@@ -72,6 +72,16 @@ export const signup = (user) => async (dispatch) => {
   dispatch(setUser(data.user));
   return response;
 };
+
+
+// LOG-OUT feature thunk action:
+export const logout = () => async (dispatch) => {
+    const response = await csrfFetch('/api/session', {
+      method: 'DELETE',
+    });
+    dispatch(removeUser());
+    return response;
+  };
 
 
 //___________________________________________________________
