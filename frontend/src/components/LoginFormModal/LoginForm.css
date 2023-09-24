@@ -30,7 +30,9 @@ input {
 
 .login-button {
     background-color: orange;
-    height: 35px;
+    height: 45px;
+    font-size: 18px;
+    border-radius: 8px;
 }
 
 .login-button:disabled {
@@ -38,9 +40,8 @@ input {
     border: 1px solid orange;
 }
 
-.login-button:enabled {
+.login-button:hover:enabled {
     cursor: pointer;
-    background-color: rgb(244, 96, 43);
     border: orange;
     color: white;
 }

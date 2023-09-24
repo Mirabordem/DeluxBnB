@@ -1,0 +1,41 @@
+.sign-up-container {
+    display: flex;
+    flex-direction: column;
+    border: 3px solid rgb(67, 38, 38);
+    box-shadow: 6px 6px 22px rgb(45, 36, 36);
+    padding: 12px 30px 12px;
+    width: 400px;
+}
+
+.sign-up-container > h1 {
+    font-size: 26px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.signup-container {
+    display: flex;
+}
+
+.submit-button {
+    background-color: orange;
+    height: 45px;
+    font-size: 18px;
+    border-radius: 8px;
+}
+
+.submit-button:disabled {
+    color: white;
+    border: 1px solid orange;
+}
+
+.submit-button:hover:enabled {
+    cursor: pointer;
+    border: orange;
+    color: white;
+}
+
+.submit-button:active:enabled {
+    box-shadow: 0 3px rgb(238, 232, 193);
+    transform: translateY(3px)
+}
