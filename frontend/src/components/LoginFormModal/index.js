@@ -24,34 +24,48 @@ function LoginFormModal() {
       });
   };
 
+  const demoUserLogIn = () => {
+    setCredential('demouser')
+    setPassword('demouser')
+  }
+
   return (
-    <>
+    <div className='login-container'>
       <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username or Email
+      <form className='form' onSubmit={handleSubmit}>
+        {errors.credential && (
+          <p className='err-login'>{errors.credential}</p>
+        )}
+        <label className='login-label'>
+          Username or Email:</label>
           <input
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
             required
           />
-        </label>
-        <label>
-          Password
+
+        <label className='login-label'>
+          Password:</label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
-        {errors.credential && (
-          <p>{errors.credential}</p>
-        )}
-        <button type="submit">Log In</button>
+
+        <button
+        className='login-button'
+        disabled={password.length < 6 || credential.length <= 2}
+        type="submit"
+        >
+          Log In
+          </button>
+          <button className='demouser-button' onClick={demoUserLogIn}>
+            Demo User
+          </button>
       </form>
-    </>
+    </div>
   );
 }
 
