@@ -56,7 +56,7 @@ function LoginFormModal() {
 
         <button
         className='login-button'
-        disabled={password.length < 6 || credential.length <= 2}
+        disabled={password.length < 6 || credential.length < 4}
         type="submit"
         >
           Log In

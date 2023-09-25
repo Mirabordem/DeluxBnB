@@ -45,7 +45,7 @@ function ProfileButton({ user }) {
   const userDiv = "profile-dropdown" + (user ? "-loggedin" : "-loggedout");
 
   return (
-    <div className="profile-button-container">
+    <div>
       <button className="profile-button" onClick={openMenu}>
         <i className="fa-solid fa-bars" />
         <i className="fas fa-user-circle" />
