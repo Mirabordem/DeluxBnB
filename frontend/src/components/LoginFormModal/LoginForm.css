@@ -42,14 +42,15 @@ input {
 
 .login-button:hover:enabled {
     cursor: pointer;
-    border: orange;
+    border: none;
     color: white;
+    background-color: orangered;
 }
 
 .login-button:active:enabled {
+    border: orange;
     box-shadow: 0 3px rgb(238, 232, 193);
-    transform: translateY(3px)
-
+    transform: translateY(3px);
 }
 
 .demouser-button {
@@ -63,4 +64,8 @@ input {
     margin-right: auto;
     height: 30px;
     width: 170px;
+}
+
+.demouser-button:hover {
+    cursor: pointer;
 }
