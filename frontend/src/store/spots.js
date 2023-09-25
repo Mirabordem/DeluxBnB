@@ -28,11 +28,11 @@ const deleteSpot = (spotId) => {
   };
 };
 
-const clearSpot = () => {
-  return {
-    type: CLEAR_SPOT,
-  };
-};
+// const clearSpot = () => {
+//   return {
+//     type: CLEAR_SPOT,
+//   };
+// };
 
 //___________________________________________________
 
@@ -129,6 +129,11 @@ export const thunkGetUserSpots = () => async (dispatch) => {
 //___________________________________________________________
 
 // SPOTS REDUCER:
+
+const initialState = {
+    allSpots : {},
+    oneSpot: {},
+  }
 
 const spotsReducer = (state = initialState, action) => {
   let newState;
