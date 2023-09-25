@@ -28,11 +28,9 @@ const deleteSpot = (spotId) => {
   };
 };
 
-// const clearSpot = () => {
-//   return {
-//     type: CLEAR_SPOT,
-//   };
-// };
+export const clearSpot = () => ({
+    type: CLEAR_SPOT
+})
 
 //___________________________________________________
 

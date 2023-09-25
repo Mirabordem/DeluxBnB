@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./OneSpot.css";
-import "react-tooltip/dist/react-tooltip.css";
+// import "react-tooltip/dist/react-tooltip.css";
 import Tooltip from "../Tooltip/Tooltip";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
@@ -16,7 +16,7 @@ function OneSpot({ spot }) {
     <div className="spot-container">
       <div className="spot-image-container">
         <Tooltip content={spot.name} direction="top">
-          <NavLink>
+          <NavLink to={`/spots/${spot.id}`}>
             <img
               className="one-spot-image"
               src={spot.previewImage}
@@ -28,7 +28,7 @@ function OneSpot({ spot }) {
       </div>
       <NavLink
         to={"/spots/${spot.id"}
-        style={{ textDecoration: "none", color: "black" }}
+        style={{ textDecoration: "none", color: "rgb(45, 36, 36)" }}
       >
         <div className="one-spot-info">
           <div>
@@ -41,7 +41,7 @@ function OneSpot({ spot }) {
             {spot.avgRating >= 1 ? (
               <div className="star-rating-container">
                 <i className="fa-solid fa-star fa-reviewstar"></i>
-                <p>{spot.avgRating.toFixed(2)}</p>
+                <p>{spot.avgRating}</p>
               </div>
             ) : (
               <div className="star-rating-container">
