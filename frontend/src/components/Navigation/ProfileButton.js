@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import * as sessionActions from '../../store/session';
-import OpenModalMenuItem from './OpenModalMenuItem';
-import LoginFormModal from '../LoginFormModal';
-import SignupFormModal from '../SignupFormModal';
-
+import * as sessionActions from "../../store/session";
+import OpenModalMenuItem from "./OpenModalMenuItem";
+import LoginFormModal from "../LoginFormModal";
+import SignupFormModal from "../SignupFormModal";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -28,7 +27,7 @@ function ProfileButton({ user }) {
       }
     };
 
-    document.addEventListener('click', closeMenu);
+    document.addEventListener("click", closeMenu);
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
@@ -39,29 +38,42 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(sessionActions.logout());
     closeMenu();
-    history.push('/');
+    history.push("/");
   };
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-  const divUser = "profile-dropdown" + (user ? '-loggedin' : '-loggedout')
+  const textDiv = "profile-dropdown" + (showMenu ? "" : " hidden");
+  const userDiv = "profile-dropdown" + (user ? "-loggedin" : "-loggedout");
 
   return (
-    <div>
-      <button onClick={openMenu}>
+    <div className="profile-button-container">
+      <button className="profile-button" onClick={openMenu}>
+        <i className="fa-solid fa-bars" />
         <i className="fas fa-user-circle" />
       </button>
-      <ul className={ulClassName} ref={ulRef}>
+      <div id={userDiv} className={textDiv} ref={ulRef}>
         {user ? (
-          <>
-            <li>{user.username}</li>
-            <li>{user.firstName} {user.lastName}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={logout}>Log Out</button>
-            </li>
-          </>
+          <div className="dropdown">
+            <p className="text">
+              Hello, <strong>{user.firstName}!</strong>
+            </p>
+            <p className="email"> {user.email}</p>
+            <div className="line"></div>
+            <NavLink
+              style={{ color: "black", textDecoration: "none" }}
+              onClick={closeMenu}
+              to="/spots/current"
+            >
+              <div className="link">
+                <p className="house">⌂</p> Manage Spots
+              </div>
+            </NavLink>
+            <div className="line"></div>
+            <button className="logout-button" onClick={logout}>
+              Log Out
+            </button>
+          </div>
         ) : (
-          <>
+          <div>
             <OpenModalMenuItem
               itemText="Log In"
               onItemClick={closeMenu}
@@ -72,10 +84,10 @@ function ProfileButton({ user }) {
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
-          </>
+          </div>
         )}
-      </ul>
       </div>
+    </div>
   );
 }
 
