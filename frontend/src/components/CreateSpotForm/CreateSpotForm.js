@@ -24,9 +24,9 @@ function CreateSpotForm() {
   const [urlOne, setUrlOne] = useState("");
   const [urlTwo, setUrlTwo] = useState("");
   const [urlThree, setUrlThree] = useState("");
-  const [urlFour, setUrlFour] = setState("");
+  const [urlFour, setUrlFour] = useState("");
 
-  const [errors, setErrors] = setState({});
+  const [errors, setErrors] = useState({});
 
   const updateCountry = (e) => setCountry(e.target.value);
   const updateAddress = (e) => setAddress(e.target.value);
@@ -42,12 +42,12 @@ function CreateSpotForm() {
   const updateUrlFour = (e) => setUrlFour(e.target.value);
 
   function checkErrors(
-    country,
     address,
     city,
     state,
-    description,
+    country,
     name,
+    description,
     price,
     preview,
     urlOne,
@@ -57,15 +57,18 @@ function CreateSpotForm() {
   ) {
     const errorsObj = {};
 
-    if (country.length < 2) errorsObj["country"] = "Country is required.";
     if (address.length < 5) errorsObj["address"] = "Address is required.";
     if (city.length < 2) errorsObj["city"] = "City name is required.";
     if (state.length < 2) errorsObj["state"] = "State is required.";
+    if (country.length < 2) errorsObj["country"] = "Country is required.";
+    if (name.length < 1) errorsObj["name"] = "Name is required.";
     if (description.length < 30)
       errorsObj["description"] =
         "Description needs a minimum of 30 characters.";
-    if (name.length < 1) errorsObj["name"] = "Name is required.";
+    if (description.length > 280)
+      errorsObj["description"] = "Description cannot exceed 280 characters.";
     if (price <= 0) errorsObj["price"] = "Price is required.";
+    if (price >= 999999) errorsObj['maxPrice'] = 'Price cannot exceed $999999';
     if (preview.length < 1) errorsObj["preview"] = "Preview image is required.";
     if (
       !preview.toLowerCase().endsWith(".png") ||
@@ -114,22 +117,25 @@ function CreateSpotForm() {
     return errorsObj;
   }
 
+  const lat = 20;
+  const lng = 20;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const newErrors = checkErrors(
-      country,
-      address,
-      city,
-      state,
-      name,
-      description,
-      price,
-      preview,
-      urlOne,
-      urlTwo,
-      urlThree,
-      urlFour
+        address,
+        city,
+        state,
+        country,
+        name,
+        description,
+        price,
+        preview,
+        urlOne,
+        urlTwo,
+        urlThree,
+        urlFour
     );
 
     setErrors(newErrors);
@@ -138,13 +144,15 @@ function CreateSpotForm() {
     }
 
     const payload = {
-      country,
-      address,
-      city,
-      state,
-      name,
-      description,
-      price,
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        name,
+        description,
+        price,
     };
 
     const newSpot = await dispatch(thunkCreateNewSpot(payload));
