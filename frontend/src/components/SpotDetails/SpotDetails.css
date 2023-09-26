@@ -66,17 +66,16 @@
 }
 
 .description {
+  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  word-wrap: break-word;
-  width: 200px;
-
-  gap: 15px;
-  border-top: 1px solid rgb(215, 215, 215);
-  border-bottom: 1px solid rgb(215, 215, 215);
+  gap: 20px;
   width: 550px;
-  height: 165px;
+  height: 160px;
+  border-top: 1px solid rgb(209, 201, 201);
+  border-bottom: 1px solid rgb(215, 215, 215);
+  word-wrap: break-word;
 }
 
 .show-more {
@@ -91,6 +90,7 @@
 }
 
 .reserve-container {
+  border: 1px solid red;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -103,6 +103,7 @@
 }
 
 .reserve-top {
+  /* border: 1px solid red; */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -111,20 +112,23 @@
 }
 
 .price {
+  /* border: 1px solid red; */
 }
 
 .star {
+  /* border: 1px solid red; */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .star > i {
+  /* border: 1px solid red; */
   font-size: 12px;
-  margin-top: 2px;
 }
 
 .number-stars {
+  /* border: 1px solid red; */
   margin-top: 16px;
 }
 
@@ -132,12 +136,12 @@
   width: 300px;
   margin-left: auto;
   margin-right: auto;
-  height: 70px;
+  height: 80px;
   color: white;
   font-weight: bold;
   background-color: orange;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .reserve-button:hover {
@@ -146,10 +150,12 @@
 }
 
 .new-text {
+  /* border: 1px solid red; */
   margin-left: 5px;
 }
 
 #topright {
+  /* border: 1px solid red; */
   border-top-right-radius: 11px;
 }
 
