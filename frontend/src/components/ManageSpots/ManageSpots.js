@@ -27,9 +27,10 @@ function ManageSpots() {
 
   if (Object.keys(userSpotsObj).length === 0) {
     emptyUserSpotsObj = true;
+    // console.log("🚀 ~ file: ManageSpots.js:30 ~ ManageSpots ~ emptyUserSpotsObj:", emptyUserSpotsObj)
   }
 
-  
+
   // directing a new spot:
   const spotDirection = () => {
     const path = "/spots/new";

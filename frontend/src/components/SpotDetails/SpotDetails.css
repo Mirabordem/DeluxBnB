@@ -1,157 +1,158 @@
 .wrapper {
-    /* border: 1px solid red; */
-    display: flex;
-    justify-content: center;
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
 }
 
 .details-container {
-    margin-left: 32px;
-    margin-top: 22px;
+  margin-left: 30px;
+  margin-top: 20px;
 }
 
 .h1 {
-    font-size: 30px;
-    margin-bottom: 0px;
+  font-size: 30px;
+  margin-bottom: 2px;
 }
 
 .h2 {
-    font-weight: 400;
-    font-size: 20px;
-    color: rgb(116, 116, 116);
-    margin-top: 2px;
+  font-size: 20px;
+  font-weight: 350;
+  color: rgb(126, 124, 124);
+  margin-top: 3px;
 }
 
 .image-bundle {
-    display: flex;
+  /* border: 1px solid red; */
+  display: flex;
 }
 
 .preview-image {
-    width: 456px;
-    height: 424px;
-    object-fit: cover;
-    border-top-left-radius: 11px;
-    border-bottom-left-radius: 11px;
+  width: 455px;
+  height: 425px;
+  border-top-left-radius: 11px;
+  border-bottom-left-radius: 11px;
 }
 
 .small-images-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5px;
-    margin-left: 6px;
+  /* border: 1px solid red; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  margin-left: 6px;
 }
 
 .small-images {
-    width: 237px;
-    height: 209.62px;
-    object-fit: cover;
+  /* border: 1px solid red; */
+  width: 235px;
+  height: 210px;
+  /* object-fit: cover; */
 }
 
 .host {
-    color: rgb(84, 84, 84);
-    display: flex;
-    align-items: center;
+  /* border: 1px solid red; */
+  color: rgb(84, 84, 84);
+  display: flex;
+  align-items: center;
 }
 
 .host-name {
-    color: rgb(48, 48, 48);
-    font-weight: bold;
+  color: rgb(48, 48, 48);
+  font-weight: bold;
 }
 
 .info-container {
-    display: flex;
-    column-gap: 50px;
+  display: flex;
+  column-gap: 50px;
 }
 
 .description {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    word-wrap: break-word;
-    width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  word-wrap: break-word;
+  width: 200px;
 
-    gap: 15px;
-    border-top: 1px solid rgb(215, 215, 215);
-    border-bottom: 1px solid rgb(215, 215, 215);
-    width: 550px;
-    height: 165px;
+  gap: 15px;
+  border-top: 1px solid rgb(215, 215, 215);
+  border-bottom: 1px solid rgb(215, 215, 215);
+  width: 550px;
+  height: 165px;
 }
 
 .show-more {
-    margin-top: 0px;
-    font-weight: bold;
-    text-decoration: underline;
+  margin-top: 0px;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 .show-more:hover {
-    cursor: pointer;
-    color: orange;
+  cursor: pointer;
+  color: orange;
 }
 
 .reserve-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 90px;
-    padding: 10px 20px 25px 20px;
-    width: 300px;
-    border: 1px solid rgb(226, 226, 226);
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 90px;
+  padding: 10px 20px 25px 20px;
+  width: 300px;
+  border: 1px solid rgb(226, 226, 226);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  margin-top: 15px;
 }
 
 .reserve-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 300px;
-    margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 300px;
+  margin-bottom: 5px;
 }
 
 .price {
-
 }
 
 .star {
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .star > i {
-    font-size: 12px;
-    margin-top: 2px;
-  }
+  font-size: 12px;
+  margin-top: 2px;
+}
 
 .number-stars {
-    margin-top: 16px;
+  margin-top: 16px;
 }
 
 .reserve-button {
-    width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-    height: 70px;
-    color: white;
-    font-weight: bold;
-    background-color: orange;
-    border: none;
-    border-radius: 5px;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 70px;
+  color: white;
+  font-weight: bold;
+  background-color: orange;
+  border: none;
+  border-radius: 5px;
 }
 
 .reserve-button:hover {
-    cursor: pointer;
-    background-color: orangered;
+  cursor: pointer;
+  background-color: orangered;
 }
 
-.new-text{
-    margin-left: 5px;
-  }
+.new-text {
+  margin-left: 5px;
+}
 
-  #topright {
-    border-top-right-radius: 11px;
-  }
+#topright {
+  border-top-right-radius: 11px;
+}
 
-  #bottomright {
-    border-bottom-right-radius: 11px;
-  }
+#bottomright {
+  border-bottom-right-radius: 11px;
+}
