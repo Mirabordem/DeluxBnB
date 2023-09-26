@@ -4,25 +4,33 @@ import { thunkGetDetails } from "../../store/spots";
 import { useParams } from "react-router-dom";
 import "./SpotDetails.css";
 
+
+
 function SpotDetails() {
   const { spotId } = useParams();
   const dispatch = useDispatch();
   const spot = useSelector((state) => state.spots.oneSpot);
+//   console.log("🚀 ~ file: SpotDetails.js:13 ~ SpotDetails ~ spot:", spot)
+
+
 
   useEffect(() => {
     dispatch(thunkGetDetails(spotId));
   }, [dispatch, spotId]);
 
-  if (!spot || Object.keys(spot).length === 0) return null;
+
+
+  if (Object.keys(spot).length === 0 || !spot) return null;
+
 
   const previewImage = spot.SpotImages.find((image) => image.preview);
   console.log(
-    "🚀 ~ file: SpotDetails.js:19 ~ SpotDetails ~ previewImage:",
+    // "🚀 ~ file: SpotDetails.js:19 ~ SpotDetails ~ previewImage:",
     previewImage
   );
   let otherImages = spot.SpotImages.filter((image) => !image.preview);
   console.log(
-    "🚀 ~ file: SpotDetails.js:20 ~ SpotDetails ~ otherImages:",
+    // "🚀 ~ file: SpotDetails.js:20 ~ SpotDetails ~ otherImages:",
     otherImages
   );
 
