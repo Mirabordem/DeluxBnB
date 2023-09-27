@@ -70,53 +70,6 @@ function CreateSpotForm() {
     if (price <= 0) errorsObj["price"] = "Price is required.";
     if (price >= 999999) errorsObj['maxPrice'] = 'Price cannot exceed $999999';
     if (preview.length < 1) errorsObj["preview"] = "Preview image is required.";
-  //   if (
-  //     !preview.toLowerCase().endsWith(".png") ||
-  //     !preview.toLowerCase().endsWith(".jpg") ||
-  //     !preview.toLowerCase().endsWith(".jpeg")
-  //   ) {
-  //     errorsObj["endPreview"] =
-  //       "Preview image URL must end in .png, .jpg, or .jpeg";
-  //   }
-  //   if (urlOne) {
-  //     if (
-  //       !urlOne.toLowerCase().endsWith(".png") ||
-  //       !urlOne.toLowerCase().endsWith(".jpg") ||
-  //       !urlOne.toLowerCase().endsWith(".jpeg")
-  //     ) {
-  //       errors["urlOne"] = "Image URL must end in .png, .jpg, or .jpeg";
-  //     }
-  //   }
-  //   if (urlTwo) {
-  //     if (
-  //       !urlTwo.toLowerCase().endsWith(".png") ||
-  //       !urlTwo.toLowerCase().endsWith(".jpg") ||
-  //       !urlTwo.toLowerCase().endsWith(".jpeg")
-  //     ) {
-  //       errors["urlTwo"] = "Image URL must end in .png, .jpg, or .jpeg";
-  //     }
-  //   }
-  //   if (urlThree) {
-  //     if (
-  //       !urlThree.toLowerCase().endsWith(".png") ||
-  //       !urlThree.toLowerCase().endsWith(".jpg") ||
-  //       !urlThree.toLowerCase().endsWith(".jpeg")
-  //     ) {
-  //       errors["urlThree"] = "Image URL must end in .png, .jpg, or .jpeg";
-  //     }
-  //   }
-  //   if (urlFour) {
-  //     if (
-  //       !urlFour.toLowerCase().endsWith(".png") ||
-  //       !urlFour.toLowerCase().endsWith(".jpg") ||
-  //       !urlFour.toLowerCase().endsWith(".jpeg")
-  //     ) {
-  //       errors["urlFour"] = "Image URL must end in .png, .jpg, or .jpeg";
-  //     }
-  //   }
-  //   return errorsObj;
-  // }
-
 
   if(
     preview.toLowerCase().endsWith(".png") ||
@@ -168,8 +121,30 @@ function CreateSpotForm() {
     }
   }
 
+  // if (
+  //   !isValidImageExtension(preview) &&
+  //   !isValidImageExtension(urlOne) &&
+  //   !isValidImageExtension(urlTwo) &&
+  //   !isValidImageExtension(urlThree) &&
+  //   !isValidImageExtension(urlFour)
+  // ) {
+  //   errorsObj["imageUrls"] = "At least one valid image URL is required.";
+  // }
+
   return errorsObj;
 }
+
+
+// function isValidImageExtension(url) {
+//   if (!url) return true;
+
+//   const validExtensions = [".png", ".jpeg", ".jpg"];
+//   const lowercasedURL = url.toLowerCase();
+
+//   return validExtensions.some((ext) => lowercasedURL.endsWith(ext));
+// }
+
+
 
   const lat = 20;
   const lng = 20;
@@ -354,7 +329,8 @@ function CreateSpotForm() {
           Submit a link to at least one photo to publish your spot.
         </div>
         <div className="url-container">
-          {errors.preview} && <p className="errors preview">{errors.preview}</p>
+          {/* {errors.preview} && <p className="errors preview">{errors.preview}</p> */}
+          {errors.preview && <p className="errors preview">{errors.preview}</p>}
           {errors.endPreview && (
             <p className="errors preview">{errors.endPreview}</p>
           )}
