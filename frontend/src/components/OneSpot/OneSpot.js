@@ -56,10 +56,12 @@ function OneSpot({ spot }) {
           <NavLink to={`/spots/${spot.id}/edit`}>
             <button className="managing-update">Update</button>
           </NavLink>
+          <button>
           <OpenModalMenuItem
             modalComponent={<DeleteModal spot={spot} />}
             itemText="Delete"
           />
+          </button>
         </div>
       )}
     </div>

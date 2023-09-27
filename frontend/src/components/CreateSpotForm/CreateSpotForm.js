@@ -70,52 +70,106 @@ function CreateSpotForm() {
     if (price <= 0) errorsObj["price"] = "Price is required.";
     if (price >= 999999) errorsObj['maxPrice'] = 'Price cannot exceed $999999';
     if (preview.length < 1) errorsObj["preview"] = "Preview image is required.";
-    if (
-      !preview.toLowerCase().endsWith(".png") ||
-      !preview.toLowerCase().endsWith(".jpg") ||
-      !preview.toLowerCase().endsWith(".jpeg")
-    ) {
-      errorsObj["endPreview"] =
-        "Preview image URL must end in .png, .jpg, or .jpeg";
-    }
-    if (urlOne) {
-      if (
-        !urlOne.toLowerCase().endsWith(".png") ||
-        !urlOne.toLowerCase().endsWith(".jpg") ||
-        !urlOne.toLowerCase().endsWith(".jpeg")
-      ) {
-        errors["urlOne"] = "Image URL must end in .png, .jpg, or .jpeg";
-      }
-    }
-    if (urlTwo) {
-      if (
-        !urlTwo.toLowerCase().endsWith(".png") ||
-        !urlTwo.toLowerCase().endsWith(".jpg") ||
-        !urlTwo.toLowerCase().endsWith(".jpeg")
-      ) {
-        errors["urlTwo"] = "Image URL must end in .png, .jpg, or .jpeg";
-      }
-    }
-    if (urlThree) {
-      if (
-        !urlThree.toLowerCase().endsWith(".png") ||
-        !urlThree.toLowerCase().endsWith(".jpg") ||
-        !urlThree.toLowerCase().endsWith(".jpeg")
-      ) {
-        errors["urlThree"] = "Image URL must end in .png, .jpg, or .jpeg";
-      }
-    }
-    if (urlFour) {
-      if (
-        !urlFour.toLowerCase().endsWith(".png") ||
-        !urlFour.toLowerCase().endsWith(".jpg") ||
-        !urlFour.toLowerCase().endsWith(".jpeg")
-      ) {
-        errors["urlFour"] = "Image URL must end in .png, .jpg, or .jpeg";
-      }
-    }
-    return errorsObj;
+  //   if (
+  //     !preview.toLowerCase().endsWith(".png") ||
+  //     !preview.toLowerCase().endsWith(".jpg") ||
+  //     !preview.toLowerCase().endsWith(".jpeg")
+  //   ) {
+  //     errorsObj["endPreview"] =
+  //       "Preview image URL must end in .png, .jpg, or .jpeg";
+  //   }
+  //   if (urlOne) {
+  //     if (
+  //       !urlOne.toLowerCase().endsWith(".png") ||
+  //       !urlOne.toLowerCase().endsWith(".jpg") ||
+  //       !urlOne.toLowerCase().endsWith(".jpeg")
+  //     ) {
+  //       errors["urlOne"] = "Image URL must end in .png, .jpg, or .jpeg";
+  //     }
+  //   }
+  //   if (urlTwo) {
+  //     if (
+  //       !urlTwo.toLowerCase().endsWith(".png") ||
+  //       !urlTwo.toLowerCase().endsWith(".jpg") ||
+  //       !urlTwo.toLowerCase().endsWith(".jpeg")
+  //     ) {
+  //       errors["urlTwo"] = "Image URL must end in .png, .jpg, or .jpeg";
+  //     }
+  //   }
+  //   if (urlThree) {
+  //     if (
+  //       !urlThree.toLowerCase().endsWith(".png") ||
+  //       !urlThree.toLowerCase().endsWith(".jpg") ||
+  //       !urlThree.toLowerCase().endsWith(".jpeg")
+  //     ) {
+  //       errors["urlThree"] = "Image URL must end in .png, .jpg, or .jpeg";
+  //     }
+  //   }
+  //   if (urlFour) {
+  //     if (
+  //       !urlFour.toLowerCase().endsWith(".png") ||
+  //       !urlFour.toLowerCase().endsWith(".jpg") ||
+  //       !urlFour.toLowerCase().endsWith(".jpeg")
+  //     ) {
+  //       errors["urlFour"] = "Image URL must end in .png, .jpg, or .jpeg";
+  //     }
+  //   }
+  //   return errorsObj;
+  // }
+
+
+  if(
+    preview.toLowerCase().endsWith(".png") ||
+    preview.toLowerCase().endsWith(".jpeg") ||
+    preview.toLowerCase().endsWith(".jpg")
+  ) {
+
+  } else {
+    errorsObj["endPreview"] = 'Preview image URL must end in .png, .jpg, or .jpeg'
   }
+  if (urlOne) {
+    if (
+      urlOne.toLowerCase().endsWith(".png") ||
+      urlOne.toLowerCase().endsWith(".jpeg") ||
+      urlOne.toLowerCase().endsWith(".jpg")
+    ) {
+    } else {
+      errorsObj["urlOne"] = "Image URL must end in .png, .jpg, or .jpeg";
+    }
+  }
+  if (urlTwo) {
+    if (
+      urlTwo.toLowerCase().endsWith(".png") ||
+      urlTwo.toLowerCase().endsWith(".jpeg") ||
+      urlTwo.toLowerCase().endsWith(".jpg")
+    ) {
+    } else {
+      errorsObj["urlTwo"] = "Image URL must end in .png, .jpg, or .jpeg";
+    }
+  }
+  if (urlThree) {
+    if (
+      urlThree.toLowerCase().endsWith(".png") ||
+      urlThree.toLowerCase().endsWith(".jpeg") ||
+      urlThree.toLowerCase().endsWith(".jpg")
+    ) {
+    } else {
+      errorsObj["urlThree"] = "Image URL must end in .png, .jpg, or .jpeg";
+    }
+  }
+  if (urlFour) {
+    if (
+      urlFour.toLowerCase().endsWith(".png") ||
+      urlFour.toLowerCase().endsWith(".jpeg") ||
+      urlFour.toLowerCase().endsWith(".jpg")
+    ) {
+    } else {
+      errorsObj["urlFour"] = "Image URL must end in .png, .jpg, or .jpeg";
+    }
+  }
+
+  return errorsObj;
+}
 
   const lat = 20;
   const lng = 20;
@@ -280,7 +334,7 @@ function CreateSpotForm() {
           search results.
         </div>
         <div className="price-container">
-          <i class="fa-solid fa-dollar-sign"></i>
+          <i className="fa-solid fa-dollar-sign"></i>
           <input
             className="price-form"
             type="number"
@@ -290,6 +344,7 @@ function CreateSpotForm() {
             placeholder="Price per night (USD)"
           />
           {errors.price && <p className="errors price">{errors.price}</p>}
+          {errors.maxPrice && <p className="errors price">{errors.maxPrice}</p>}
         </div>
 
         <div className="line"></div>
