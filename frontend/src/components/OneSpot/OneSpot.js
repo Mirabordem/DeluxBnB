@@ -29,12 +29,12 @@ function OneSpot({ spot }) {
         to={"/spots/${spot.id"}
         style={{ textDecoration: "none", color: "rgb(45, 36, 36)" }}
       >
-        <div className="one-spot-info">
+        <div className="spot-info">
           <div>
-            <h4 className="one-spot-location">
+            <h4 className="spot-location">
               {spot.city}, {spot.state}
             </h4>
-            <p className="one-spot-price">${spot.price} night</p>
+            <p className="spot-price">${spot.price} night</p>
           </div>
           <div className="star-rating">
             {spot.avgRating >= 1 ? (
@@ -67,9 +67,6 @@ function OneSpot({ spot }) {
     </div>
   );
 }
-
-
-
 
 
 export default OneSpot;

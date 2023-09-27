@@ -10,7 +10,7 @@ function SpotDetails() {
   const { spotId } = useParams();
   const dispatch = useDispatch();
   const spot = useSelector((state) => state.spots.oneSpot);
-//   console.log("🚀 ~ file: SpotDetails.js:13 ~ SpotDetails ~ spot:", spot)
+  console.log("🚀 ~ file: SpotDetails.js:13 ~ SpotDetails ~ spot:", spot)
 
 
 
@@ -18,16 +18,14 @@ function SpotDetails() {
     dispatch(thunkGetDetails(spotId));
   }, [dispatch, spotId]);
 
-
+  if (!spot) {
+    return <div>Loading...</div>;
+  }
 
   if (Object.keys(spot).length === 0 || !spot) return null;
 
 
-  const previewImage = spot.SpotImages.find((image) => image.preview);
-  console.log(
-    // "🚀 ~ file: SpotDetails.js:19 ~ SpotDetails ~ previewImage:",
-    previewImage
-  );
+
   let otherImages = spot.SpotImages.filter((image) => !image.preview);
   console.log(
     // "🚀 ~ file: SpotDetails.js:20 ~ SpotDetails ~ otherImages:",
@@ -55,6 +53,8 @@ function SpotDetails() {
     }
   };
 
+  const previewImage = spot.SpotImages.find((image) => image.preview);
+
   return (
     <div className="wrapper">
       <div className="details-container">
@@ -65,7 +65,7 @@ function SpotDetails() {
         <div className="image-bundle">
           <img
             className="preview-image"
-            src={Object.keys(previewImage).length > 0 && previewImage.url}
+            src={previewImage ? previewImage.url : ""}
             alt=""
           ></img>
           <div className="small-images-container">

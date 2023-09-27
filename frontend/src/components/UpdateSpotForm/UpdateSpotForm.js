@@ -19,7 +19,7 @@ function UpdateSpotForm() {
       setDescription(res.description);
       setName(res.name);
       setPrice(res.price);
-      setPreview(res.SpotImages[0].url);
+      //   setPreview(res.SpotImages[0]?.url || '');
     });
   }, [dispatch, spotId]);
 
@@ -28,9 +28,9 @@ function UpdateSpotForm() {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [description, setDescription] = useState("");
-  const [name, setName] = useState("spot.name");
-  const [price, setPrice] = useState("spot.price");
-  const [preview, setPreview] = useState("");
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  //   const [preview, setPreview] = useState("");
 
   const [errors, setErrors] = useState({});
 
@@ -41,7 +41,7 @@ function UpdateSpotForm() {
   const updateDescription = (e) => setDescription(e.target.value);
   const updateName = (e) => setName(e.target.value);
   const updatePrice = (e) => setPrice(e.target.value);
-  const updatePreview = (e) => setPreview(e.target.value);
+  //   const updatePreview = (e) => setPreview(e.target.value);
 
   function checkErrors(
     address,
@@ -50,8 +50,8 @@ function UpdateSpotForm() {
     country,
     name,
     description,
-    price,
-    preview,
+    price
+    // preview
   ) {
     const errorsObj = {};
 
@@ -67,15 +67,16 @@ function UpdateSpotForm() {
       errorsObj["description"] = "Description cannot exceed 280 characters.";
     if (price <= 0) errorsObj["price"] = "Price is required.";
     if (price >= 999999) errorsObj["maxPrice"] = "Price cannot exceed $999999";
-    if (preview.length < 1) errorsObj["preview"] = "Preview image is required.";
-    if (
-      !preview.toLowerCase().endsWith(".png") ||
-      !preview.toLowerCase().endsWith(".jpg") ||
-      !preview.toLowerCase().endsWith(".jpeg")
-    ) {
-      errorsObj["endPreview"] =
-        "Preview image URL must end in .png, .jpg, or .jpeg";
-    }
+    // if (preview.length < 1) errorsObj["preview"] = "Preview image is required.";
+    // if (
+    //   preview.toLowerCase().endsWith(".png") ||
+    //   preview.toLowerCase().endsWith(".jpeg") ||
+    //   preview.toLowerCase().endsWith(".jpg")
+    // ) {
+    // } else {
+    //   errorsObj["endPreview"] =
+    //     "Preview image URL must end in .png, .jpg, or .jpeg";
+    // }
 
     return errorsObj;
   }
@@ -83,7 +84,7 @@ function UpdateSpotForm() {
   const lat = 20;
   const lng = 20;
 
-  const handleSubmit = async (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
 
     const newErrors = checkErrors(
@@ -93,8 +94,8 @@ function UpdateSpotForm() {
       country,
       name,
       description,
-      price,
-      preview,
+      price
+      //   preview
     );
 
     setErrors(newErrors);
@@ -127,7 +128,7 @@ function UpdateSpotForm() {
         Guests will only get your exact address once they booked a reservation.
       </div>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleUpdate}>
         <div className="errors-container">
           <label>Country</label>
           {errors.country && <p className="errors">{errors.country}</p>}
@@ -222,45 +223,27 @@ function UpdateSpotForm() {
           placeholder="Name of your spot"
         />
 
-        <div className="line"></div>
+        <div className="form-line"></div>
 
-        <h2 className="header2">Set a base price for your spot</h2>
-        <div className="header3">
+        <label className="header2">Set a base price for your spot</label>
+        <p className="header3">
           Competitive pricing can help your listing stand out and rank higher in
           search results.
-        </div>
+        </p>
         <div className="price-container">
-          <i className="fa-solid fa-dollar-sign"></i>
+          <i class="fa-solid fa-dollar-sign"></i>
           <input
             className="price-form"
             type="number"
-            name="Price"
+            name="price"
             value={price}
             onChange={updatePrice}
             placeholder="Price per night (USD)"
           />
-          {errors.price && <p className="errors price">{errors.price}</p>}
-        </div>
-
-        <div className="line"></div>
-
-        <h2 className="header2">Liven up your spot with photos</h2>
-        <div className="header3">
-          Submit a link to at least one photo to publish your spot.
-        </div>
-        <div className="url-container">
-          {errors.preview} && <p className="errors preview">{errors.preview}</p>
-          {errors.endPreview && (
-            <p className="errors preview">{errors.endPreview}</p>
+          {errors.price && <p className="form-errors price">{errors.price}</p>}
+          {errors.maxPrice && (
+            <p className="form-errors price">{errors.maxPrice}</p>
           )}
-          <input
-            className="preview-url"
-            type="url"
-            name="PreviewUrl"
-            value={preview}
-            onChange={updatePreview}
-            placeholder="Preview image URL"
-          />
         </div>
 
         <div className="line"></div>
@@ -268,6 +251,7 @@ function UpdateSpotForm() {
         <button className="submit-button" type="submit">
           Update your Spot
         </button>
+        
       </form>
     </div>
   );

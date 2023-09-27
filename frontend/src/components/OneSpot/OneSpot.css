@@ -1,4 +1,5 @@
 .spot-container {
+/* border: 2px solid red; */
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -18,27 +19,27 @@
   cursor: pointer;
 }
 
-.one-spot-info {
+.spot-info {
   /* border: 2px solid red; */
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
 
-.one-spot-location {
+.spot-location {
   /* border: 2px solid red */
   margin-top: 8px;
   margin-bottom: 0;
 }
 
-.one-spot-price {
+.spot-price {
   /* border: 2px solid red; */
   margin-top: 8px;
   margin-bottom: 10px;
 }
 
 .star-rating-container {
-  /* border: 2px solid red; */
+
   display: flex;
   align-items: center;
   column-gap: 4px;
@@ -58,7 +59,7 @@
   font-size: 14px;
 }
 
-.one-spot-new {
+.spot-new {
   /* border: 2px solid red; */
   font-size: 14px;
   margin-top: 8px;
