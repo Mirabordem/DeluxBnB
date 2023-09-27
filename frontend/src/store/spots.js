@@ -29,13 +29,14 @@ const deleteSpot = (spotId) => {
 };
 
 export const clearSpot = () => ({
-    type: CLEAR_SPOT
-})
+  type: CLEAR_SPOT,
+});
 
 //___________________________________________________
 
 // THUNKS:
 
+// landing page:
 export const thunkGetSpots = () => async (dispatch) => {
   const response = await csrfFetch("/api/spots");
 
@@ -46,6 +47,7 @@ export const thunkGetSpots = () => async (dispatch) => {
   }
 };
 
+// one spot page:
 export const thunkGetDetails = (spotId) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${spotId}`);
 
@@ -60,6 +62,7 @@ export const thunkGetDetails = (spotId) => async (dispatch) => {
   }
 };
 
+// deleting spot:
 export const thunkDeleteSpot = (spotId) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${spotId}`, {
     method: "DELETE",
@@ -72,6 +75,7 @@ export const thunkDeleteSpot = (spotId) => async (dispatch) => {
   }
 };
 
+// creating spot:
 export const thunkCreateNewSpot = (spot) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots`, {
     method: "POST",
@@ -85,6 +89,7 @@ export const thunkCreateNewSpot = (spot) => async (dispatch) => {
   }
 };
 
+// updating spot:
 export const thunkUpdateSpot = (spotId, spot) => async (dispatch) => {
   // console.log(spot)
   const response = await csrfFetch(`/api/spots/${spotId}`, {
@@ -99,6 +104,7 @@ export const thunkUpdateSpot = (spotId, spot) => async (dispatch) => {
   }
 };
 
+// creating image for spot:
 export const thunkCreateImageForSpot =
   (newSpotId, url, preview) => async (dispatch) => {
     if (url === "") return null;
@@ -114,6 +120,7 @@ export const thunkCreateImageForSpot =
     }
   };
 
+// current user's spots:
 export const thunkGetUserSpots = () => async (dispatch) => {
   const response = await csrfFetch("/api/spots/current");
 
@@ -129,9 +136,9 @@ export const thunkGetUserSpots = () => async (dispatch) => {
 // SPOTS REDUCER:
 
 const initialState = {
-    allSpots : {},
-    oneSpot: {},
-  }
+  allSpots: {},
+  oneSpot: {},
+};
 
 const spotsReducer = (state = initialState, action) => {
   let newState;
@@ -149,20 +156,24 @@ const spotsReducer = (state = initialState, action) => {
       newState.oneSpot = action.spot;
       return newState;
 
+    case DELETE_SPOT:
+      newState = {
+        ...state,
+        allSpots: { ...state.allSpots },
+        oneSpot: { ...state.oneSpot },
+      };
+      delete newState.allSpots[action.spotId];
+      delete newState.oneSpot[action.spotId];
+      return newState;
+    default:
+      return state;
+
     case CLEAR_SPOT:
       return {
         ...state,
         oneSpot: {},
       };
-
-      case DELETE_SPOT:
-        newState = { ...state, allSpots: {...state.allSpots}, oneSpot: {...state.oneSpot}}
-        delete newState.allSpots[action.spotId];
-        delete newState.oneSpot[action.spotId];
-        return newState;
-        default: return state
   }
 };
-
 
 export default spotsReducer;

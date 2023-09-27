@@ -141,7 +141,7 @@ allSpots.forEach(spot => {
         spot.avgRating += review.stars;
     })
       spot.avgRating = spot.avgRating / spot.Reviews.length
-      spot.avgRating = spot.avgRating.toFixed(0)
+      spot.avgRating = spot.avgRating.toFixed(1)
 
       delete spot.Reviews;
   });
@@ -263,18 +263,39 @@ router.get('/:spotId', async(req, res) => {
   })
 
 
+// // finding numReviews and avgStarRating:
+//   let numReviews = jsonReviews.length;
+
+//   let starSum = 0; //starting to collect
+//   jsonReviews.forEach(review => {
+//     starSum += review.stars
+//   })
+//   let avgStars = starSum / numReviews;
+//   avgStars = avgStars.toFixed(1)
+
+//   spot.numReviews = numReviews;
+//   spot.avgStarRating = avgStars;
+
+
+
 // finding numReviews and avgStarRating:
-  let numReviews = jsonReviews.length;
+let numReviews = jsonReviews.length;
+let starSum = 0;
 
-  let starSum = 0; //starting to collect
-  jsonReviews.forEach(review => {
-    starSum += review.stars
-  })
-  let avgStars = starSum / numReviews;
-  avgStars = avgStars.toFixed(0)
+jsonReviews.forEach((review) => {
+  starSum += review.stars;
+});
 
-  spot.numReviews = numReviews;
-  spot.avgStarRating = avgStars;
+let avgStars = 0; 
+
+if (numReviews > 0) {
+  avgStars = starSum / numReviews;
+  avgStars = avgStars.toFixed(1);
+}
+
+spot.numReviews = numReviews;
+spot.avgStarRating = avgStars;
+
 
 
 // finding spot images:

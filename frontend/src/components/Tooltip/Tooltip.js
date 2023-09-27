@@ -9,7 +9,7 @@ function Tooltip(props) {
     const showToolTip = () => {
       delay = setTimeout(() => {
         setShow(true);
-      }, 80)
+      }, 70)
     };
 
     const hideToolTip = () => {

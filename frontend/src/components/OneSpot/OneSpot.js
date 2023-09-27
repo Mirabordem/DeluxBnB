@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./OneSpot.css";
-// import "react-tooltip/dist/react-tooltip.css";
 import Tooltip from "../Tooltip/Tooltip";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
@@ -30,12 +29,12 @@ function OneSpot({ spot }) {
         to={"/spots/${spot.id"}
         style={{ textDecoration: "none", color: "rgb(45, 36, 36)" }}
       >
-        <div className="one-spot-info">
+        <div className="spot-info">
           <div>
-            <h4 className="one-spot-location">
+            <h4 className="spot-location">
               {spot.city}, {spot.state}
             </h4>
-            <p className="one-spot-price">${spot.price} night</p>
+            <p className="spot-price">${spot.price} night</p>
           </div>
           <div className="star-rating">
             {spot.avgRating >= 1 ? (
@@ -57,14 +56,17 @@ function OneSpot({ spot }) {
           <NavLink to={`/spots/${spot.id}/edit`}>
             <button className="managing-update">Update</button>
           </NavLink>
+          <button>
           <OpenModalMenuItem
             modalComponent={<DeleteModal spot={spot} />}
             itemText="Delete"
           />
+          </button>
         </div>
       )}
     </div>
   );
 }
+
 
 export default OneSpot;
