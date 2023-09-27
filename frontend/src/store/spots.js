@@ -107,17 +107,24 @@ export const thunkUpdateSpot = (spotId, spot) => async (dispatch) => {
 // creating image for spot:
 export const thunkCreateImageForSpot =
   (newSpotId, url, preview) => async (dispatch) => {
+    try {
     if (url === "") return null;
     const response = await csrfFetch(`/api/spots/${newSpotId}/images`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(url, preview),
+      body: JSON.stringify({url, preview}),
     });
 
     if (response.ok) {
       const data = await response.json();
       return data;
     }
+  } catch (error) {
+    const data = await error.json()
+    console.log(data)
+  }
+
+
   };
 
 // current user's spots:
