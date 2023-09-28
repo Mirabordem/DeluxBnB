@@ -121,29 +121,8 @@ function CreateSpotForm() {
     }
   }
 
-  // if (
-  //   !isValidImageExtension(preview) &&
-  //   !isValidImageExtension(urlOne) &&
-  //   !isValidImageExtension(urlTwo) &&
-  //   !isValidImageExtension(urlThree) &&
-  //   !isValidImageExtension(urlFour)
-  // ) {
-  //   errorsObj["imageUrls"] = "At least one valid image URL is required.";
-  // }
-
   return errorsObj;
 }
-
-
-// function isValidImageExtension(url) {
-//   if (!url) return true;
-
-//   const validExtensions = [".png", ".jpeg", ".jpg"];
-//   const lowercasedURL = url.toLowerCase();
-
-//   return validExtensions.some((ext) => lowercasedURL.endsWith(ext));
-// }
-
 
 
   const lat = 20;
@@ -201,7 +180,7 @@ function CreateSpotForm() {
 
   return (
     <div className="main-container">
-      <h1 className="header">Create a New Spot</h1>
+      <h1 className="h1">Create a New Spot</h1>
       <h2 className="header2">Where's your place located?</h2>
       <div className="header3">
         Guests will only get your exact address once they booked a reservation.

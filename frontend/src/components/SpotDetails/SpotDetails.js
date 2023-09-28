@@ -10,7 +10,7 @@ function SpotDetails() {
   const { spotId } = useParams();
   const dispatch = useDispatch();
   const spot = useSelector((state) => state.spots.oneSpot);
-  
+
 
 
 
@@ -27,10 +27,8 @@ function SpotDetails() {
 
 
   let otherImages = spot.SpotImages.filter((image) => !image.preview);
-  console.log(
-    // "🚀 ~ file: SpotDetails.js:20 ~ SpotDetails ~ otherImages:",
-    otherImages
-  );
+
+  
 
   if (otherImages.length < 4) {
     let index = otherImages.length;

@@ -1,0 +1,163 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    width: 430px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .h1 {
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 30px;
+    color: orange;
+  }
+
+  .header2 {
+    font-weight: bold;
+    margin-top: 12px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 22px;
+    color: rgb(67, 38, 38);
+  }
+
+  .header3 {
+    font-size: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    color: gray
+
+  }
+
+  .city-state-container {
+    display: flex;
+    column-gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .city-form {
+    width: 300px;
+  }
+
+  .city {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .spotform-inputs {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .text-area {
+    height: 100px;
+    margin-bottom: 30px;
+  }
+
+  .line {
+    border-top: 1px solid rgb(221, 218, 218);
+  }
+
+  .name {
+    margin-bottom: 29px;
+  }
+
+  .price {
+    margin-left: 10px;
+    width: 204px;
+    margin-bottom: 23px;
+  }
+
+
+  .submit-button {
+    color: white;
+    background-color:orange;
+    border-radius: 10px;
+    border: rgb(63, 180, 63);
+    font-size: 18px;
+    width: 200px;
+    height: 40px;
+    margin: 20px auto;
+  }
+
+  .submit-button:hover {
+    cursor: pointer;
+    background-color: orangered;
+  }
+
+  .submit-button:active {
+    background-color: orangered;
+    box-shadow: 0 2px #8f8f8f;
+    transform: translateY(2px);
+  }
+
+
+  .errors-container {
+    display: flex;
+    column-gap: 8px;
+    align-items: center;
+  }
+
+  .error-container > label {
+    margin-top: 3px;
+  }
+
+  .price-container {
+    display: flex;
+  }
+
+  .price-container > i {
+    margin-top: 3px;
+  }
+
+  .description {
+    margin-bottom: 10px;
+  }
+
+  .name {
+    margin-bottom: 10px;
+  }
+
+  .preview {
+
+  }
+
+  .url {
+
+  }
+
+  .form-url {
+
+  }
+
+  .price-form {
+    margin-top: 3px;
+    margin-left: 10px;
+  }
+
+  .header2 > input {
+    margin-bottom: 0px;
+  }
+
+  .url-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    margin-bottom: 20px;
+  }
+
+  textarea {
+    resize: none;
+  }

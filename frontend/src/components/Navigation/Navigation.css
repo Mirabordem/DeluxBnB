@@ -65,16 +65,17 @@
   background-color: white;
 }
 
-.start {
-  color: rgb(33, 34, 33);
+/* .start {
+  color: orangered;
   font-size: 16px;
   padding: 5px 10px;
 }
 
 .start:hover {
   cursor: pointer;
-  color: orange;
-}
+  color: white;
+  background-color: orangered;
+} */
 
 .profile-dropdown {
   position: absolute;
