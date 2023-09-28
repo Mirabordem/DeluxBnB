@@ -1,5 +1,5 @@
-.spot-container {
-/* border: 2px solid red; */
+/* .spot-container {
+
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -20,20 +20,20 @@
 }
 
 .spot-info {
-  /* border: 2px solid red; */
+
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
 
 .spot-location {
-  /* border: 2px solid red */
+
   margin-top: 8px;
   margin-bottom: 0;
 }
 
 .spot-price {
-  /* border: 2px solid red; */
+
   margin-top: 8px;
   margin-bottom: 10px;
 }
@@ -50,7 +50,7 @@
 }
 
 .star-rating {
-  /* border: 2px solid red; */
+
 }
 
 .fa-reviewstar {
@@ -59,13 +59,13 @@
 }
 
 .spot-new {
-  /* border: 2px solid red; */
+
   font-size: 14px;
   margin-top: 8px;
 }
 
 .update-delete {
-  /* border: 2px solid red; */
+
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -73,7 +73,7 @@
 }
 
 .managing-update {
-  /* border: 2px solid red; */
+
   background-color: white;
   border: 2px solid orange;
   color: orange;
@@ -81,7 +81,7 @@
   height: 30px;
   border-radius: 10px;
   font-size: 15px;
-  /* margin-left: 20px; */
+
 }
 
 .managing-update:hover {
@@ -91,7 +91,7 @@
 }
 
 .delete-update {
-  /* border: 2px solid red; */
+
   background-color: white;
   border: 2px solid orangered;
   color: white;
@@ -105,17 +105,113 @@
   background-color: orangered;
   border: none;
   color: white;
-}
+} */
 
-.start {
-  /* background-color: orange; */
-  color: orangered;
-  font-size: 16px;
-  padding: 5px 10px;
-}
 
-.start:hover {
-  cursor: pointer;
-  color: white;
-  /* background-color: orangered; */
-}
+.spot-container {
+  /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .one-spot-image {
+    width: 100%;
+    height: 360px;
+    max-height: 400px;
+    max-width: 400px;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+
+  .one-spot-image:hover {
+    cursor: pointer;
+  }
+
+  .spot-info {
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .spot-location {
+    /* border: 2px solid red */
+    margin-top: 8px;
+    margin-bottom: 0;
+  }
+
+  .spot-price {
+    /* border: 2px solid red; */
+    margin-top: 8px;
+    margin-bottom: 10px;
+  }
+
+  .star-rating-container {
+
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+    margin-top: 5px;
+    padding: 0px;
+    height: 22px;
+    font-size: 14px;
+    margin-top: 17px;
+  }
+
+  .star-rating {
+    /* border: 2px solid red; */
+  }
+
+  .fa-reviewstar {
+    color: orange;
+    font-size: 14px;
+  }
+
+  .spot-new {
+    /* border: 2px solid red; */
+    font-size: 14px;
+    margin-top: 8px;
+  }
+
+  .update-delete {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   /* justify-content: space-around; */
+  }
+
+  .delete-update {
+    background-color: white;
+    border: 2px solid orangered;
+    border-radius: 15px;
+    color: rgb(33, 34, 33);
+    width: 100px;
+    height: 30px;
+    margin-left: 10px;
+  }
+
+  .delete-update:hover {
+    /* cursor: pointer;
+    background-color: orangered;
+    color: white; */
+    font-weight: bold;
+  }
+
+  .managing-update {
+   background-color: white;
+   border: 2px solid orange;
+   border-radius: 15px;
+   color: rgb(33, 34, 33);
+   font-size: 16px;
+   width: 100px;
+   height: 30px;
+  }
+
+  .managing-update:hover {
+    /* cursor: pointer;
+    background-color: orange;
+    color: white; */
+    font-weight: bold;
+  }

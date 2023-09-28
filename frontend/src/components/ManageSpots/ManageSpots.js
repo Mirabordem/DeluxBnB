@@ -27,7 +27,6 @@ function ManageSpots() {
 
   if (Object.keys(userSpotsObj).length === 0) {
     emptyUserSpotsObj = true;
-    // console.log("🚀 ~ file: ManageSpots.js:30 ~ ManageSpots ~ emptyUserSpotsObj:", emptyUserSpotsObj)
   }
 
 
@@ -56,5 +55,7 @@ function ManageSpots() {
     </div>
   );
 }
+
+
 
 export default ManageSpots;
