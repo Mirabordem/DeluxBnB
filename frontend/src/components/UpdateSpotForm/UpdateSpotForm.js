@@ -121,8 +121,8 @@ function UpdateSpotForm() {
   };
 
   return (
-    <div className="main-container">
-      <h1 className="header">Update Your Spot</h1>
+    <div className="form-main-container">
+      <h1 className="h1">Update Your Spot</h1>
       <h2 className="header2">Where's your place located?</h2>
       <div className="header3">
         Guests will only get your exact address once they booked a reservation.
@@ -251,7 +251,7 @@ function UpdateSpotForm() {
         <button className="submit-button" type="submit">
           Update your Spot
         </button>
-        
+
       </form>
     </div>
   );

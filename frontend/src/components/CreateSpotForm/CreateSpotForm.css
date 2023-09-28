@@ -1,4 +1,4 @@
-/* .main-container {
+ .form-main-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -74,18 +74,11 @@
     margin-bottom: 29px;
   }
 
-  .price {
-    margin-left: 10px;
-    width: 204px;
-    margin-bottom: 23px;
-  }
-
-
-  .submit-button {
+   .submit-button {
     color: white;
     background-color:orange;
     border-radius: 10px;
-    border: rgb(63, 180, 63);
+    border: none;
     font-size: 18px;
     width: 200px;
     height: 40px;
@@ -103,8 +96,7 @@
     transform: translateY(2px);
   }
 
-
-  .errors-container {
+   .errors-container {
     display: flex;
     column-gap: 8px;
     align-items: center;
@@ -130,19 +122,7 @@
     margin-bottom: 10px;
   }
 
-  .preview {
-
-  }
-
-  .url {
-
-  }
-
-  .form-url {
-
-  }
-
-  .price-form {
+   .price-form {
     margin-top: 3px;
     margin-left: 10px;
   }
@@ -160,4 +140,4 @@
 
   textarea {
     resize: none;
-  } */
+  }
