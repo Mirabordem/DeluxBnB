@@ -28,7 +28,7 @@ function SpotDetails() {
 
   let otherImages = spot.SpotImages.filter((image) => !image.preview);
 
-  
+
 
   if (otherImages.length < 4) {
     let index = otherImages.length;

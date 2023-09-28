@@ -36,6 +36,7 @@ function OneSpot({ spot }) {
             </h4>
             <p className="spot-price">${spot.price} night</p>
           </div>
+
           <div className="star-rating">
             {spot.avgRating >= 1 ? (
               <div className="star-rating-container">
@@ -49,6 +50,7 @@ function OneSpot({ spot }) {
               </div>
             )}
           </div>
+
         </div>
       </NavLink>
       {manage && (

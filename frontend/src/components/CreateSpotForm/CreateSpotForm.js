@@ -179,7 +179,7 @@ function CreateSpotForm() {
   };
 
   return (
-    <div className="main-container">
+    <div className="form-main-container">
       <h1 className="h1">Create a New Spot</h1>
       <h2 className="header2">Where's your place located?</h2>
       <div className="header3">
