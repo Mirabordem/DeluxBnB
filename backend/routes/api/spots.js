@@ -286,11 +286,11 @@ jsonReviews.forEach((review) => {
   starSum += review.stars;
 });
 
-let avgStars = 0; 
+let avgStars = 0;
 
 if (numReviews > 0) {
   avgStars = starSum / numReviews;
-  avgStars = avgStars.toFixed(1);
+  avgStars = avgStars.toFixed(2);
 }
 
 spot.numReviews = numReviews;
