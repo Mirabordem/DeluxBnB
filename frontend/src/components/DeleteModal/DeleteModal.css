@@ -50,12 +50,6 @@
     transition-delay: 0s;
   }
 
-  /* #delete-button:active {
-    box-shadow: 0 1px #8f8f8f;
-    transform: translateY(2px);
-  } */
-
-
   #cancel-button {
     display: flex;
     flex-direction: column;
@@ -77,8 +71,3 @@
     border: 1px solid orangered;
     transition-delay: 0s;
   }
-
-  /* #cancel-button:active {
-    box-shadow: 0 1px #8f8f8f;
-    transform: translateY(2px);
-  } */
