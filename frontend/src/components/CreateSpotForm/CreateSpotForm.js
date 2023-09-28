@@ -65,8 +65,8 @@ function CreateSpotForm() {
     if (description.length < 30)
       errorsObj["description"] =
         "Description needs a minimum of 30 characters.";
-    if (description.length > 280)
-      errorsObj["description"] = "Description cannot exceed 280 characters.";
+    if (description.length > 400)
+      errorsObj["description"] = "Description cannot exceed 400 characters.";
     if (price <= 0) errorsObj["price"] = "Price is required.";
     if (price >= 999999) errorsObj['maxPrice'] = 'Price cannot exceed $999999';
     if (preview.length < 1) errorsObj["preview"] = "Preview image is required.";
@@ -169,6 +169,7 @@ function CreateSpotForm() {
 
     setErrors(newErrors);
     if (Object.values(newErrors).length > 0) {
+      console.log('message: enter if statement', errors)
       return null;
     }
 

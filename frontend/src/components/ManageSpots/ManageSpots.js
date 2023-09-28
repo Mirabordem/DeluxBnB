@@ -37,6 +37,7 @@ function ManageSpots() {
     history.push(path);
   };
 
+
   return (
     <div className="main-container">
       <div className="header">
@@ -55,5 +56,24 @@ function ManageSpots() {
     </div>
   );
 }
+
+//   return (
+//     <div className="main-container">
+
+//         <h1 className='h1'>Manage Your Spots</h1>
+//         {emptyUserSpotsObj && (
+//           <button className="manage-button" onClick={spotDirection}>
+//             Create a New Spot
+//           </button>
+//         )}
+
+//       <div>
+//         {userSpotsArr.map((spot) => (
+//           <OneSpot spot={spot} />
+//         ))}
+//       </div>
+//     </div>
+//   );
+// }
 
 export default ManageSpots;

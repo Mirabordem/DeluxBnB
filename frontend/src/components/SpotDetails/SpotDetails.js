@@ -10,7 +10,7 @@ function SpotDetails() {
   const { spotId } = useParams();
   const dispatch = useDispatch();
   const spot = useSelector((state) => state.spots.oneSpot);
-  console.log("🚀 ~ file: SpotDetails.js:13 ~ SpotDetails ~ spot:", spot)
+  
 
 
 
