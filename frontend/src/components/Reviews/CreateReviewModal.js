@@ -5,48 +5,66 @@ import { useModal } from "../../context/Modal";
 import { thunkCreateReview } from "../../store/reviews";
 import "./CreateReviewModal.css";
 
-const CreateReviewModal = ({ spot }) => {
+
+
+const CreateReviewModal = ({ spot, sessionUser }) => {
+  const dispatch = useDispatch();
   const [review, setReview] = useState("");
   const [stars, setStars] = useState(0);
   const [errors, setErrors] = useState({});
-  const dispatch = useDispatch();
+
   const { closeModal } = useModal();
 
-  useEffect(() => {
-    if (review.length < 10 || stars < 1) {
-      setErrors({
-        // review: review.length < 10 ? "Review must be at least 10 characters long" : "",
-        // stars: stars < 1 ? "Please select a star rating" : "",
-      });
-    } else {
-      setErrors({});
-    }
-  }, [review, stars]);
 
-  const handleStarClick = (starValue) => {
-    setStars(starValue); 
-  };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (Object.values(errors).length === 0) {
+    const newErrors = {};
+
+    if (review.length < 10) {
+      newErrors.review = "Review must be at least 10 characters long";
+    }
+
+    if (stars < 1) {
+      newErrors.stars = "Please select a star rating";
+    }
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length === 0) {
       const reviewPayload = {
         review,
         stars,
       };
 
-      dispatch(thunkCreateReview(reviewPayload, spot.id))
+      
+
+      console.log("Review Payload:", reviewPayload);
+      console.log("Session User:", sessionUser);
+
+      dispatch(thunkCreateReview(spot.id, reviewPayload, stars, sessionUser))
         .then(() => dispatch(fetchSpotReviews(spot.id)))
         .then(() => closeModal());
     }
   };
 
+
+  useEffect(() => {
+    if (review.length < 10 || stars < 1) {
+      setErrors({});
+    }
+  }, [review, stars]);
+
+
+
+
   return (
     <form onSubmit={handleSubmit} className="create-review">
       <h2 className="h2">How was your stay?</h2>
-      {errors.review && <p>{errors.review}</p>}
-      {errors.stars && <p>{errors.stars}</p>}
+      {errors.review && <p className="error">{errors.review}</p>}
+      {errors.stars && <p className="error">{errors.stars}</p>}
       <label>
         <textarea
           className="review-text-area"
@@ -60,7 +78,7 @@ const CreateReviewModal = ({ spot }) => {
           <div
             key={starValue}
             className={`star ${stars >= starValue ? "filled" : ""}`}
-            onClick={() => handleStarClick(starValue)}
+            onClick={() => setStars(starValue)}
           >
             <i className={`fa-solid fa-star${stars >= starValue ? " filled" : ""}`}></i>
           </div>
@@ -70,7 +88,7 @@ const CreateReviewModal = ({ spot }) => {
       <button
         className="my-button"
         type="submit"
-        disabled={review.length < 10 || stars < 1}
+        disabled={Object.keys(errors).length !== 0}
       >
         Submit your review
       </button>

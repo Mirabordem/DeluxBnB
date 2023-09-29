@@ -35,16 +35,17 @@ export const fetchSpotReviews = (spotId) => async(dispatch) =>{
 // THUNKS
 
 export const thunkCreateReview =
-  (spotId, review, stars, user) => async (dispatch) => {
+  (spotId, reviewText, stars, sessionUser) => async (dispatch) => {
+
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ review, stars }),
+      body: JSON.stringify({ review: reviewText.review, stars }),
     });
 
     if (response.ok) {
       let data = await response.json();
-      data.User = user;
+      data.User = sessionUser;
       dispatch(createReview(data));
       return data;
     }
@@ -89,8 +90,12 @@ const reviewsReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case CREATE_REVIEW:
-      newState = { ...state, reviews: [ ...state.reviews ] };
-      newState.reviews[action.review.id] = action.review;
+      console.log('state:', state)
+      newState = { ... state, reviews: [ ...state.reviews, action.review] };
+      // newState.reviews.filter(review => {
+      //   return review;
+      // })
+      // newState.reviews.push(action.review);
       return newState;
 
     case LOAD_REVIEWS:
