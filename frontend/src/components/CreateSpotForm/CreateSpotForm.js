@@ -1,13 +1,12 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import "./CreateSpotForm.css";
 import {
   thunkGetDetails,
   thunkCreateNewSpot,
   thunkCreateImageForSpot,
 } from "../../store/spots";
+import "./CreateSpotForm.css";
 
 function CreateSpotForm() {
   const dispatch = useDispatch();
@@ -71,59 +70,63 @@ function CreateSpotForm() {
     if (price >= 999999) errorsObj['maxPrice'] = 'Price cannot exceed $999999';
     if (preview.length < 1) errorsObj["preview"] = "Preview image is required.";
 
-  if(
-    preview.toLowerCase().endsWith(".png") ||
-    preview.toLowerCase().endsWith(".jpeg") ||
-    preview.toLowerCase().endsWith(".jpg")
-  ) {
+    if (
+      !(
+        preview.toLowerCase().endsWith(".png") ||
+        preview.toLowerCase().endsWith(".jpeg") ||
+        preview.toLowerCase().endsWith(".jpg")
+      )
+    ) {
+      errorsObj["endPreview"] =
+        "Preview image URL must end in .png, .jpg, or .jpeg";
+    }
+    if (urlOne) {
+      if (
+        !(
+          urlOne.toLowerCase().endsWith(".png") ||
+          urlOne.toLowerCase().endsWith(".jpeg") ||
+          urlOne.toLowerCase().endsWith(".jpg")
+        )
+      ) {
+        errorsObj["urlOne"] = "Image URL must end in .png, .jpg, or .jpeg";
+      }
+    }
+    if (urlTwo) {
+      if (
+        !(
+          urlTwo.toLowerCase().endsWith(".png") ||
+          urlTwo.toLowerCase().endsWith(".jpeg") ||
+          urlTwo.toLowerCase().endsWith(".jpg")
+        )
+      ) {
+        errorsObj["urlTwo"] = "Image URL must end in .png, .jpg, or .jpeg";
+      }
+    }
+    if (urlThree) {
+      if (
+        !(
+          urlThree.toLowerCase().endsWith(".png") ||
+          urlThree.toLowerCase().endsWith(".jpeg") ||
+          urlThree.toLowerCase().endsWith(".jpg")
+        )
+      ) {
+        errorsObj["urlThree"] = "Image URL must end in .png, .jpg, or .jpeg";
+      }
+    }
+    if (urlFour) {
+      if (
+        !(
+          urlFour.toLowerCase().endsWith(".png") ||
+          urlFour.toLowerCase().endsWith(".jpeg") ||
+          urlFour.toLowerCase().endsWith(".jpg")
+        )
+      ) {
+        errorsObj["urlFour"] = "Image URL must end in .png, .jpg, or .jpeg";
+      }
+    }
 
-  } else {
-    errorsObj["endPreview"] = 'Preview image URL must end in .png, .jpg, or .jpeg'
+    return errorsObj;
   }
-  if (urlOne) {
-    if (
-      urlOne.toLowerCase().endsWith(".png") ||
-      urlOne.toLowerCase().endsWith(".jpeg") ||
-      urlOne.toLowerCase().endsWith(".jpg")
-    ) {
-    } else {
-      errorsObj["urlOne"] = "Image URL must end in .png, .jpg, or .jpeg";
-    }
-  }
-  if (urlTwo) {
-    if (
-      urlTwo.toLowerCase().endsWith(".png") ||
-      urlTwo.toLowerCase().endsWith(".jpeg") ||
-      urlTwo.toLowerCase().endsWith(".jpg")
-    ) {
-    } else {
-      errorsObj["urlTwo"] = "Image URL must end in .png, .jpg, or .jpeg";
-    }
-  }
-  if (urlThree) {
-    if (
-      urlThree.toLowerCase().endsWith(".png") ||
-      urlThree.toLowerCase().endsWith(".jpeg") ||
-      urlThree.toLowerCase().endsWith(".jpg")
-    ) {
-    } else {
-      errorsObj["urlThree"] = "Image URL must end in .png, .jpg, or .jpeg";
-    }
-  }
-  if (urlFour) {
-    if (
-      urlFour.toLowerCase().endsWith(".png") ||
-      urlFour.toLowerCase().endsWith(".jpeg") ||
-      urlFour.toLowerCase().endsWith(".jpg")
-    ) {
-    } else {
-      errorsObj["urlFour"] = "Image URL must end in .png, .jpg, or .jpeg";
-    }
-  }
-
-  return errorsObj;
-}
-
 
   const lat = 20;
   const lng = 20;
@@ -132,49 +135,53 @@ function CreateSpotForm() {
     e.preventDefault();
 
     const newErrors = checkErrors(
-        address,
-        city,
-        state,
-        country,
-        name,
-        description,
-        price,
-        preview,
-        urlOne,
-        urlTwo,
-        urlThree,
-        urlFour
+      address,
+      city,
+      state,
+      country,
+      name,
+      description,
+      price,
+      preview,
+      urlOne,
+      urlTwo,
+      urlThree,
+      urlFour
     );
 
     setErrors(newErrors);
     if (Object.values(newErrors).length > 0) {
-      console.log('message: enter if statement', errors)
+      console.log('message: enter if statement', errors);
       return null;
     }
 
     const payload = {
-        address,
-        city,
-        state,
-        country,
-        lat,
-        lng,
-        name,
-        description,
-        price,
+      address,
+      city,
+      state,
+      country,
+      lat,
+      lng,
+      name,
+      description,
+      price,
     };
 
-    const newSpot = await dispatch(thunkCreateNewSpot(payload));
+    try {
+      const newSpot = await dispatch(thunkCreateNewSpot(payload));
 
-    await dispatch(thunkCreateImageForSpot(newSpot.id, preview, true));
-    await dispatch(thunkCreateImageForSpot(newSpot.id, urlOne, false));
-    await dispatch(thunkCreateImageForSpot(newSpot.id, urlTwo, false));
-    await dispatch(thunkCreateImageForSpot(newSpot.id, urlThree, false));
-    await dispatch(thunkCreateImageForSpot(newSpot.id, urlFour, false));
+      await dispatch(thunkCreateImageForSpot(newSpot.id, preview, true));
+      await dispatch(thunkCreateImageForSpot(newSpot.id, urlOne, false));
+      await dispatch(thunkCreateImageForSpot(newSpot.id, urlTwo, false));
+      await dispatch(thunkCreateImageForSpot(newSpot.id, urlThree, false));
+      await dispatch(thunkCreateImageForSpot(newSpot.id, urlFour, false));
 
-    if (newSpot) {
-      dispatch(thunkGetDetails(newSpot.id));
-      history.push(`/spots/${newSpot.id}`);
+      if (newSpot) {
+        dispatch(thunkGetDetails(newSpot.id));
+        history.push(`/spots/${newSpot.id}`);
+      }
+    } catch (error) {
+      console.error("Error creating spot:", error);
     }
   };
 
@@ -309,7 +316,6 @@ function CreateSpotForm() {
           Submit a link to at least one photo to publish your spot.
         </div>
         <div className="url-container">
-          {/* {errors.preview} && <p className="errors preview">{errors.preview}</p> */}
           {errors.preview && <p className="errors preview">{errors.preview}</p>}
           {errors.endPreview && (
             <p className="errors preview">{errors.endPreview}</p>
