@@ -37,7 +37,7 @@ const Reviews = ({ spot, reviews, user }) => {
   if (!reviews.length) {
     return (
       <div className="first-review">
-        {spot.numReviews < 1 && reviewBtn && (
+        {spot.numReviews < 1 && reviewBtn && sessionUser.id !== spot.ownerId && (
           <button className="post-review">
             <OpenModalMenuItem
               itemText="Post a Review"
@@ -45,7 +45,7 @@ const Reviews = ({ spot, reviews, user }) => {
             />
           </button>
         )}
-        {spot.numReviews < 1 && <p>Be the first to post a review!</p>}
+        {spot.numReviews < 1 && sessionUser.id !== spot.ownerId && <p>Be the first to post a review!</p>}
       </div>
     );
   }
