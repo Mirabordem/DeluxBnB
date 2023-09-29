@@ -47,7 +47,8 @@ const validateSpot = [
 const validateReview = [
   check('review')
   .exists({ checkFalsy: true })
-  .withMessage('Review text is required'),
+  .isString()
+  .withMessage('Review text is required and must be a string'),
   check('stars')
   .exists({ checkFalsy: true })
   .isNumeric()
@@ -481,8 +482,12 @@ spot.avgStarRating = avgStars;
             stars
           });
 
+
+          console.log("🚀 ~ file: spots.js:491 ~ router.post ~ newReview:", newReview)
+
       res.status(201);
       return res.json(newReview)
+
     })
 
 
