@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { thunkGetDetails } from "../../store/spots";
 import { useParams } from "react-router-dom";
 import "./SpotDetails.css";
+import Reviews from "../Reviews/Reviews";
+import { thunkLoadReviews } from "../../store/reviews";
 
 
 
@@ -10,12 +12,15 @@ function SpotDetails() {
   const { spotId } = useParams();
   const dispatch = useDispatch();
   const spot = useSelector((state) => state.spots.oneSpot);
+  const user = useSelector((state) => state.session.user);
+  const objReviews = useSelector((state) => state.reviews.reviews);
 
 
 
 
   useEffect(() => {
     dispatch(thunkGetDetails(spotId));
+    dispatch(thunkLoadReviews(spotId));
   }, [dispatch, spotId]);
 
   if (!spot) {
@@ -98,7 +103,7 @@ function SpotDetails() {
               <p className="price">
                 <strong>${spot.price}</strong> night
               </p>
-              <div className="star">
+              <div className="star-first">
                 <i
                   className={
                     spot.numReviews > 0
@@ -130,6 +135,9 @@ function SpotDetails() {
               Reserve
             </button>
           </div>
+        </div>
+        <div>
+          <Reviews spot={spot} user={user} reviews={objReviews} />
         </div>
       </div>
     </div>

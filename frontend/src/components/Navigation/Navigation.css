@@ -28,7 +28,7 @@
 .new-spot {
 
   text-decoration: none;
-  color: rgb(33, 34, 33);
+  color: rgb(97, 96, 96);
   margin-bottom: 5px;
   margin-right: 5px;
   font-size: 18px;
@@ -59,12 +59,14 @@
   max-width: 230px;
   word-wrap: break-word;
   background-color: white;
+  color: rgb(97, 96, 96);
 }
 
 #profile-dropdown-loggedout {
 
   z-index: 50;
   background-color: white;
+  color: rgb(97, 96, 96);
 }
 
 

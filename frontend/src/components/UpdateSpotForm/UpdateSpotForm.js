@@ -10,6 +10,18 @@ function UpdateSpotForm() {
 
   const { spotId } = useParams();
 
+
+  const [country, setCountry] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [description, setDescription] = useState("");
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+
+  const [errors, setErrors] = useState({});
+
+
   useEffect(() => {
     dispatch(thunkGetDetails(spotId)).then((res) => {
       setCountry(res.country);
@@ -19,20 +31,9 @@ function UpdateSpotForm() {
       setDescription(res.description);
       setName(res.name);
       setPrice(res.price);
-      //   setPreview(res.SpotImages[0]?.url || '');
     });
   }, [dispatch, spotId]);
 
-  const [country, setCountry] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [description, setDescription] = useState("");
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  //   const [preview, setPreview] = useState("");
-
-  const [errors, setErrors] = useState({});
 
   const updateCountry = (e) => setCountry(e.target.value);
   const updateAddress = (e) => setAddress(e.target.value);
@@ -41,7 +42,7 @@ function UpdateSpotForm() {
   const updateDescription = (e) => setDescription(e.target.value);
   const updateName = (e) => setName(e.target.value);
   const updatePrice = (e) => setPrice(e.target.value);
-  //   const updatePreview = (e) => setPreview(e.target.value);
+  
 
   function checkErrors(
     address,
@@ -67,16 +68,7 @@ function UpdateSpotForm() {
       errorsObj["description"] = "Description cannot exceed 280 characters.";
     if (price <= 0) errorsObj["price"] = "Price is required.";
     if (price >= 999999) errorsObj["maxPrice"] = "Price cannot exceed $999999";
-    // if (preview.length < 1) errorsObj["preview"] = "Preview image is required.";
-    // if (
-    //   preview.toLowerCase().endsWith(".png") ||
-    //   preview.toLowerCase().endsWith(".jpeg") ||
-    //   preview.toLowerCase().endsWith(".jpg")
-    // ) {
-    // } else {
-    //   errorsObj["endPreview"] =
-    //     "Preview image URL must end in .png, .jpg, or .jpeg";
-    // }
+
 
     return errorsObj;
   }
@@ -95,7 +87,6 @@ function UpdateSpotForm() {
       name,
       description,
       price
-      //   preview
     );
 
     setErrors(newErrors);
