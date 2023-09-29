@@ -159,7 +159,3 @@ const Reviews = ({ spot, reviews, user }) => {
 };
 
 export default Reviews;
-<<<<<<< HEAD
-
-=======
->>>>>>> reviews1
