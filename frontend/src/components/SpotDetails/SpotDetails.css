@@ -115,14 +115,14 @@
   /* border: 1px solid red; */
 }
 
-.star {
+.star-first {
   /* border: 1px solid red; */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.star > i {
+.star-first > i {
   /* border: 1px solid red; */
   font-size: 12px;
 }

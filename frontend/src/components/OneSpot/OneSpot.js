@@ -5,6 +5,7 @@ import Tooltip from "../Tooltip/Tooltip";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 
+
 function OneSpot({ spot }) {
   let manage = false;
   if (window.location.href.endsWith("current")) {
