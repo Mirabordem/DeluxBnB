@@ -37,7 +37,7 @@ const Reviews = ({ spot, reviews, user }) => {
   if (!reviews.length) {
     return (
       <div className="first-review">
-        {spot.numReviews < 1 && reviewBtn && (
+        {spot.numReviews < 1 && reviewBtn && sessionUser.id !== spot.ownerId && (
           <button className="post-review">
             <OpenModalMenuItem
               itemText="Post a Review"
@@ -45,7 +45,7 @@ const Reviews = ({ spot, reviews, user }) => {
             />
           </button>
         )}
-        {spot.numReviews < 1 && <p>Be the first to post a review!</p>}
+        {spot.numReviews < 1 && sessionUser.id !== spot.ownerId && <p>Be the first to post a review!</p>}
       </div>
     );
   }
@@ -99,9 +99,10 @@ const Reviews = ({ spot, reviews, user }) => {
           }
         ></i>
 
-        {spot.avgStarRating > 0 ? (
-          <p className="stars-two">{parseInt(spot.avgRating).toFixed(2)}</p>
-        ) : null}
+
+        {spot.avgStarRating ? (
+                  <p className="number-stars">&nbsp;{spot.avgStarRating}</p>
+                ) : null}
         {spot.numReviews > 0 ? <p className="reviews-dot">·</p> : null}
         <p className={spot.numReviews > 0 ? "review-text" : "text-new"}>
           {checkReviews(spot.numReviews)}
@@ -113,7 +114,7 @@ const Reviews = ({ spot, reviews, user }) => {
         <p className="first-reviewer">Be the first to post a review!</p>
       ) : null}
 
-      {reviewBtn && (
+      {reviewBtn && sessionUser.id !== spot.Owner.id && (
         <button className="post-review">
           <OpenModalMenuItem
             itemText="Post a Review"
@@ -158,4 +159,7 @@ const Reviews = ({ spot, reviews, user }) => {
 };
 
 export default Reviews;
+<<<<<<< HEAD
 
+=======
+>>>>>>> reviews1
