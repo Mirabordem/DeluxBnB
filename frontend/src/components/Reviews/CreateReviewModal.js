@@ -39,10 +39,6 @@ const CreateReviewModal = ({ spot, sessionUser }) => {
         stars,
       };
 
-      
-
-      console.log("Review Payload:", reviewPayload);
-      console.log("Session User:", sessionUser);
 
       dispatch(thunkCreateReview(spot.id, reviewPayload, stars, sessionUser))
         .then(() => dispatch(fetchSpotReviews(spot.id)))

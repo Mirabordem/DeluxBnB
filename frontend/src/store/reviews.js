@@ -90,7 +90,6 @@ const reviewsReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case CREATE_REVIEW:
-      console.log('state:', state)
       newState = { ... state, reviews: [ ...state.reviews, action.review] };
       // newState.reviews.filter(review => {
       //   return review;
