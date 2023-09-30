@@ -26,7 +26,6 @@
 }
 
 .new-spot {
-
   text-decoration: none;
   color: rgb(97, 96, 96);
   margin-bottom: 5px;
@@ -63,14 +62,11 @@
 }
 
 #profile-dropdown-loggedout {
-
   z-index: 50;
   background-color: rgb(168, 167, 167);
   color: lightgrey;
   width: 75px;
 }
-
-
 
 .start {
   color: white;
@@ -92,7 +88,6 @@
   right: 35px;
   border: 1px solid lightgrey;
   border-radius: 7px;
-  /* box-shadow: 6px 6px 6px rgb(240, 238, 238); */
 }
 
 .text {
@@ -126,7 +121,7 @@
 
 .fa-bars:hover,
 .fa-user-circle:hover {
-    color: orange;
+  color: orange;
 }
 
 .profile-button:hover {

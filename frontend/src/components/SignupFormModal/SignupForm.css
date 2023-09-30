@@ -1,50 +1,50 @@
 .sign-up-container {
-    display: flex;
-    flex-direction: column;
-    border: 3px solid rgb(67, 38, 38);
-    box-shadow: 6px 6px 22px black;
-    padding: 12px 30px 12px;
-    width: 400px;
+  display: flex;
+  flex-direction: column;
+  border: 3px solid rgb(67, 38, 38);
+  box-shadow: 6px 6px 22px black;
+  padding: 12px 30px 12px;
+  width: 400px;
 }
 
 .sign-up-container > h1 {
-    font-size: 26px;
-    margin-right: auto;
-    margin-left: auto;
-    color: rgb(67, 38, 38);
+  font-size: 26px;
+  margin-right: auto;
+  margin-left: auto;
+  color: rgb(67, 38, 38);
 }
 
 .signup-container {
-    display: flex;
-    flex-direction: column;
-    align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
 }
 
 .input-container {
-    color: rgb(67, 38, 38);
+  color: rgb(67, 38, 38);
 }
 
 .sign-up-submit-button {
-    background-color: orange;
-    height: 45px;
-    font-size: 18px;
-    border-radius: 8px;
-    border: none;
-    color: white;
+  background-color: orange;
+  height: 45px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: none;
+  color: white;
 }
 
 .sign-up-submit-button:disabled {
-    color: white;
-    border: 1px solid orange;
+  color: white;
+  border: 1px solid orange;
 }
 
 .sign-up-submit-button:hover {
-    cursor: pointer;
-    border: orange;
-    color: white;
+  cursor: pointer;
+  border: orange;
+  color: white;
 }
 
 .sign-up-submit-button:active:enabled {
-    box-shadow: 0 3px rgb(238, 232, 193);
-    transform: translateY(3px)
+  box-shadow: 0 3px rgb(238, 232, 193);
+  transform: translateY(3px);
 }

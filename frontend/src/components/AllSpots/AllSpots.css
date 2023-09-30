@@ -1,12 +1,11 @@
 .all-spots-container {
-   
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    align-self: start;
-    max-width: 1500px;
-    column-gap: 30px;
-    gap: 25px;
-    margin-top: 30px;
-    margin-left: auto;
-    margin-right: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-self: start;
+  max-width: 1500px;
+  column-gap: 30px;
+  gap: 25px;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
 }
