@@ -71,7 +71,6 @@ const Reviews = ({ spot }) => {
         )}
 
         <div className="reviews-container">
-          {/* Render spot details here */}
         </div>
 
         {reviews
