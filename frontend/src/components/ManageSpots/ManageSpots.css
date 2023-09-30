@@ -1,108 +1,32 @@
- .main-container {
-    max-width: 1500px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+.main-container {
+  max-width: 1500px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  .header {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 0px;
-    margin-left: 20px;
-  }
+.header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0px;
+  margin-left: 20px;
+}
 
-  .header > h1 {
-    font-size: 24px;
-    margin-left: 0px;
-    color: rgb(80, 62, 62);
-  }
+.header > h1 {
+  font-size: 24px;
+  margin-left: 0px;
+  color: rgb(80, 62, 62);
+}
 
-  .manage-button {
-    color: white;
-    background-color:orange;
-    border-radius: 10px;
-    border: none;
-    width: 200px;
-    height: 30px;
-  }
+.manage-button {
+  color: white;
+  background-color: orange;
+  border-radius: 10px;
+  border: none;
+  width: 200px;
+  height: 30px;
+}
 
-  .manage-button:hover {
-    cursor: pointer;
-    background-color: orangered;
-  }
-
-
-  /* .main-container {
-    max-width: 1500px;
-    margin-left: auto;
-    margin-right: auto;
-
-  }
-
-  .header {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 0px;
-    margin-left: 20px;
-
-  }
-
-  .header > h1 {
-    font-size: 24px;
-    margin-left: 0px;
-  }
-
-
-  .manage-button {
-
-    color: white;
-    background-color:rgb(63, 180, 63);
-    border: none;
-    width: 140px;
-    height: 30px;
-  }
-
-  .manage-button:hover {
-    cursor: pointer;
-    background-color: rgb(96, 165, 96);
-  }
-
-  .manage-button:active {
-    background-color: rgb(96, 165, 96);
-    box-shadow: 0 1px #8f8f8f;
-    transform: translateY(1px);
-  }
-
-
-  .manage-button {
-    color: rgb(63, 180, 63);
-    background-color:white;
-    border-radius: 18px;
-    border: 1px solid rgb(63, 180, 63);
-    width: 80px;
-    height: 30px;
-  }
-
-  .manage-button:hover {
-    cursor: pointer;
-    font-weight: bold;
-  }
-
-  .manage-button:active {
-    box-shadow: 0 1px #8f8f8f;
-    transform: translateY(2px);
-  }
-
-
-  .all-spots-container {
-
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    align-self: start;
-    max-width: 1500px;
-    column-gap: 30px;
-    gap: 25px;
-    margin-top: 30px;
-    margin-left: auto;
-    margin-right: auto;
-} */
+.manage-button:hover {
+  cursor: pointer;
+  background-color: orangered;
+}

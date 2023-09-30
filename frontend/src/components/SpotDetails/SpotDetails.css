@@ -1,5 +1,4 @@
 .wrapper {
-  /* border: 1px solid red; */
   display: flex;
   justify-content: center;
 }
@@ -22,7 +21,6 @@
 }
 
 .image-bundle {
-  /* border: 1px solid red; */
   display: flex;
 }
 
@@ -34,7 +32,6 @@
 }
 
 .small-images-container {
-  /* border: 1px solid red; */
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 5px;
@@ -42,14 +39,11 @@
 }
 
 .small-images {
-  /* border: 1px solid red; */
   width: 235px;
   height: 210px;
-  /* object-fit: cover; */
 }
 
 .host {
-  /* border: 1px solid red; */
   color: rgb(84, 84, 84);
   display: flex;
   align-items: center;
@@ -66,7 +60,6 @@
 }
 
 .description {
-  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -104,7 +97,6 @@
 }
 
 .reserve-top {
-  /* border: 1px solid red; */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -117,19 +109,16 @@
 }
 
 .star-first {
-  /* border: 1px solid red; */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .star-first > i {
-  /* border: 1px solid red; */
   font-size: 12px;
 }
 
 .number-stars {
-  /* border: 1px solid red; */
   margin-top: 16px;
 }
 
@@ -153,12 +142,10 @@
 }
 
 .new-text {
-  /* border: 1px solid red; */
   margin-left: 5px;
 }
 
 #topright {
-  /* border: 1px solid red; */
   border-top-right-radius: 11px;
 }
 

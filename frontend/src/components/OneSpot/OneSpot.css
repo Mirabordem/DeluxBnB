@@ -1,166 +1,155 @@
+.spot-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+}
+
+.one-spot-image {
+  width: 100%;
+  height: 360px;
+  max-height: 400px;
+  max-width: 400px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.one-spot-image:hover {
+  cursor: pointer;
+}
+
+.spot-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  color: rgb(97, 96, 96);
+}
+
+.spot-location {
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+.spot-price {
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+
+.star-rating-container {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+  margin-top: 5px;
+  padding: 0px;
+  height: 22px;
+  font-size: 14px;
+  margin-top: 17px;
+}
+
+.fa-reviewstar {
+  color: orange;
+  font-size: 14px;
+}
+
+.spot-new {
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.update-delete {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.delete-update {
+  background-color: orange;
+  border: orange;
+  border-radius: 15px;
+  color: rgb(33, 34, 33);
+  width: 100px;
+  height: 30px;
+  margin-left: 10px;
+}
+
+.delete-update:hover {
+  cursor: pointer;
+  background-color: rgb(250, 232, 232);
+  border: orange;
+  box-shadow: 1px 1px 6px #8f8f8f;
+}
+
+.managing-update {
+  background-color: white;
+  border: 1px solid orange;
+  border-radius: 15px;
+  color: orange;
+  font-size: 16px;
+  width: 100px;
+  height: 30px;
+}
+
+.managing-update:hover {
+  cursor: pointer;
+  background-color: rgb(250, 232, 232);
+  border: none;
+  box-shadow: 1px 1px 6px #8f8f8f;
+}
 
 .spot-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+}
 
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 400px;
-  }
+.one-spot-image {
+  width: 100%;
+  height: 360px;
+  max-height: 400px;
+  max-width: 400px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
 
-  .one-spot-image {
-    width: 100%;
-    height: 360px;
-    max-height: 400px;
-    max-width: 400px;
-    border-radius: 10px;
-    flex-shrink: 0;
-  }
+.one-spot-image:hover {
+  cursor: pointer;
+}
 
-  .one-spot-image:hover {
-    cursor: pointer;
-  }
+.spot-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  color: rgb(97, 96, 96);
+}
 
+.spot-location {
+  margin-top: 8px;
+  margin-bottom: 0;
+}
 
-  .spot-info {
+.spot-price {
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
 
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    color: rgb(97, 96, 96);
-  }
+.star-rating-container {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+  margin-top: 5px;
+  padding: 0px;
+  height: 22px;
+  font-size: 14px;
+  margin-top: 17px;
+}
 
+.fa-reviewstar {
+  color: orange;
+  font-size: 14px;
+}
 
-  .spot-location {
-
-    margin-top: 8px;
-    margin-bottom: 0;
-  }
-
-  .spot-price {
-
-    margin-top: 8px;
-    margin-bottom: 10px;
-  }
-
-
-  .star-rating-container {
-    display: flex;
-    align-items: center;
-    column-gap: 4px;
-    margin-top: 5px;
-    padding: 0px;
-    height: 22px;
-    font-size: 14px;
-    margin-top: 17px;
-  }
-
-
-  .fa-reviewstar {
-    color: orange;
-    font-size: 14px;
-  }
-
-  .spot-new {
-    font-size: 14px;
-    margin-top: 8px;
-  }
-
-  .update-delete {
-   display: flex;
-   flex-direction: row;
-   align-items: center;
-  }
-
-  .delete-update {
-    background-color: orange;
-    border: orange;
-    border-radius: 15px;
-    color: rgb(33, 34, 33);
-    width: 100px;
-    height: 30px;
-    margin-left: 10px;
-  }
-
-  .delete-update:hover {
-    cursor: pointer;
-    background-color: rgb(250, 232, 232);
-    border: orange;
-    box-shadow: 1px 1px 6px #8f8f8f;
-  }
-
-  .managing-update {
-   background-color: white;
-   border: 1px solid orange;
-   border-radius: 15px;
-   color: orange;
-   font-size: 16px;
-   width: 100px;
-   height: 30px;
-  }
-
-  .managing-update:hover {
-    cursor: pointer;
-    background-color: rgb(250, 232, 232);
-    border: none;
-    box-shadow: 1px 1px 6px #8f8f8f;
-  } */
-
-
-  .spot-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 400px;
-  }
-
-  .one-spot-image {
-    width: 100%;
-    height: 360px;
-    max-height: 400px;
-    max-width: 400px;
-    border-radius: 10px;
-    flex-shrink: 0;
-  }
-
-  .one-spot-image:hover {
-    cursor: pointer;
-  }
-
-  .spot-info {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    color: rgb(97, 96, 96);
-  }
-
-  .spot-location {
-    margin-top: 8px;
-    margin-bottom: 0;
-  }
-
-  .spot-price {
-    margin-top: 8px;
-    margin-bottom: 10px;
-  }
-
-  .star-rating-container {
-    display: flex;
-    align-items: center;
-    column-gap: 4px;
-    margin-top: 5px;
-    padding: 0px;
-    height: 22px;
-    font-size: 14px;
-    margin-top: 17px;
-  }
-
-
-  .fa-reviewstar {
-    color: orange;
-    font-size: 14px;
-  }
-
-  .spot-new {
-    font-size: 14px;
-    margin-top: 8px;
-  }
+.spot-new {
+  font-size: 14px;
+  margin-top: 8px;
+}

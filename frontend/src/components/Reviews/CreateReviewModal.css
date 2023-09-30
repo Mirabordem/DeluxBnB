@@ -1,73 +1,70 @@
 .create-review {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: rgb(67, 65, 65);
-    width: 360px;
-    padding: 16px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgb(67, 65, 65);
+  width: 360px;
+  padding: 16px 18px 18px;
+}
 
-  }
+.create-review > h2 {
+  color: rgb(67, 65, 65);
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
 
-  .create-review > h2 {
-    color: rgb(67, 65, 65);
-    font-size: 30px;
-    font-weight: bold;
-    margin-bottom: 30px;
-  }
+.review-text-area {
+  margin-bottom: 20px;
+  margin-top: 0px;
+  width: 300px;
+  height: 90px;
+  font-size: 14px;
+}
 
-  .review-text-area {
-    margin-bottom: 20px;
-    margin-top: 0px;
-    width: 300px;
-    height: 90px;
-    font-size: 14px;
-  }
+.rating-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  margin-top: 8px;
+  margin-bottom: 22px;
+}
 
-  .rating-input {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 40px;
-    margin-top: 8px;
-    margin-bottom: 22px;
-  }
+.stars-name {
+  margin-left: 10px;
+  font-weight: bold;
+}
 
-  .stars-name {
-    margin-left: 10px;
-    font-weight: bold;
-  }
+.star {
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+  color: lightgrey;
+}
 
+.star.filled {
+  color: orange;
+}
 
-  .star {
-    font-size: 24px;
-    cursor: pointer;
-    transition: color 0.3s;
-    color: lightgrey;
-  }
+.star:hover {
+  color: orange;
+}
 
-  .star.filled {
-    color: orange;
-  }
+.my-button {
+  background-color: orange;
+  height: 40px;
+  width: 290px;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-size: 14px;
+  font-weight: 300;
+}
 
-  .star:hover {
-    color: orange;
-  }
-
-
-  .my-button {
-    background-color: orange;
-    height: 40px;
-    width: 290px;
-    font-weight: bold;
-    border-radius: 5px;
-    border: none;
-    color: white;
-    font-size: 14px;
-    font-weight: 300;
-  }
-
-  .my-button:hover {
-    color: orange;
-    box-shadow: 1px 1px 6px #8f8f8f;
-    background-color: rgb(250, 232, 232);
-  }
+.my-button:hover {
+  color: orange;
+  box-shadow: 1px 1px 6px #8f8f8f;
+  background-color: rgb(250, 232, 232);
+}
