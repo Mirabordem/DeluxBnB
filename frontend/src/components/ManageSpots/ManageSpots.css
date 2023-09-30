@@ -14,6 +14,7 @@
   .header > h1 {
     font-size: 24px;
     margin-left: 0px;
+    color: rgb(80, 62, 62);
   }
 
   .manage-button {

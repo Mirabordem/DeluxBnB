@@ -59,14 +59,15 @@
     height: 40px;
     width: 290px;
     font-weight: bold;
-    border: 1px solid orange;
     border-radius: 5px;
+    border: none;
     color: white;
     font-size: 14px;
     font-weight: 300;
   }
 
   .my-button:hover {
-    cursor: pointer;
-    background-color: orangered;
+    color: orange;
+    box-shadow: 1px 1px 6px #8f8f8f;
+    background-color: rgb(250, 232, 232);
   }

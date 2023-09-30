@@ -84,19 +84,35 @@
 
   .review-delete-button {
     margin-top: 10px;
-    width: 100px;
-    height: 30px;
-    color: white;
+    width: 80px;
+    height: 28px;
     font-size: 12px;
     border-radius: 20px;
     border: orange;
-    background-color: rgb(240, 238, 238);
+    background-color: orange;
+  }
+
+  .review-delete-button:hover {
+    color: orange;
+    background-color: rgb(250, 232, 232);
+    box-shadow: 1px 1px 6px #8f8f8f;
+  }
+
+  .start-one {
+    color: white;
   }
 
 
   .post-review {
-    background-color: rgb(240, 238, 238);
-    color: white;
+    background-color: orange;
+    border: none;
     border-radius: 15px;
-    height: 35px;
+    font-size: 12px;
+    height: 30px;
+  }
+
+  .post-review:hover {
+    color: orange;
+    box-shadow: 1px 1px 6px #8f8f8f;
+    background-color: rgb(250, 232, 232);
   }
