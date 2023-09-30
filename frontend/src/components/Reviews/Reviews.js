@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpotReviews } from "../../store/reviews";
@@ -55,67 +54,59 @@ const Reviews = ({ spot }) => {
         </p>
       </div>
 
-      {sessionUser ? (
-        <div>
-          {reviews.length === 0 && sessionUser.id !== spot.Owner.id ? (
-            <p className="first-reviewer">Be the first to post a review!</p>
-          ) : null}
+      <div>
+        {reviews.length === 0 && sessionUser && sessionUser.id !== spot.Owner.id ? (
+          <p className="first-reviewer">Be the first to post a review!</p>
+        ) : null}
 
-          {reviewBtn && sessionUser.id !== spot.Owner.id && (
-            <button className="post-review">
-              <OpenModalMenuItem
-                itemText="Post a Review"
-                modalComponent={
-                  <CreateReviewModal spot={spot} sessionUser={sessionUser} />
-                }
-              />
-            </button>
-          )}
+        {reviewBtn && sessionUser && sessionUser.id !== spot.Owner.id && (
+          <button className="post-review">
+            <OpenModalMenuItem
+              itemText="Post a Review"
+              modalComponent={
+                <CreateReviewModal spot={spot} sessionUser={sessionUser} />
+              }
+            />
+          </button>
+        )}
 
-          <div className="reviews-container">
-            {/* Render spot details here */}
-          </div>
+        <div className="reviews-container">
+          {/* Render spot details here */}
+        </div>
 
-          {reviews
-            .slice()
-            .reverse()
-            .map((review) => (
-              <div className="single-review-container" key={review.id}>
-                <div className="review-header">
-                  <img
-                    className="profile-icon"
-                    src={
-                      "https://image.jimcdn.com/app/cms/image/transf/none/path/sd0536822daf447dd/image/i9a305a7efa48dc70/version/1695953827/image.png"
-                    }
-                    alt=""
-                  />
-                  <div className="name-date">
-                    <h3>{review.User.firstName}</h3>
-                    <p>{new Date(review.updatedAt).toLocaleDateString()}</p>
-                  </div>
+        {reviews
+          .slice()
+          .reverse()
+          .map((review) => (
+            <div className="single-review-container" key={review.id}>
+              <div className="review-header">
+                <img
+                  className="profile-icon"
+                  src={
+                    "https://image.jimcdn.com/app/cms/image/transf/none/path/sd0536822daf447dd/image/i9a305a7efa48dc70/version/1695953827/image.png"
+                  }
+                  alt=""
+                />
+                <div className="name-date">
+                  <h3>{review.User.firstName}</h3>
+                  <p>{new Date(review.updatedAt).toLocaleDateString()}</p>
                 </div>
-                <div className="single-description">{review.review}</div>
-
-                {review.userId === sessionUser?.id && (
-                  <button className="review-delete-button">
-                    <OpenModalMenuItem
-                      itemText="Delete"
-                      modalComponent={
-                        <DeleteReviewModal spot={spot} review={review} />
-                      }
-                    />
-                  </button>
-                )}
               </div>
-            ))}
-        </div>
-      ) : (
-        <div>
-          <div className="reviews-container">
-            {/* Render spot details here for logged-out users */}
-          </div>
-        </div>
-      )}
+              <div className="single-description">{review.review}</div>
+
+              {review.userId === sessionUser?.id && (
+                <button className="review-delete-button">
+                  <OpenModalMenuItem
+                    itemText="Delete"
+                    modalComponent={
+                      <DeleteReviewModal spot={spot} review={review} />
+                    }
+                  />
+                </button>
+              )}
+            </div>
+          ))}
+      </div>
     </div>
   );
 };
