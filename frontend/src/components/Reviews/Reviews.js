@@ -14,7 +14,6 @@ const Reviews = ({ spot }) => {
   const [reviewBtn, setReviewBtn] = useState(true);
 
   useEffect(() => {
-
     if (sessionUser) {
       if (spot.OwnerId === sessionUser.id) {
         setReviewBtn(false);
@@ -30,7 +29,6 @@ const Reviews = ({ spot }) => {
 
   useEffect(() => {
     if (spot.id) {
-
       dispatch(fetchSpotReviews(spot.id));
     }
   }, [dispatch, spot.id]);
@@ -46,65 +44,51 @@ const Reviews = ({ spot }) => {
           }`}
         ></i>
         {spot.avgStarRating ? (
-          <p className="stars-two">&nbsp;{spot.avgStarRating}</p>
+          <p className="number-stars">&nbsp;{spot.avgStarRating}</p>
         ) : null}
         {spot.numReviews > 0 && <p className="reviews-dot">·</p>}
         <p className={spot.numReviews > 0 ? "review-text" : "text-new"}>
-          {spot.numReviews === 0
-            ? "Be the first to post a review!"
-            : `${spot.numReviews} ${
-                spot.numReviews === 1 ? "Review" : "Reviews"
-              }`}
+          {`${spot.numReviews} ${spot.numReviews === 1 ? "Review" : "Reviews"}`}
         </p>
       </div>
 
-      {reviewBtn && (
-        <button className="post-review">
-          <OpenModalMenuItem
-            itemText="Post a Review"
-            modalComponent={
-              <CreateReviewModal spot={spot} sessionUser={sessionUser} />
-            }
-          />
-        </button>
-      )}
+      {sessionUser ? (
+        <div>
+          {reviews.length === 0 && sessionUser.id !== spot.Owner.id ? (
+            <p className="first-reviewer">Be the first to post a review!</p>
+          ) : null}
 
-      <div className="reviews-container"></div>
-      {/*
-      {reviews.map((review) => (
-        <div className="single-review-container" key={review.id}> */}
-      {reviews
-        .slice()
-        .reverse()
-        .map((review) => (
-          <div className="single-review-container" key={review.id}>
-            <div className="review-header">
-              <img
-                className="profile-icon"
-                src={
-                  "https://image.jimcdn.com/app/cms/image/transf/none/path/sd0536822daf447dd/image/i9a305a7efa48dc70/version/1695953827/image.png"
+          {reviewBtn && sessionUser.id !== spot.Owner.id && (
+            <button className="post-review">
+              <OpenModalMenuItem
+                itemText="Post a Review"
+                modalComponent={
+                  <CreateReviewModal spot={spot} sessionUser={sessionUser} />
                 }
-                alt=""
               />
-              <div className="name-date">
-                <h3>{review.User.firstName}</h3>
-                <p>{new Date(review.updatedAt).toLocaleDateString()}</p>
-              </div>
-            </div>
-            <div className="single-description">{review.review}</div>
+            </button>
+          )}
 
-            {review.userId === sessionUser?.id && (
-              <button className="review-delete-button">
-                <OpenModalMenuItem
-                  itemText="Delete"
-                  modalComponent={
-                    <DeleteReviewModal spot={spot} review={review} />
-                  }
-                />
-              </button>
-            )}
+          <div className="reviews-container">
+            {/* Render spot details for logged-in users */}
           </div>
-        ))}
+
+          {reviews
+            .slice()
+            .reverse()
+            .map((review) => (
+              <div className="single-review-container" key={review.id}>
+                {/* Render reviews */}
+              </div>
+            ))}
+        </div>
+      ) : (
+        <div>
+          <div className="reviews-container">
+            {/* Render spot details for logged-out users */}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
