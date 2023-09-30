@@ -37,15 +37,19 @@ const Reviews = ({ spot, reviews, user }) => {
   if (!reviews.length) {
     return (
       <div className="first-review">
-        {spot.numReviews < 1 && reviewBtn && sessionUser.id !== spot.ownerId && (
-          <button className="post-review">
-            <OpenModalMenuItem
-              itemText="Post a Review"
-              modalComponent={<CreateReviewModal spot={spot} />}
-            />
-          </button>
+        {spot.numReviews < 1 &&
+          reviewBtn &&
+          sessionUser.id !== spot.ownerId && (
+            <button className="post-review">
+              <OpenModalMenuItem
+                itemText="Post a Review"
+                modalComponent={<CreateReviewModal spot={spot} />}
+              />
+            </button>
+          )}
+        {spot.numReviews < 1 && sessionUser.id !== spot.ownerId && (
+          <p>Be the first to post a review!</p>
         )}
-        {spot.numReviews < 1 && sessionUser.id !== spot.ownerId && <p>Be the first to post a review!</p>}
       </div>
     );
   }
@@ -99,16 +103,14 @@ const Reviews = ({ spot, reviews, user }) => {
           }
         ></i>
 
-
         {spot.avgStarRating ? (
-                  <p className="number-stars">&nbsp;{spot.avgStarRating}</p>
-                ) : null}
+          <p className="number-stars">&nbsp;{spot.avgStarRating}</p>
+        ) : null}
         {spot.numReviews > 0 ? <p className="reviews-dot">·</p> : null}
         <p className={spot.numReviews > 0 ? "review-text" : "text-new"}>
           {checkReviews(spot.numReviews)}
         </p>
       </div>
-
 
       {reviews.length === 0 && sessionUser.id !== spot.Owner.id ? (
         <p className="first-reviewer">Be the first to post a review!</p>
@@ -118,7 +120,9 @@ const Reviews = ({ spot, reviews, user }) => {
         <button className="post-review">
           <OpenModalMenuItem
             itemText="Post a Review"
-            modalComponent={<CreateReviewModal spot={spot} sessionUser={sessionUser}/>}
+            modalComponent={
+              <CreateReviewModal spot={spot} sessionUser={sessionUser} />
+            }
           />
         </button>
       )}
@@ -141,17 +145,17 @@ const Reviews = ({ spot, reviews, user }) => {
           </div>
           <div className="single-description">{review.review}</div>
 
-            {review.userId === sessionUser.id && (
-              <button className="review-delete-button">
+          {review.userId === sessionUser.id && (
+            <button className="review-delete-button">
+              {/* {review.userId === sessionUser.id && ( */}
               <OpenModalMenuItem
                 itemText="Delete"
                 modalComponent={
                   <DeleteReviewModal spot={spot} user={user} review={review} />
                 }
               />
-
-          </button>
-           )}
+            </button>
+          )}
         </div>
       ))}
     </div>
