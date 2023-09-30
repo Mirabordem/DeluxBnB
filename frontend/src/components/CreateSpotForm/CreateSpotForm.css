@@ -80,19 +80,22 @@
     border-radius: 10px;
     border: none;
     font-size: 18px;
-    width: 200px;
-    height: 40px;
+    width: 350px;
+    height: 35px;
     margin: 20px auto;
   }
 
   .submit-button:hover {
     cursor: pointer;
-    background-color: orangered;
+    background-color: rgb(250, 232, 232);
+    color: orange;
+    box-shadow: 1px 1px 6px #8f8f8f;
   }
 
   .submit-button:active {
-    background-color: orangered;
-    box-shadow: 0 2px #8f8f8f;
+    background-color: rgb(250, 232, 232);
+    color: orange;
+    box-shadow: 1px 1px 6px #8f8f8f;
     transform: translateY(2px);
   }
 

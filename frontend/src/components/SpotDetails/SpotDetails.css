@@ -80,6 +80,7 @@
 
 .show-more {
   margin-top: 0px;
+  color: rgb(2, 2, 2);
   font-weight: bold;
   text-decoration: underline;
 }
@@ -112,7 +113,7 @@
 }
 
 .price {
-  /* border: 1px solid red; */
+  color: rgb(38, 37, 37);
 }
 
 .star-first {
@@ -146,7 +147,9 @@
 
 .reserve-button:hover {
   cursor: pointer;
-  background-color: orangered;
+  background-color: rgb(250, 232, 232);
+  color: orange;
+  box-shadow: 1px 1px 6px #8f8f8f;
 }
 
 .new-text {

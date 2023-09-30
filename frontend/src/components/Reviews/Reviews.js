@@ -99,7 +99,7 @@ const Reviews = ({ spot }) => {
                     itemText="Delete"
                     modalComponent={
                       <DeleteReviewModal spot={spot} review={review} />
-                    }
+                    } style={{ border: '1px solid black' }}
                   />
                 </button>
               )}
