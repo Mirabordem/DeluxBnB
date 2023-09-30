@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpotReviews } from "../../store/reviews";
@@ -48,7 +49,9 @@ const Reviews = ({ spot }) => {
         ) : null}
         {spot.numReviews > 0 && <p className="reviews-dot">·</p>}
         <p className={spot.numReviews > 0 ? "review-text" : "text-new"}>
-          {`${spot.numReviews} ${spot.numReviews === 1 ? "Review" : "Reviews"}`}
+          {`${spot.numReviews} ${
+            spot.numReviews === 1 ? "Review" : "Reviews"
+          }`}
         </p>
       </div>
 
@@ -70,7 +73,7 @@ const Reviews = ({ spot }) => {
           )}
 
           <div className="reviews-container">
-            {/* Render spot details for logged-in users */}
+            {/* Render spot details here */}
           </div>
 
           {reviews
@@ -78,14 +81,38 @@ const Reviews = ({ spot }) => {
             .reverse()
             .map((review) => (
               <div className="single-review-container" key={review.id}>
-                {/* Render reviews */}
+                <div className="review-header">
+                  <img
+                    className="profile-icon"
+                    src={
+                      "https://image.jimcdn.com/app/cms/image/transf/none/path/sd0536822daf447dd/image/i9a305a7efa48dc70/version/1695953827/image.png"
+                    }
+                    alt=""
+                  />
+                  <div className="name-date">
+                    <h3>{review.User.firstName}</h3>
+                    <p>{new Date(review.updatedAt).toLocaleDateString()}</p>
+                  </div>
+                </div>
+                <div className="single-description">{review.review}</div>
+
+                {review.userId === sessionUser?.id && (
+                  <button className="review-delete-button">
+                    <OpenModalMenuItem
+                      itemText="Delete"
+                      modalComponent={
+                        <DeleteReviewModal spot={spot} review={review} />
+                      }
+                    />
+                  </button>
+                )}
               </div>
             ))}
         </div>
       ) : (
         <div>
           <div className="reviews-container">
-            {/* Render spot details for logged-out users */}
+            {/* Render spot details here for logged-out users */}
           </div>
         </div>
       )}
