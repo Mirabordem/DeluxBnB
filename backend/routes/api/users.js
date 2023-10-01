@@ -35,13 +35,15 @@ Check these keys and validate them:
     check('firstName')
       .exists({ checkFalsy: true })
       .isLength({ min: 2 })
-      .isAlpha()
-      .withMessage('Valid first name contains only letters.'),
+      // .isAlpha()
+      // .withMessage('Valid first name contains only letters.'),
+      .withMessage('Valid first name requires more than 2 letters.'),
     check('lastName')
       .exists({ checkFalsy: true })
       .isLength({ min: 2 })
-      .isAlpha()
-      .withMessage('Valid last name contains only letters.'),
+      // .isAlpha()
+      // .withMessage('Valid last name contains only letters.'),
+      .withMessage('Valid last name requires more than 2 letters.'),
     handleValidationErrors
   ];
 

@@ -35,19 +35,21 @@ input {
 .login-button:disabled {
   color: white;
   border: 1px solid orange;
+  border: none;
 }
 
 .login-button:hover:enabled {
   cursor: pointer;
   border: none;
-  color: white;
-  background-color: orangered;
+  color: orange;
+  background-color: rgb(250, 232, 232);
+  box-shadow: 1px 1px 6px #8f8f8f;
 }
 
 .login-button:active:enabled {
-  border: orange;
-  box-shadow: 0 3px rgb(238, 232, 193);
+  box-shadow: 1px 1px 6px #8f8f8f;
   transform: translateY(3px);
+  color: orange;
 }
 
 .demouser-button {
