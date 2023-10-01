@@ -291,7 +291,7 @@ let avgStars = 0;
 
 if (numReviews > 0) {
   avgStars = starSum / numReviews;
-  avgStars = avgStars.toFixed(2);
+  avgStars = avgStars.toFixed(1);
 }
 
 spot.numReviews = numReviews;
@@ -482,8 +482,6 @@ spot.avgStarRating = avgStars;
             stars
           });
 
-
-          console.log("🚀 ~ file: spots.js:491 ~ router.post ~ newReview:", newReview)
 
       res.status(201);
       return res.json(newReview)
