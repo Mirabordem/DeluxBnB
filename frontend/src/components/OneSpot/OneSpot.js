@@ -42,7 +42,8 @@ function OneSpot({ spot }) {
             {spot.avgRating >= 1 ? (
               <div className="star-rating-container">
                 <i className="fa-solid fa-star fa-reviewstar"></i>
-                <p>{parseInt(spot.avgRating).toFixed(2)}</p>
+                {/* <p>{parseInt(spot.avgRating).toFixed(2)}</p> */}
+                <p>&nbsp;{spot.avgRating}</p>
               </div>
             ) : (
               <div className="star-rating-container">
