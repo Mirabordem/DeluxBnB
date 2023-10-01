@@ -27,7 +27,7 @@ function OneSpot({ spot }) {
         </Tooltip>
       </div>
       <NavLink
-        to={"/spots/${spot.id"}
+        to={`/spots/${spot.id}`}
         style={{ textDecoration: "none", color: "rgb(45, 36, 36)" }}
       >
         <div className="spot-info">
