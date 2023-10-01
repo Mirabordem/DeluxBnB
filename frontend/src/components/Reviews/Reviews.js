@@ -48,14 +48,14 @@ const Reviews = ({ spot }) => {
         ) : null}
         {spot.numReviews > 0 && <p className="reviews-dot">·</p>}
         <p className={spot.numReviews > 0 ? "review-text" : "text-new"}>
-          {`${spot.numReviews} ${
-            spot.numReviews === 1 ? "Review" : "Reviews"
-          }`}
+          {`${spot.numReviews} ${spot.numReviews === 1 ? "Review" : "Reviews"}`}
         </p>
       </div>
 
       <div>
-        {reviews.length === 0 && sessionUser && sessionUser.id !== spot.Owner.id ? (
+        {reviews.length === 0 &&
+        sessionUser &&
+        sessionUser.id !== spot.Owner.id ? (
           <p className="first-reviewer">Be the first to post a review!</p>
         ) : null}
 
@@ -70,8 +70,7 @@ const Reviews = ({ spot }) => {
           </button>
         )}
 
-        <div className="reviews-container">
-        </div>
+        <div className="reviews-container"></div>
 
         {reviews
           .slice()
@@ -88,7 +87,12 @@ const Reviews = ({ spot }) => {
                 />
                 <div className="name-date">
                   <h3>{review.User.firstName}</h3>
-                  <p>{new Date(review.updatedAt).toLocaleDateString()}</p>
+                  <p>
+                    {new Date(review.updatedAt).toLocaleDateString(undefined, {
+                      year: "numeric",
+                      month: "long",
+                    })}
+                  </p>
                 </div>
               </div>
               <div className="single-description">{review.review}</div>
@@ -99,7 +103,8 @@ const Reviews = ({ spot }) => {
                     itemText="Delete"
                     modalComponent={
                       <DeleteReviewModal spot={spot} review={review} />
-                    } style={{ border: '1px solid black' }}
+                    }
+                    style={{ border: "1px solid black" }}
                   />
                 </button>
               )}
