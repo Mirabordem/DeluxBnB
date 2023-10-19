@@ -1,5 +1,4 @@
 # AirBnB Clone
-Miroslawa Borkowska
 View the site: https://mira-api-qlip.onrender.com/
 
 ## Database Schema Design
