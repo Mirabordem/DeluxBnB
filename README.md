@@ -1,5 +1,6 @@
 # AirBnB Clone
-Miroslawa Borkowska, MOD4 project
+Miroslawa Borkowska
+View the site: https://mira-api-qlip.onrender.com/
 
 ## Database Schema Design
 
