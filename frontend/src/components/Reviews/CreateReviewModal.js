@@ -12,10 +12,7 @@ const CreateReviewModal = ({ spot, sessionUser }) => {
   const [review, setReview] = useState("");
   const [stars, setStars] = useState(0);
   const [errors, setErrors] = useState({});
-
   const { closeModal } = useModal();
-
-
 
 
   const handleSubmit = async (e) => {
@@ -38,6 +35,7 @@ const CreateReviewModal = ({ spot, sessionUser }) => {
         review,
         stars,
       };
+
 
 
       dispatch(thunkCreateReview(spot.id, reviewPayload, stars, sessionUser))

@@ -17,7 +17,7 @@ function Navigation({ isLoaded }){
         <div className='nav-profile'>
             {sessionUser ? (
                 <NavLink className='new-spot' to='/spots/new'>
-                    Create a New Spot
+                    Host in Style with LuxeBnB
                 </NavLink>
             ) : null}
           <ProfileButton user={sessionUser} />

@@ -17,7 +17,6 @@ function SpotDetails() {
 
 
 
-
   useEffect(() => {
     dispatch(thunkGetDetails(spotId));
     dispatch(thunkLoadReviews(spotId));
@@ -27,13 +26,9 @@ function SpotDetails() {
     return <div>Loading...</div>;
   }
 
-  if (Object.keys(spot).length === 0 || !spot) return null;
-
-
+  if (Object.keys(spot).length === 0 || !spot || !spot.SpotImages) return null;
 
   let otherImages = spot.SpotImages.filter((image) => !image.preview);
-
-
 
   if (otherImages.length < 4) {
     let index = otherImages.length;
@@ -67,6 +62,7 @@ function SpotDetails() {
         </h2>
         <div className="image-bundle">
           <img
+            key={spotId}
             className="preview-image"
             src={previewImage ? previewImage.url : ""}
             alt=""
