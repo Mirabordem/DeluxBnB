@@ -4,6 +4,7 @@ import { thunkGetDetails } from './spots';
 const CREATE_REVIEW = "reviews/createReview";
 const LOAD_REVIEWS = "reviews/loadReviews";
 const DELETE_REVIEW = "reviews/deleteReview";
+const CURR_REVIEWS = '/reviews/spotId'
 
 
 
@@ -22,6 +23,13 @@ const deleteReview = (reviewId) => ({
   reviewId,
 });
 
+export function getReviewsCurrent(data) {
+  return {
+      type: CURR_REVIEWS,
+      data
+  }
+}
+
 
 
 
@@ -30,16 +38,33 @@ const deleteReview = (reviewId) => ({
 
 // THUNKS
 
-export const fetchSpotReviews = (spotId) => async(dispatch) =>{
-  const res = await fetch(`/api/spots/${spotId}/reviews`);
-  if(res.ok){
+// export const fetchSpotReviews = (spotId) => async(dispatch) =>{
+//   const res = await fetch(`/api/spots/${spotId}/reviews`);
+//   if(res.ok){
+//       const reviews = await res.json();
+//       dispatch(loadReview(reviews));
+//   }else{
+//       const errors = res.json()
+//       return errors
+//   }
+// }
+
+export const fetchSpotReviews = (spotId) => async (dispatch) => {
+  try {
+    const res = await fetch(`/api/spots/${spotId}/reviews`);
+    if (res.ok) {
       const reviews = await res.json();
       dispatch(loadReview(reviews));
-  }else{
-      const errors = res.json()
-      return errors
+    } else {
+      const errors = await res.json();
+      return errors;
+    }
+  } catch (error) {
+    console.error('Error fetching spot reviews:', error);
+
+    return { error: 'Failed to fetch spot reviews' };
   }
-}
+};
 
 
 
@@ -67,6 +92,8 @@ export const thunkCreateReview = (spotId, reviewText, stars, sessionUser) => asy
 };
 
 
+
+
 export const thunkLoadReviews = (spotId) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
 
@@ -92,11 +119,20 @@ export const thunkDeleteReview = (reviewId) => async (dispatch) => {
   }
 };
 
+
+export const getReviewsCurrentThunk = () => async dispatch => {
+  const response = await csrfFetch('/api/reviews/current')
+  const data = await response.json();
+  dispatch(getReviewsCurrent(data))
+}
+
 //_______________________________________
 
 
 const initialState = {
   reviews: [],
+  spot: {},
+  userId: null
 };
 
 //_______________________________________
@@ -134,6 +170,16 @@ const reviewsReducer = (state = initialState, action) => {
           reviews: state.reviews.filter((review) => review.id !== action.reviewId),
         };
         return newState;
+
+
+      case CURR_REVIEWS: {
+        let newState = { ...state };
+        newState.user = {};
+        action.data.Reviews.forEach((review) => {
+          newState.user[review.id] = review;
+        });
+        return newState;
+      }
 
         default:
           return state;

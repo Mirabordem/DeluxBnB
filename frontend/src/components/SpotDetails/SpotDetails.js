@@ -5,6 +5,9 @@ import { useParams } from "react-router-dom";
 import "./SpotDetails.css";
 import Reviews from "../Reviews/Reviews";
 import { thunkLoadReviews } from "../../store/reviews";
+import NewBooking from '../Bookings/NewBooking';
+import LoginFormModal from '../LoginFormModal';
+import OpenModalButton from '../OpenModalButton';
 
 
 
@@ -122,14 +125,30 @@ function SpotDetails() {
                 </p>
               </div>
             </div>
-            <button
+            {user ? (
+                                    <OpenModalButton
+                                        buttonText="Reserve"
+                                        className='reserve-button-page-details'
+                                        modalComponent={<NewBooking spot={spot} />}
+                                    />
+                                ) : (
+
+                                    <OpenModalButton
+                                        buttonText="Reserve"
+                                        className='reserve-button-page-details'
+                                        modalComponent={<LoginFormModal />}
+                                    />
+
+                                )
+                                }
+            {/* <button
               className="reserve-button"
               onClick={() => {
                 alert("Feature coming soon!");
               }}
             >
               Reserve
-            </button>
+            </button> */}
           </div>
         </div>
         <div>

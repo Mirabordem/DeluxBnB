@@ -74,58 +74,110 @@ router.post('/:reviewId/images', requireAuth, async(req, res) => {
 // GET ALL REVIEWS OF CURRENT USER:
 
 
-router.get('/current', requireAuth, async(req, res) => {
-    const {user} = req;
+// router.get('/current', requireAuth, async(req, res) => {
+//     const {user} = req;
 
-    const reviews = await Review.findAll({
-        where: {
-            userId: user.id
-        },
-        include: [
-            {
-                model: User,
-                attributes: ['id', 'firstName', 'lastName']
-            },
-            {
-                model: Spot,
-                attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price'],
-                include: {
-                    model: SpotImage
-                }
-            },
-            {
-                model: ReviewImage,
-                attributes: ['id', 'url']
-            }
-        ]
-    })
+//     const reviews = await Review.findAll({
+//         where: {
+//             userId: user.id
+//         },
+//         include: [
+//             {
+//                 model: User,
+//                 attributes: ['id', 'firstName', 'lastName']
+//             },
+//             {
+//                 model: Spot,
+//                 attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price'],
+//                 include: {
+//                     model: SpotImage
+//                 }
+//             },
+//             {
+//                 model: ReviewImage,
+//                 attributes: ['id', 'url']
+//             }
+//         ]
+//     })
 
-    let reviewsJson = [];
-    reviews.forEach(review => {
-        reviewsJson.push(review.toJSON())
-    });
+//     let reviewsJson = [];
+//     reviews.forEach(review => {
+//         reviewsJson.push(review.toJSON())
+//     });
 
- // add reviewImage:
-    reviewsJson.forEach(review => {
-    for(let key in review.Spot) {
-      review.Spot.SpotImages.forEach(spot => {
-        if(spot.preview) {
-          review.Spot.previewImage = spot.url
-        }
-      })
-    }
-    delete review.Spot.SpotImages
+
+//  // add reviewImage:
+//     reviewsJson.forEach(review => {
+//     for(let key in review.Spot) {
+//       review.Spot.SpotImages.forEach(spot => {
+//         if(spot.preview) {
+//           review.Spot.previewImage = spot.url
+//         }
+//       })
+//     }
+//     delete review.Spot.SpotImages
+//   })
+
+//     if(reviewsJson.length === 0) {
+//         res.status(404)
+//         return res.json({message: 'No reviews found.'})
+//       }
+
+//     res.status(200);
+//     return res.json({Reviews: reviewsJson})
+//   })
+
+router.get('/current', requireAuth, async (req, res) => {
+  const { user } = req;
+  let reviews = await Review.findAll({
+      where: {
+          userId: user.id
+      },
+      include: [
+          {
+              model: User,
+              attributes: ['id', 'firstName', 'lastName']
+          },
+          {
+              model: Spot,
+              attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price'],
+              include: [
+                  {
+                      model: SpotImage,
+                      attributes: ['id', 'url', 'preview']
+                  }
+              ]
+          },
+          {
+              model: ReviewImage,
+              attributes: ['id', 'url']
+          }
+      ]
   })
 
-    if(reviewsJson.length === 0) {
-        res.status(404)
-        return res.json({message: 'No reviews found.'})
+  let Reviews = []
+
+  if (reviews) { //turn each review into a json object
+      for (let review of reviews) {
+          review = review.toJSON()
+          Reviews.push(review)
       }
+  }
 
-    res.status(200);
-    return res.json({Reviews: reviewsJson})
-  })
+  for (let review of Reviews) {
+      for (let image of review.Spot.SpotImages) { //now we want to extract the image that is the preview image
+          if (image.preview === true) {
+              review.Spot.previewImage = image.url
+              delete review.Spot.SpotImages
 
+          }
+      }
+  }
+
+
+
+  res.json({ Reviews })
+})
 
 //___________________________________________________________________
 

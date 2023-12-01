@@ -285,7 +285,7 @@ function CreateSpotForm() {
           name="Name"
           value={name}
           onChange={updateName}
-          placeholder="Name of your spot"
+          placeholder="Name of your place"
         />
 
         <div className="line"></div>
