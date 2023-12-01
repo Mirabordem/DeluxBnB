@@ -1,5 +1,3 @@
-
-
 .date-input {
     font-family: "Manjari", sans-serif;
     font-size: 11px;
@@ -212,10 +210,6 @@
 }
 
 
-
-
-
-
 .future-trip-card {
     display: flex;
     margin-bottom: 1.5rem;
@@ -288,7 +282,7 @@
     display: flex;
     gap: 1rem;
     margin-bottom: 1.5rem;
-    width: 360px;
+    width: 320px;
     height: 120px;
     margin-bottom: 2rem;
     border-radius: 10px;
@@ -369,14 +363,16 @@
 
 
 
-/* Media query for screens between 1150px and 740px */
-@media (max-width: 1150px) {
+
+
+
+/* @media (max-width: 1150px) {
     .bookings-container {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* Media query for screens less than 740px */
+
 @media (max-width: 740px) {
     .bookings-container {
         grid-template-columns: repeat(1, 1fr);
@@ -406,4 +402,4 @@
     .future-trip-card img {
         border-radius: 10px 10px 0 0;
     }
-}
+} */
