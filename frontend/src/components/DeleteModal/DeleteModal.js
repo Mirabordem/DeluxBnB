@@ -20,15 +20,15 @@ function DeleteModal({ spot }) {
   };
 
   return (
-    <div className="delete-modal">
+    <div className="delete-form">
       <h1>Confirm Delete</h1>
-      <h2>Are you sure you want to remove this spot?</h2>
+      <div className="are-you-sure">Are you sure you want to delete this place?</div>
 
-      <button id="delete-button" className="button" onClick={handleDelete}>
-        Yes (Delete Spot)
+      <button id='cancel-button'  onClick={handleDelete}>
+        Delete
       </button>
-      <button id="cancel-button" className="button" onClick={handleCancel}>
-        No (Keep the Spot)
+      <button id='delete-button'  onClick={handleCancel}>
+       Keep
       </button>
     </div>
   );
