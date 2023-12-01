@@ -97,6 +97,7 @@ Developer:
   Miroslawa (Mira) Borkowska
   - CONNECT ON GITHUB: https://github.com/Mirabordem
   - CONNECT ON LINKEDIN: https://www.linkedin.com/in/miroslawa-borkowska-3b72332a0/
+  - CONNECT VIA EMAIL: mirabordem@gmail.com
 
 
 
