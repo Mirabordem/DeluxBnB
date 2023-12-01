@@ -70,7 +70,7 @@
 
 .start {
   color: white;
-  font-size: 16px;
+  font-size: 14px;
   padding: 5px 10px;
 }
 
@@ -152,6 +152,21 @@
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
+.anchor {
+  display: inline-block;
+  text-align: center;
+  font-size: 16px;
+  /* font-weight: bold; */
+  margin-bottom: 10px;
+  margin-top: 7px;
+  margin-right: 4px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.link {
+  margin-bottom: 0;
+}
+
 .link:hover {
   cursor: pointer;
   color: orange;
@@ -171,5 +186,7 @@
 
 .logout-button:hover {
   cursor: pointer;
-  background-color: orangered;
+  color: orange;
+  box-shadow: 1px 1px 6px #8f8f8f;
+  background-color: rgb(250, 232, 232);
 }

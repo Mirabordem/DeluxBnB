@@ -1,7 +1,8 @@
 .main-container {
-  max-width: 1500px;
-  margin-left: auto;
-  margin-right: auto;
+  /* max-width: 1500px; */
+  margin: auto;
+  min-height: 900px;
+  background-color: rgb(239, 238, 238);
 }
 
 .header {
@@ -12,21 +13,32 @@
 }
 
 .header > h1 {
-  font-size: 24px;
-  margin-left: 0px;
-  color: rgb(80, 62, 62);
+  margin: auto;
+    margin-top: 30px;
+    color: gray;
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+
+.divider2 {
+  border-bottom: 1px solid grey;
+  width: 100%;
+  margin-bottom: 35px;
 }
 
 .manage-button {
+  margin: auto;
   color: white;
   background-color: orange;
   border-radius: 10px;
   border: none;
   width: 200px;
-  height: 30px;
+  height: 40px;
 }
 
 .manage-button:hover {
   cursor: pointer;
-  background-color: orangered;
+  color: orange;
+  box-shadow: 1px 1px 6px #8f8f8f;
+  background-color: rgb(250, 232, 232);
 }

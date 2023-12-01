@@ -7,6 +7,8 @@ export const GET_DETAILS = "spots/getSpotDetails";
 export const DELETE_SPOT = "spots/deleteSpot";
 export const CLEAR_SPOT = "spots/clearSpot";
 
+const UPDATE_SPOT_STATS = 'spots/updateStats';
+
 const getSpots = (spots) => {
   return {
     type: GET_SPOTS,
@@ -30,6 +32,13 @@ const deleteSpot = (spotId) => {
 
 export const clearSpot = () => ({
   type: CLEAR_SPOT,
+});
+
+
+const updateSpotStats = (numReviews, avgRating) => ({
+  type: UPDATE_SPOT_STATS,
+  numReviews,
+  avgRating,
 });
 
 //___________________________________________________
@@ -91,7 +100,6 @@ export const thunkCreateNewSpot = (spot) => async (dispatch) => {
 
 // updating spot:
 export const thunkUpdateSpot = (spotId, spot) => async (dispatch) => {
-  // console.log(spot)
   const response = await csrfFetch(`/api/spots/${spotId}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
@@ -144,8 +152,15 @@ export const thunkGetUserSpots = () => async (dispatch) => {
 
 const initialState = {
   allSpots: {},
-  oneSpot: {},
+  oneSpot: {
+    numReviews: 0,
+    avgRating: 0,
+  },
+
 };
+
+
+
 
 const spotsReducer = (state = initialState, action) => {
   let newState;
@@ -180,6 +195,16 @@ const spotsReducer = (state = initialState, action) => {
         ...state,
         oneSpot: {},
       };
+
+      case UPDATE_SPOT_STATS:
+        return {
+          ...state,
+          oneSpot: {
+            ...state.oneSpot,
+            numReviews: action.numReviews,
+            avgRating: action.avgRating,
+          },
+        };
   }
 };
 

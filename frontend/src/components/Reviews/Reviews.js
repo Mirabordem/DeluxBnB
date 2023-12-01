@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpotReviews } from "../../store/reviews";
 import "./Reviews.css";
@@ -10,22 +10,9 @@ const Reviews = ({ spot }) => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const reviews = useSelector((state) => state.reviews.reviews);
+  const avgStarRating = useSelector((state) => state.spots.oneSpot.avgStarRating);
+  const numReviews = useSelector((state) => state.spots.oneSpot.numReviews);
 
-  const [reviewBtn, setReviewBtn] = useState(true);
-
-  useEffect(() => {
-    if (sessionUser) {
-      if (spot.OwnerId === sessionUser.id) {
-        setReviewBtn(false);
-      } else if (
-        reviews.filter((review) => review.userId === sessionUser.id).length > 0
-      ) {
-        setReviewBtn(false);
-      }
-    } else {
-      setReviewBtn(false);
-    }
-  }, [spot.OwnerId, sessionUser, reviews]);
 
   useEffect(() => {
     if (spot.id) {
@@ -33,22 +20,31 @@ const Reviews = ({ spot }) => {
     }
   }, [dispatch, spot.id]);
 
+
+
+  const hasUserPostedReview = reviews.some(
+    (review) => review.userId === sessionUser?.id
+  );
+
+
   return (
     <div>
       <div className="reviews-container">
         <i
           className={`${
-            spot.numReviews > 0
+            avgStarRating > 0
               ? "fa-solid fa-star fa-reviewstar"
               : "fa-regular fa-star fa-reviewstar"
           }`}
         ></i>
-        {spot.avgStarRating ? (
-          <p className="number-stars">&nbsp;{spot.avgStarRating}</p>
+        {avgStarRating ? (
+          <p className="number-stars">&nbsp;{avgStarRating}</p>
         ) : null}
-        {spot.numReviews > 0 && <p className="reviews-dot">·</p>}
-        <p className={spot.numReviews > 0 ? "review-text" : "text-new"}>
-          {`${spot.numReviews} ${spot.numReviews === 1 ? "Review" : "Reviews"}`}
+        {numReviews > 0 && <p className="reviews-dot">·</p>}
+        <p className={numReviews > 0 ? "review-text" : "text-new"}>
+          {`${numReviews} ${
+            numReviews === 1 ? "Review" : "Reviews"
+          }`}
         </p>
       </div>
 
@@ -59,13 +55,11 @@ const Reviews = ({ spot }) => {
           <p className="first-reviewer">Be the first to post a review!</p>
         ) : null}
 
-        {reviewBtn && sessionUser && sessionUser.id !== spot.Owner.id && (
+        {!hasUserPostedReview && sessionUser && sessionUser.id !== spot.Owner.id && (
           <button className="post-review">
             <OpenModalMenuItem
               itemText="Post a Review"
-              modalComponent={
-                <CreateReviewModal spot={spot} sessionUser={sessionUser} />
-              }
+              modalComponent={<CreateReviewModal spot={spot} sessionUser={sessionUser} />}
             />
           </button>
         )}
@@ -101,9 +95,7 @@ const Reviews = ({ spot }) => {
                 <button className="review-delete-button">
                   <OpenModalMenuItem
                     itemText="Delete"
-                    modalComponent={
-                      <DeleteReviewModal spot={spot} review={review} />
-                    }
+                    modalComponent={<DeleteReviewModal spot={spot} review={review} />}
                     style={{ border: "1px solid black" }}
                   />
                 </button>

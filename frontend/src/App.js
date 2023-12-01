@@ -8,6 +8,8 @@ import SpotDetails from "./components/SpotDetails/SpotDetails";
 import ManageSpots from "./components/ManageSpots/ManageSpots";
 import UpdateSpotForm from "./components/UpdateSpotForm/UpdateSpotForm";
 import CreateSpotForm from "./components/CreateSpotForm/CreateSpotForm";
+import UserBookings from "./components/Bookings/UserBookings";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,8 +38,12 @@ function App() {
           <Route exact path="/spots/:spotId/edit">
             <UpdateSpotForm />
           </Route>
+          <Route exact path="/bookings">
+          <UserBookings />
+        </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }

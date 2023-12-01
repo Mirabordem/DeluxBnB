@@ -187,7 +187,7 @@ function CreateSpotForm() {
 
   return (
     <div className="form-main-container">
-      <h1 className="h1">Create a New Spot</h1>
+      <h1 className="h1">Share Your Luxury</h1>
       <h2 className="header2">Where's your place located?</h2>
       <div className="header3">
         Guests will only get your exact address once they booked a reservation.
@@ -285,7 +285,7 @@ function CreateSpotForm() {
           name="Name"
           value={name}
           onChange={updateName}
-          placeholder="Name of your spot"
+          placeholder="Name of your place"
         />
 
         <div className="line"></div>
@@ -369,7 +369,7 @@ function CreateSpotForm() {
         <div className="line"></div>
 
         <button className="submit-button" type="submit">
-          Create Spot
+          Share
         </button>
       </form>
     </div>

@@ -40,10 +40,11 @@ function ManageSpots() {
   return (
     <div className="main-container">
       <div className="header">
-        <h1>Manage Your Spots</h1>
+        <h1>Manage Your Places</h1>
+        <div className="divider2"></div>
         {emptyUserSpotsObj && (
           <button className="manage-button" onClick={spotDirection}>
-            Create a New Spot
+            Share Your Luxury Here
           </button>
         )}
       </div>
