@@ -20,8 +20,8 @@ const CreateReviewModal = ({ spot, sessionUser }) => {
 
     const newErrors = {};
 
-    if (review.length < 10) {
-      newErrors.review = "Review must be at least 10 characters long";
+    if (review.length < 3) {
+      newErrors.review = "Review must be at least 3 characters long";
     }
 
     if (stars < 1) {
@@ -45,28 +45,20 @@ const CreateReviewModal = ({ spot, sessionUser }) => {
   };
 
 
-  useEffect(() => {
-    if (review.length < 10 || stars < 1) {
-      setErrors({});
-    }
-  }, [review, stars]);
-
-
-
 
   return (
     <form onSubmit={handleSubmit} className="create-review">
       <h2 className="h2">How was your stay?</h2>
       {errors.review && <p className="error">{errors.review}</p>}
-      {errors.stars && <p className="error">{errors.stars}</p>}
       <label>
         <textarea
           className="review-text-area"
-          placeholder="Leave your review here..."
+          placeholder="Your review goes here..."
           value={review}
           onChange={(e) => setReview(e.target.value)}
         />
       </label>
+      {errors.stars && <p className="error">{errors.stars}</p>}
       <div className="rating-input">
         {[1, 2, 3, 4, 5].map((starValue) => (
           <div
@@ -82,7 +74,6 @@ const CreateReviewModal = ({ spot, sessionUser }) => {
       <button
         className="my-button"
         type="submit"
-        disabled={Object.keys(errors).length !== 0}
       >
         Submit your review
       </button>

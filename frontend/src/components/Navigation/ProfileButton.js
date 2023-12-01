@@ -64,7 +64,16 @@ function ProfileButton({ user }) {
               to="/spots/current"
             >
               <div className="link">
-                <p className="house">⌂</p> Manage Spots
+                <p className="house">⌂</p> Manage Places
+              </div>
+            </NavLink>
+            <NavLink
+              style={{ color: "black", textDecoration: "none" }}
+              onClick={closeMenu}
+              to="/bookings"
+            >
+              <div className="link">
+                <p className="anchor">⎈</p> Manage Bookings
               </div>
             </NavLink>
             <div className="line"></div>

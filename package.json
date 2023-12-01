@@ -23,5 +23,10 @@
   "bugs": {
     "url": "https://github.com/Mirabordem/Mira-API-Project/issues"
   },
-  "homepage": "https://github.com/Mirabordem/Mira-API-Project#readme"
+  "homepage": "https://github.com/Mirabordem/Mira-API-Project#readme",
+  "dependencies": {
+    "react": "^16.14.0",
+    "react-datepicker": "^4.24.0",
+    "react-dom": "^16.14.0"
+  }
 }
