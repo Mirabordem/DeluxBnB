@@ -1,5 +1,88 @@
-# AirBnB Clone
-View the site: https://mira-api-qlip.onrender.com/
+# Welcome to LuxeBnB: Share Your Luxury!
+
+LuxeBnB website: https://mira-api-qlip.onrender.com/
+
+# Description
+
+Imagine a platform where luxury meets community, where exclusive spaces are shared by their discerning owners, and guests experience indulgence beyond compare.
+
+## Discover Your Oasis:
+
+- LuxeBnB invites property owners to showcase their most exquisite spaces. Share the allure of your private estates, designer penthouses, and picturesque villas. Our intuitive platform empowers owners to effortlessly create, edit, and curate their listings, ensuring that every detail of their luxurious abode is captured.
+
+## Manage Your Elegance:
+
+- Seamlessly navigate your luxury portfolio on the "Manage Your Places" page. Owners have the power to tailor their listings, ensuring that the essence of their unique spaces is presented in all its splendor. Edit with precision, delete with ease – LuxeBnB puts the reins of luxury management in your hands.
+
+## Engage and Elevate:
+
+- LuxeBnB is not just a platform; it's a vibrant community. Owners and guests alike can engage in a dialogue of sophistication. Leave your mark with eloquent comments or refine your space based on valuable feedback. This is luxury living with a personal touch.
+
+## Reserve Your Rendezvous:
+
+- For guests seeking the epitome of elegance, LuxeBnB offers a curated selection of exclusive retreats. Secure your reservation effortlessly and anticipate an unparalleled experience in the lap of luxury. Your journey begins with a click.
+
+## Manage Your Moments:
+
+- Anticipate the future with our "Future Bookings" feature. Flexibility at your fingertips – guests can modify or delete reservations with ease, ensuring that plans align with their evolving desires.
+
+## Relive the Splendor:
+
+- As your luxury experience unfolds, capture the memories with "Past Bookings." Reflect on your extraordinary escapes and share your insights through thoughtful reviews. 
+
+Experience LuxeBnB: Share Your Luxury today!
+
+
+# Technologies Used:
+
+ - Backend: Express, JavaScript, Sequelize
+ - Frontend: React, Redux, JavaScript, HTML, CSS
+ - Database: PostgreSQL
+ - Hosting: Render
+
+# Home Page 
+
+<img width="1440" alt="Home-page" src="https://github.com/Mirabordem/LuxeBnB/assets/130639536/f2a534bd-d5ec-4915-b138-e557d21d9fc1">
+
+
+# Single Place Page
+
+<img width="1369" alt="single-spot" src="https://github.com/Mirabordem/LuxeBnB/assets/130639536/70226ed6-4e4e-4306-b807-5b1bd095836a">
+
+
+
+# Manage Your Places page
+
+<img width="1427" alt="manage-places" src="https://github.com/Mirabordem/LuxeBnB/assets/130639536/b258c11e-3958-4762-a4dc-4a375bf20a93">
+
+
+# Reviews area
+
+<img width="1430" alt="reviews" src="https://github.com/Mirabordem/LuxeBnB/assets/130639536/9e450417-9e4d-4f35-aa56-6b0458773324">
+
+
+# Create Review
+
+<img width="987" alt="review-form" src="https://github.com/Mirabordem/LuxeBnB/assets/130639536/4a9f04b9-1db1-4129-9c5d-552e7ac2e301">
+
+
+# Delete Review
+
+<img width="900" alt="Delete-Review" src="https://github.com/Mirabordem/LuxeBnB/assets/130639536/302890df-859d-46ae-b25b-f8e2fb877fa6">
+
+
+# Make a Reservation
+
+<img width="1006" alt="book-form" src="https://github.com/Mirabordem/LuxeBnB/assets/130639536/db886327-2366-499b-a027-678825fa8b07">
+
+# Future Trips
+
+<img width="1432" alt="upcoming-trips" src="https://github.com/Mirabordem/LuxeBnB/assets/130639536/db3fe96a-a944-48cd-858d-671f9d0cb7c9">
+
+# Past Trips
+
+<img width="1425" alt="finished-trips" src="https://github.com/Mirabordem/LuxeBnB/assets/130639536/07e50d08-2015-4eb7-90a2-de83d070eec3">
+
 
 ## Database Schema Design
 
@@ -9,6 +92,14 @@ View the site: https://mira-api-qlip.onrender.com/
 [airbnb-db-diagram-info]: https://appacademy-open-assets.s3.us-west-1.amazonaws.com/Modular-Curriculum/content/week-12/airbnb-db-diagram-info.txt
 
 [db-schema]: ./images/DatabaseSchemaDesign.png
+
+Developer: 
+  Miroslawa (Mira) Borkowska
+  - CONNECT ON GITHUB: https://github.com/Mirabordem
+  - CONNECT ON LINKEDIN: https://www.linkedin.com/in/miroslawa-borkowska-3b72332a0/
+
+
+
 
 ## API Documentation
 
