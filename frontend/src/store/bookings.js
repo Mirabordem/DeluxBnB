@@ -82,13 +82,24 @@ export const editBookingThunk = (spotId, data) => async dispatch => {
 
 }
 
-export const deleteBookingThunk = (spotId) => async dispatch => {
-    const response = await csrfFetch(`/api/bookings/${spotId}`, {
+
+export const deleteBookingThunk = (bookingId) => async (dispatch) => {
+    try {
+        const response = await csrfFetch(`/api/bookings/${bookingId}`, {
         method: "DELETE",
-    })
-    const data = await response.json();
-    dispatch(deleteBooking(spotId))
-}
+        });
+
+        if (!response.ok) {
+        throw new Error('Failed to delete booking');
+        }
+
+        const data = await response.json();
+        dispatch(deleteBooking(bookingId));
+    } catch (error) {
+        console.error('Error deleting booking:', error.message);
+
+    }
+};
 
 
 //________________________________________
@@ -132,8 +143,8 @@ export default function bookingsReducer(state = initialState, action) {
             newState = { ...state }
             newState.spot = { ...newState.spot }
             newState.user = { ...newState.user }
-            delete newState.user[action.id]
-            delete newState.spot[action.id]
+            delete newState.user[action.spotId];
+            delete newState.spot[action.spotId];
             return newState;
 
         default:

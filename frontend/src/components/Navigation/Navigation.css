@@ -186,5 +186,7 @@
 
 .logout-button:hover {
   cursor: pointer;
-  background-color: orangered;
+  color: orange;
+  box-shadow: 1px 1px 6px #8f8f8f;
+  background-color: rgb(250, 232, 232);
 }

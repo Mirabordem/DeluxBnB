@@ -56,17 +56,18 @@ export default function UserBookings() {
             <h2>Your Bookings</h2>
             <div className="divider1"></div>
                 <h1> Upcoming Trips</h1>
-                <div className="upcoming-trip-div">
+
                 {futureBookings.length < 1 && (
-                    <>
-                        <h3>No trips to be excited.</h3>
-                        <p>Time to start planning!</p>
+                    <div className="no-trip-container">
+                        <div className="no-trips-yet">No trips to be excited for now!</div>
+                        <p className="plan">Time to start planning...</p>
                         <button id="booking-start-searching"
                             onClick={() => {
                                 history.push('/')
                             }}
                         >Start searching</button>
-                    </>)}
+                    </div>)}
+                    <div className="upcoming-trip-div">
                 {futureBookings.map(booking => {
                     return (<div key={booking.id} className="booking-tile">
                         <FutureBookings booking={booking} future={true} />

@@ -75,7 +75,7 @@ return (
             <OpenModalButton
                 className="past-trips-button"
                 buttonText="Post your Review"
-                modalComponent={<CreateReviewModal spotInfo={spot} />}
+                modalComponent={<CreateReviewModal spot={spot} user={user} />}
                 style={{ fontSize: "10px", height: "0.5rem", borderRadius: "6px" }}
             />
             </div>

@@ -21,12 +21,12 @@ function DeleteReviewModal({ review, spot }) {
   };
 
   return (
-    <div className='delete-modal'>
+    <div className='delete-form'>
       <h1>Confirm Delete</h1>
-      <h2>Are you sure you want to remove this review?</h2>
+      <div className="are-you-sure">Are you sure you want to delete this review?</div>
 
-      <button id='cancel-button' className='modal-button' onClick={handleDelete}> Remove  </button>
-      <button id='delete-button' className='modal-button' onClick={handleCancel}> Keep  </button>
+      <button id='cancel-button'  onClick={handleDelete}> Delete  </button>
+      <button id='delete-button'  onClick={handleCancel}> Keep  </button>
     </div>
   )
 }

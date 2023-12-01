@@ -95,21 +95,23 @@
     justify-content: center;
     padding: 0 1rem;
     background-color: rgb(239, 238, 238);
+
     /* border: 2px solid red; */
 }
 
 .trips-wrapper h1 {
     margin: auto;
     margin-top: 30px;
-    color: gray;
-    font-size: 48px;
+    color: orange;
+    font-size: 42px;
     margin-bottom: 50px;
 }
 
 .trips-wrapper h2 {
     margin: auto;
     margin-top: 20px;
-    font-size: 22px;
+    font-size: 23px;
+    color: grey;
 }
 
 .upcoming-trip-div {
@@ -121,6 +123,7 @@
     align-content: center;
     justify-content: center; */
     padding: 0 1rem;
+    min-height: 400px;
 }
 
 .divider {
@@ -164,47 +167,49 @@
     padding: 24px 24px 18px;
     border: 2px solid rgb(113, 113, 113);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  }
+}
 
-  .delete-form h1 {
+.delete-form h1 {
     color: rgb(40, 39, 39);
     font-size: 30px;
-  }
+}
 
-  .are-you-sure {
-    width: 60%;
+.are-you-sure {
+    width: 80%;
+    text-align: center;
     font-size: 18px;
-    color: gray;
+    color: rgb(155, 153, 153);
     margin-bottom: 20px;
-  }
+}
 
-  #cancel-button {
+#cancel-button {
     /* border: 2px solid red; */
     width: 300px;
     margin-bottom: -5px;
     height: 35px;
     font-size: 16px;
-  }
-  #delete-button {
+}
+
+#delete-button {
     /* border: 2px solid red; */
     width: 300px;
     height: 35px;
     font-size: 16px;
-  }
+}
 
-  #cancel-button:hover {
+#cancel-button:hover {
     cursor: pointer;
     color: orange;
     box-shadow: 1px 1px 6px #8f8f8f;
     background-color: rgb(250, 232, 232);
-  }
+}
 
-  #delete-button:hover {
+#delete-button:hover {
     cursor: pointer;
     color: orange;
     box-shadow: 1px 1px 6px #8f8f8f;
     background-color: rgb(250, 232, 232);
-  }
+}
 
 
 
@@ -216,7 +221,7 @@
     margin-bottom: 1.5rem;
     width: 550px;
     height: 220px;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: -3px 5px 11px #bfc5c8;
     background-color: white;
 }
@@ -286,7 +291,7 @@
     width: 360px;
     height: 120px;
     margin-bottom: 2rem;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: -3px 5px 11px #bfc5c8;
     background-color: white;
 }
@@ -323,8 +328,40 @@
     margin-bottom: 0;
 }
 
+.no-trips-yet {
+    font-size: 28px;
+    /* color: grey; */
+}
 
+.no-trip-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
 
+#booking-start-searching {
+    margin-top: 10px;
+    width: 200px;
+    height: 40px;
+    color: white;
+    background-color: orange;
+    border: none;
+    border-radius: 10px;
+}
+
+#booking-start-searching:hover {
+    cursor: pointer;
+    background-color: rgb(250, 232, 232);
+    color: orange;
+    box-shadow: 1px 1px 6px #8f8f8f;
+}
+
+.plan {
+    color: grey;
+    font-size: 20px;
+}
 
 
 

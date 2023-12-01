@@ -22,7 +22,7 @@ return (
             </a>
             <i class="fa-brands fa-linkedin footer-icon" onClick={handleLinkedin}></i>
         </div>
-        </div>
+    </div>
     </div>
     );
 }
